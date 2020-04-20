@@ -1,15 +1,26 @@
 import React, { Component } from "react";
 
+import SectionTitle from "../../components/SectionTitle/SectionTitle";
+
 import styles from "./Main.module.css";
 
 class Main extends Component {
   state = {};
-  render() {
+
+  renderContent = () => {
     return (
       <div className={styles.main}>
-        <div className={styles.container}>Main</div>
+        <div className={styles.container}>
+          <SectionTitle title="featured" />
+          <SectionTitle title="latest releases" />
+          <SectionTitle title="trending" />
+        </div>
       </div>
     );
+  };
+
+  render() {
+    return this.renderContent();
   }
 }
 

@@ -9,6 +9,9 @@
 
 .container {
   height: 100%;
-  width: 60%;
+  width: 55%;
   background-color: #fbfbfb;
+  box-sizing: border-box;
+  padding: 20px;
+  padding-top: 0px;
 }
