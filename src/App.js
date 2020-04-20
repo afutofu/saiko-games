@@ -1,7 +1,12 @@
 import React from "react";
+import Navbar from "./container/Navbar";
 
 const App = () => {
-  return <div>Saiko Games</div>;
+  return (
+    <React.Fragment>
+      <Navbar />
+    </React.Fragment>
+  );
 };
 
 export default App;
