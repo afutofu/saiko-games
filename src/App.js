@@ -1,11 +1,16 @@
 import React from "react";
-import Navbar from "./container/Navbar";
+
+import Navbar from "./container/Navbar/Navbar";
+import Main from "./container/Main/Main";
+
+import styles from "./App.module.css";
 
 const App = () => {
   return (
-    <React.Fragment>
+    <div className={styles.app}>
       <Navbar />
-    </React.Fragment>
+      <Main />
+    </div>
   );
 };
 
