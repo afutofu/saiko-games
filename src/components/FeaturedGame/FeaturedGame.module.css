@@ -1,0 +1,48 @@
+.featuredGame {
+  width: 100%;
+  height: 38vh;
+  background-color: #7173a1;
+  transform: scaleX(1.15);
+  color: white;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  padding: 30px;
+  box-sizing: border-box;
+  display: flex;
+}
+
+.cover {
+  width: 230px;
+}
+
+.infoContainer {
+  height: 100%;
+  width: 100%;
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.infoContainer * {
+  margin: 0;
+}
+
+.name {
+  font-size: 45px;
+  margin-bottom: 7px;
+}
+
+.genres {
+  font-size: 25px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.storyline {
+  line-height: 1.6rem;
+  font-size: 22px;
+}
