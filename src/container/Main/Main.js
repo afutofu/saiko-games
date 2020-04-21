@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import FeaturedGame from "../../components/FeaturedGame/FeaturedGame";
 import GameCoverDisplay from "../../components/GameCoverDisplay/GameCoverDisplay";
+import GameScreenshotDisplay from "../../components/GameScreenshotDisplay/GameScreenshotDisplay";
 
 import styles from "./Main.module.css";
 
@@ -30,6 +31,11 @@ class Main extends Component {
             rating="89"
           />
           <SectionTitle title="trending" />
+          <GameScreenshotDisplay
+            name="Skyrim"
+            genre={["Action", "Fantasy"][0]}
+            rating="96"
+          />
         </div>
       </div>
     );
