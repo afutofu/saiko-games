@@ -1,0 +1,30 @@
+.gameCoverDisplay {
+  border: 0.5px solid rgba(112, 112, 112, 0.3);
+  width: 210px;
+}
+
+.gameCoverDisplay * {
+  margin: 0;
+}
+
+.cover {
+  width: 210px;
+}
+
+.infoContainer {
+  position: relative;
+  padding: 10px;
+  padding-top: 3px;
+}
+
+.name {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.rating {
+  position: absolute;
+  bottom: 20px;
+  right: 10px;
+  font-size: 23px;
+}

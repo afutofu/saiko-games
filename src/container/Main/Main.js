@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import FeaturedGame from "../../components/FeaturedGame/FeaturedGame";
+import GameCoverDisplay from "../../components/GameCoverDisplay/GameCoverDisplay";
 
 import styles from "./Main.module.css";
 
@@ -23,6 +24,11 @@ class Main extends Component {
             very core of the world."
           />
           <SectionTitle title="latest releases" />
+          <GameCoverDisplay
+            name="Minecraft"
+            genre={["Simulator", "Strategy"][0]}
+            rating="89"
+          />
           <SectionTitle title="trending" />
         </div>
       </div>
