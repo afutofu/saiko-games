@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import FeaturedGame from "../../components/FeaturedGame/FeaturedGame";
-import GameCoverDisplay from "../../components/GameCoverDisplay/GameCoverDisplay";
+import GameCoverContainer from "../../components/GameCoverContainer/GameCoverContainer";
 import TrendingGame from "../../components/TrendingGame/TrendingGame";
 import GameScreenshotDisplay from "../../components/GameScreenshotDisplay/GameScreenshotDisplay";
 
@@ -30,11 +30,7 @@ class Main extends Component {
             very core of the world."
           />
           <SectionTitle title="latest releases" />
-          <GameCoverDisplay
-            name="Minecraft"
-            genre={["Simulator", "Strategy"][0]}
-            rating="89"
-          />
+          <GameCoverContainer games={4} />
           <SectionTitle title="trending" />
           <TrendingGame
             name="Mount & Blade: Bannerlord"
