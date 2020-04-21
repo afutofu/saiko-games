@@ -14,6 +14,12 @@ class Main extends Component {
   renderContent = () => {
     return (
       <div className={styles.main}>
+        <img
+          className={styles.backgroundImage}
+          src="https://images.igdb.com/igdb/image/upload/t_1080p/qifkxxpckhq4wyxgquqe.jpg"
+          alt="bg"
+        />
+        <div className={styles.background} />
         <div className={styles.container}>
           <SectionTitle title="featured" />
           <FeaturedGame
