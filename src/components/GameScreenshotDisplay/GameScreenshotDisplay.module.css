@@ -2,7 +2,7 @@
 
 .gameScreenshotDisplay {
   position: relative;
-  width: 300px;
+  width: 320px;
   height: 170px;
 }
 
@@ -47,4 +47,48 @@
   bottom: 15px;
   right: 20px;
   font-size: 23px;
+}
+
+/* Mobile Portrait */
+@media (max-width: 768px) {
+}
+
+/* Tablet Portrait */
+@media (min-width: 768px) {
+}
+
+/* Tablet Landscape */
+@media (min-width: 1024px) {
+  .gameScreenshotDisplay {
+    position: relative;
+    width: 180px;
+    height: 170px;
+  }
+}
+
+/* Laptop */
+@media (min-width: 1280px) {
+  .gameScreenshotDisplay {
+    position: relative;
+    width: 240px;
+    height: 170px;
+  }
+}
+
+/* Laptop Beyond*/
+@media (min-width: 1580px) {
+  .gameScreenshotDisplay {
+    position: relative;
+    width: 280px;
+    height: 170px;
+  }
+}
+
+/* Laptop +*/
+@media (min-width: 1850px) {
+  .gameScreenshotDisplay {
+    position: relative;
+    width: 320px;
+    height: 170px;
+  }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import GameCoverDisplay from "../GameCoverDisplay/GameCoverDisplay";
+import GameCoverDisplay from "../../components/GameCoverDisplay/GameCoverDisplay";
 
 import styles from "./GameCoverContainer.module.css";
 

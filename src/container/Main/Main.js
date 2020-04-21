@@ -2,9 +2,8 @@ import React, { Component } from "react";
 
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import FeaturedGame from "../../components/FeaturedGame/FeaturedGame";
-import GameCoverContainer from "../../components/GameCoverContainer/GameCoverContainer";
-import TrendingGame from "../../components/TrendingGame/TrendingGame";
-import GameScreenshotDisplay from "../../components/GameScreenshotDisplay/GameScreenshotDisplay";
+import GameCoverContainer from "../GameCoverContainer/GameCoverContainer";
+import TrendingGamesContainer from "../TrendingGamesContainer/TrendingGamesContainer";
 
 import styles from "./Main.module.css";
 
@@ -32,16 +31,7 @@ class Main extends Component {
           <SectionTitle title="latest releases" />
           <GameCoverContainer games={4} />
           <SectionTitle title="trending" />
-          <TrendingGame
-            name="Mount & Blade: Bannerlord"
-            genres={["RPG", "Action", "Simulator"]}
-            storyline="Mount & Blade II: Bannerlord is the eagerly awaited sequel to the acclaimed medieval combat simulator and role-playing game Mount & Blade: Warband. Set 200 years before, it expands both the detailed fighting system and the world of Calradia. Bombard mountain fastnesses with siege engines, establish secret criminal empires in the back alleys of cities, or charge into the thick of chaotic battles in your quest for power."
-          />
-          <GameScreenshotDisplay
-            name="Skyrim"
-            genre={["Action", "Fantasy"][0]}
-            rating="96"
-          />
+          <TrendingGamesContainer games={3} />
         </div>
       </div>
     );
