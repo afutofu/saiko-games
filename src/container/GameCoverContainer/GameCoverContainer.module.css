@@ -5,23 +5,3 @@
   overflow: hidden;
   flex-wrap: wrap;
 }
-
-/* Mobile Portrait */
-@media (max-width: 768px) {
-}
-
-/* Tablet Portrait */
-@media (min-width: 768px) {
-}
-
-/* Tablet Landscape */
-@media (min-width: 1024px) {
-}
-
-/* Laptop */
-@media (min-width: 1280px) {
-}
-
-/* Laptop Beyond*/
-@media (min-width: 1580px) {
-}
