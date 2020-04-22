@@ -1,0 +1,13 @@
+.videosContainer {
+  height: 120vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.video {
+  height: 40vh;
+  width: 50vw;
+  border: none;
+  margin: 0 10vw;
+}

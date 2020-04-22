@@ -4,6 +4,7 @@ import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import FeaturedGame from "../../components/FeaturedGame/FeaturedGame";
 import GameCoverContainer from "../GameCoverContainer/GameCoverContainer";
 import TrendingGamesContainer from "../TrendingGamesContainer/TrendingGamesContainer";
+import VideosContainer from "../VideosContainer/VideosContainer";
 
 import styles from "./Main.module.css";
 
@@ -33,6 +34,7 @@ class Main extends Component {
           <SectionTitle title="trending" />
           <TrendingGamesContainer games={3} />
         </div>
+        <VideosContainer videos={3} />
       </div>
     );
   };
