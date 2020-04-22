@@ -8,6 +8,7 @@ const GameCoverDisplay = (props) => {
       <img
         src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7j.jpg"
         className={styles.cover}
+        alt="cover"
       />
       <div className={styles.infoContainer}>
         <h3 className={styles.name}>{props.name}</h3>

@@ -20,6 +20,7 @@ class VideosContainer extends Component {
       videos.push(
         <iframe
           //   ref={this.videoRef}
+          title={i}
           key={i}
           className={styles.video}
           src="https://www.youtube.com/embed/P7OQRA2kDyE"

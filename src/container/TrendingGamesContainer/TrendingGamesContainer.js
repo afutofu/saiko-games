@@ -14,6 +14,7 @@ class TrendingGameContainer extends Component {
     for (let i = 0; i < this.props.games; i++) {
       games.push(
         <GameScreenshotDisplay
+          key={i}
           name="Skyrim"
           genre={["Action", "Fantasy"][0]}
           rating="96"

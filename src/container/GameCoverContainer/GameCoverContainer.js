@@ -12,6 +12,7 @@ class GameCoverContainer extends Component {
     for (let i = 0; i < this.props.games; i++) {
       games.push(
         <GameCoverDisplay
+          key={i}
           name="Minecraft"
           genre={["Simulator", "Strategy"][0]}
           rating="89"
