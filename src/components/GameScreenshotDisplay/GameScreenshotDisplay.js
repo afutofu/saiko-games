@@ -16,7 +16,6 @@ const GameScreenshotDisplay = (props) => {
             <h3 className={styles.name}>{props.name}</h3>
             <p className={styles.genre}>{props.genre}</p>
           </div>
-
           <h3 className={styles.rating}>{props.rating}</h3>
         </div>
       </div>

@@ -5,8 +5,10 @@ import FeaturedGame from "../../components/FeaturedGame/FeaturedGame";
 import GameCoverContainer from "../GameCoverContainer/GameCoverContainer";
 import TrendingGamesContainer from "../TrendingGamesContainer/TrendingGamesContainer";
 import VideoContainer from "../VideoContainer/VideoContainer";
+import GameScreenshotContainer from "../../components/GameScreenshotContainer/GameScreenshotContainer";
 
 import styles from "./Main.module.css";
+import GameScreenshotDisplay from "../../components/GameScreenshotDisplay/GameScreenshotDisplay";
 
 class Main extends Component {
   state = {};
@@ -38,8 +40,11 @@ class Main extends Component {
         <div className={styles.container}>
           <SectionTitle title="highest rated games" big />
           <SectionTitle title="past years" color="#DED375" />
+          <GameScreenshotContainer games={3} />
           <SectionTitle title="past 5 years" color="#DED375" />
+          <GameScreenshotContainer games={3} />
           <SectionTitle title="all time" color="#DED375" />
+          <GameScreenshotContainer games={3} />
         </div>
       </div>
     );
