@@ -35,6 +35,12 @@ class Main extends Component {
           <TrendingGamesContainer games={3} />
         </div>
         <VideoContainer videos={3} />
+        <div className={styles.container}>
+          <SectionTitle title="highest rated games" big />
+          <SectionTitle title="past years" color="#DED375" />
+          <SectionTitle title="past 5 years" color="#DED375" />
+          <SectionTitle title="all time" color="#DED375" />
+        </div>
       </div>
     );
   };
