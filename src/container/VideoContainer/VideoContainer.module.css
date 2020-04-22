@@ -40,6 +40,6 @@
   border: none;
   flex: 1;
   box-sizing: border-box;
-  padding: 0 100px;
+  padding: 0 15%;
   z-index: 200;
 }

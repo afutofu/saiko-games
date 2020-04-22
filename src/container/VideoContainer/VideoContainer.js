@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import styles from "./VideosContainer.module.css";
+import styles from "./VideoContainer.module.css";
 
 class VideosContainer extends Component {
   constructor(props) {
