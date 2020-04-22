@@ -46,14 +46,14 @@ class VideosContainer extends Component {
           {video.props.index === 0 ? (
             <div />
           ) : (
-            <button onClick={this.onPrevVideo}>
+            <button onClick={this.onPrevVideo} className={styles.prevButton}>
               <i class="fa fa-chevron-left"></i>
             </button>
           )}
           {video.props.index === videos.length - 1 ? (
             <div />
           ) : (
-            <button onClick={this.onNextVideo}>
+            <button onClick={this.onNextVideo} className={styles.nextButton}>
               <i class="fa fa-chevron-right"></i>
             </button>
           )}
