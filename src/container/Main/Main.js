@@ -34,7 +34,7 @@ class Main extends Component {
           <SectionTitle title="trending" />
           <TrendingGamesContainer games={3} />
         </div>
-        <VideosContainer videos={3} />
+        <VideosContainer videos={7} />
       </div>
     );
   };

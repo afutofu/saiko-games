@@ -1,13 +1,45 @@
 .videosContainer {
-  height: 120vh;
+  position: relative;
+  height: 140vh;
+  width: 70%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
 
-.video {
-  height: 40vh;
-  width: 50vw;
+.buttons {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  z-index: 100;
+}
+
+.buttons button {
+  cursor: pointer;
+  background: none;
   border: none;
-  margin: 0 10vw;
+  color: white;
+}
+
+.buttons i {
+  font-size: 2rem;
+}
+
+.slider {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  transition: 1s;
+}
+
+.video {
+  position: relative;
+  height: 60vh;
+  min-width: 100%;
+  border: none;
+  flex: 1;
+  box-sizing: border-box;
+  padding: 0 100px;
+  z-index: 200;
 }
