@@ -7,15 +7,14 @@ import TrendingGamesContainer from "../TrendingGamesContainer/TrendingGamesConta
 import VideoContainer from "../VideoContainer/VideoContainer";
 import GameScreenshotContainer from "../../components/GameScreenshotContainer/GameScreenshotContainer";
 
-import styles from "./Main.module.css";
-import GameScreenshotDisplay from "../../components/GameScreenshotDisplay/GameScreenshotDisplay";
+import styles from "./FrontPage.module.css";
 
-class Main extends Component {
+class FrontPage extends Component {
   state = {};
 
-  renderContent = () => {
+  render() {
     return (
-      <div className={styles.main}>
+      <div className={styles.frontPage}>
         <img
           className={styles.backgroundImage}
           src="https://images.igdb.com/igdb/image/upload/t_1080p/qifkxxpckhq4wyxgquqe.jpg"
@@ -28,8 +27,8 @@ class Main extends Component {
             name="Spiral Knights"
             genres={["RPG", "Adventure"]}
             storyline="You have crashed. You are stranded. But you are not alone. The Spiral Knights have awoken on an alien world. Their equipment stores have been 
-            raided and their starship, The Skylark, will not recover from the crash. Now they must work together to survive on a journey that will take them to the 
-            very core of the world."
+                raided and their starship, The Skylark, will not recover from the crash. Now they must work together to survive on a journey that will take them to the 
+                very core of the world."
           />
           <SectionTitle title="latest releases" />
           <GameCoverContainer games={4} />
@@ -48,11 +47,7 @@ class Main extends Component {
         </div>
       </div>
     );
-  };
-
-  render() {
-    return this.renderContent();
   }
 }
 
-export default Main;
+export default FrontPage;
