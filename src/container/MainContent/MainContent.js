@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import FrontPage from "../FrontPage/FrontPage";
+import GamePage from "../GamePage/GamePage";
 
 import styles from "./MainContent.module.css";
 
@@ -8,7 +9,7 @@ class MainContent extends Component {
   state = {};
 
   renderContent = () => {
-    return <FrontPage />;
+    return <GamePage />;
   };
 
   render() {
