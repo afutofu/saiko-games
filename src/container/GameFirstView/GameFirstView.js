@@ -43,14 +43,21 @@ class GameFirstView extends Component {
                 <p>20th Jan 2020 30 days ago</p>
                 <p>Studio X</p>
               </div>
-              <p>
-                You have crashed. You are stranded. But you are not alone. The
-                Spiral Knights have awoken on an alien world. Their equipment
-                stores have been raided and their starship, The Skylark, will
-                not recover from the crash. Now they must work together to
-                survive on a journey that will take them to the very core of the
-                world.
-              </p>
+              <div className={styles.aboutInfo}>
+                <p>
+                  You have crashed. You are stranded. But you are not alone. The
+                  Spiral Knights have awoken on an alien world. Their equipment
+                  stores have been raided and their starship, The Skylark, will
+                  not recover from the crash. Now they must work together to
+                  survive on a journey that will take them to the very core of
+                  the world.
+                </p>
+                <p>
+                  Join the ranks of the Spiral Knights. Stranded on an alien
+                  world, you must explore the ever-changing Clockworks beneath
+                  its surface.
+                </p>
+              </div>
             </div>
             <div className={styles.ratings}>
               <div className={styles.rating}>External Critic</div>

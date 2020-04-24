@@ -27,3 +27,26 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.3);
 }
+
+.container {
+  height: 100%;
+  width: 55%;
+  background-color: #fbfbfb;
+  box-sizing: border-box;
+  padding: 20px;
+  padding-top: 0px;
+  z-index: 100;
+}
+
+.reviewsDetails {
+  width: 100%;
+  display: flex;
+}
+
+.reviews {
+  width: 70%;
+}
+
+.details {
+  width: 30;
+}
