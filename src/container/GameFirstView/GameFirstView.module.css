@@ -1,0 +1,118 @@
+.gameFirstView {
+  position: absolute;
+  width: 100%;
+  height: 94vh;
+  top: 6vh;
+}
+
+.containerWidth {
+  position: relative;
+  width: 60%;
+  height: 100%;
+}
+
+.wideContainer {
+  position: absolute;
+  top: 55%;
+  height: 45%;
+  width: 100%;
+  background-color: #fbfbfb;
+  box-sizing: border-box;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  height: 100%;
+  width: 60%;
+  background-color: #fbfbfb;
+  box-sizing: border-box;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.container * {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.smallDetail {
+  position: relative;
+  width: 25%;
+  height: 100%;
+}
+
+.cover {
+  position: absolute;
+  height: 40vh;
+  width: 100%;
+  bottom: 70%;
+}
+
+.detailListContainer {
+  position: absolute;
+  padding: 20px;
+  font-size: 0.9rem;
+  top: 30%;
+}
+
+.detailList {
+  margin-bottom: 10px;
+}
+
+.detailList .title {
+  font-weight: 500;
+}
+
+.websiteLink {
+  font-weight: 500;
+}
+
+.about {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  padding: 20px;
+  line-height: 1.5rem;
+  border-right: 0.5px solid rgba(0, 0, 0, 0.3);
+  border-left: 0.5px solid rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+}
+
+.about .title {
+  position: absolute;
+  bottom: 135%;
+  width: 60vw;
+  font-size: 4.2rem;
+  color: white;
+  letter-spacing: 0.1rem;
+}
+
+.secondaryInfo {
+  position: absolute;
+  bottom: 100%;
+  width: 60vw;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.secondaryInfo p:nth-of-type(1) {
+  margin-bottom: 5px;
+}
+
+.secondaryInfo p:nth-of-type(2) {
+  font-style: italic;
+}
+
+.ratings {
+  width: 25%;
+  padding: 20px;
+}
+
+.rating {
+  margin-bottom: 20px;
+}
