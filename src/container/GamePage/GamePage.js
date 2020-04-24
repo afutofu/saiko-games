@@ -5,6 +5,7 @@ import VideoContainer from "../VideoContainer/VideoContainer";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import GameCoverContainer from "../GameCoverContainer/GameCoverContainer";
 import GameDetails from "../../components/GameDetails/GameDetails";
+import Review from "../../components/Review/Review";
 
 import styles from "./GamePage.module.css";
 
@@ -27,6 +28,7 @@ class GamePage extends Component {
           <div className={styles.reviewsDetails}>
             <div className={styles.reviews}>
               <SectionTitle title="reviews" />
+              <Review />
             </div>
             <div className={styles.details}>
               <SectionTitle title="details" />
