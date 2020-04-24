@@ -3,7 +3,8 @@
 
 .gameCoverDisplay {
   border: 0.5px solid rgba(112, 112, 112, 0.3);
-  width: displayWidth;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .gameCoverDisplay * {

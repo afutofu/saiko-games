@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import GameFirstView from "../GameFirstView/GameFirstView";
 import VideoContainer from "../VideoContainer/VideoContainer";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
+import GameCoverContainer from "../GameCoverContainer/GameCoverContainer";
 
 import styles from "./GamePage.module.css";
 
@@ -21,6 +22,7 @@ class GamePage extends Component {
         <VideoContainer videos={3} />
         <div className={styles.container}>
           <SectionTitle title="recommendations" />
+          <GameCoverContainer games={5} />
           <div className={styles.reviewsDetails}>
             <div className={styles.reviews}>
               <SectionTitle title="reviews" />

@@ -29,13 +29,14 @@
 }
 
 .container {
-  height: 100%;
+  height: 100vh;
   width: 55%;
   background-color: #fbfbfb;
   box-sizing: border-box;
   padding: 20px;
   padding-top: 0px;
   z-index: 100;
+  overflow: hidden;
 }
 
 .reviewsDetails {
