@@ -53,7 +53,7 @@ class ReviewContainer extends Component {
     return (
       <div className={styles.reviewContainer}>
         <div className={styles.reviews}>{this.state.visibleReviews}</div>
-        {console.log(reviews.length, reviewIndex)}
+        {reviews.length === 0 ? <p>No reviews</p> : null}
         {reviews.length > reviewIndex ? (
           <button
             className={styles.loadMoreButton}
