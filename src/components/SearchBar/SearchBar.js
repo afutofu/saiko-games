@@ -7,7 +7,7 @@ const SearchBar = () => {
     <div className={styles.searchBar}>
       <input className={styles.searchInput} />
       <button className={styles.button}>
-        <i class="fa fa-search"></i>
+        <i className="fa fa-search"></i>
       </button>
     </div>
   );

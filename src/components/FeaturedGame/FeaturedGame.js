@@ -4,7 +4,7 @@ import styles from "./FeaturedGame.module.css";
 
 const FeaturedGame = (props) => {
   return (
-    <div className={styles.featuredGame}>
+    <div onClick={() => props.onGameClick(1)} className={styles.featuredGame}>
       <img
         src="https://images.igdb.com/igdb/image/upload/t_screenshot_med/hpisfx4wmws8ov1n9d1j.jpg"
         alt="screenshot"

@@ -12,6 +12,11 @@ import styles from "./FrontPage.module.css";
 class FrontPage extends Component {
   state = {};
 
+  onGameClick = (gameId) => {
+    console.log("game clicked");
+    this.props.onGameClick(gameId);
+  };
+
   render() {
     return (
       <div className={styles.frontPage}>
@@ -24,6 +29,7 @@ class FrontPage extends Component {
         <div className={styles.container}>
           <SectionTitle title="featured" />
           <FeaturedGame
+            onGameClick={this.onGameClick}
             name="Spiral Knights"
             genres={["RPG", "Adventure"]}
             storyline="You have crashed. You are stranded. But you are not alone. The Spiral Knights have awoken on an alien world. Their equipment stores have been 

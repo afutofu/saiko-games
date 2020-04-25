@@ -24,7 +24,7 @@ class GamePage extends Component {
         <VideoContainer videos={3} />
         <div className={styles.container}>
           <SectionTitle title="recommendations" />
-          <GameCoverContainer games={5} />
+          <GameCoverContainer games={4} />
           <div className={styles.reviewsDetails}>
             <div className={styles.reviews}>
               <SectionTitle title="reviews" />

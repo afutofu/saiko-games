@@ -6,6 +6,7 @@
   color: white;
   transform: scaleX(1.15);
   margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .screenshot {
