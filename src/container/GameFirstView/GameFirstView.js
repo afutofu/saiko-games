@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import RatingBox from "../../components/RatingBox/RatingBox";
+
 import styles from "./GameFirstView.module.css";
 
 class GameFirstView extends Component {
@@ -60,9 +62,9 @@ class GameFirstView extends Component {
               </div>
             </div>
             <div className={styles.ratings}>
-              <div className={styles.rating}>External Critic</div>
-              <div className={styles.rating}>Member Score</div>
-              <div className={styles.rating}>Overall Rating</div>
+              <RatingBox title="external critic" />
+              <RatingBox title="member score" />
+              <RatingBox title="overall rating" />
             </div>
           </div>
         </div>
