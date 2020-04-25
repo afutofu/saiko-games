@@ -4,7 +4,10 @@ import styles from "./GameCoverDisplay.module.css";
 
 const GameCoverDisplay = (props) => {
   return (
-    <div className={styles.gameCoverDisplay}>
+    <div
+      onClick={() => props.onGameClick(1)}
+      className={styles.gameCoverDisplay}
+    >
       <img
         src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7j.jpg"
         className={styles.cover}

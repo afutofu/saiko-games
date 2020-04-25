@@ -3,8 +3,12 @@ import React from "react";
 import styles from "./TrendingGame.module.css";
 
 const TrendingGame = (props) => {
+  const onGameClick = (gameId) => {
+    props.onGameClick(gameId);
+  };
+
   return (
-    <div className={styles.trendingGame}>
+    <div onClick={() => onGameClick(1)} className={styles.trendingGame}>
       <img
         src="https://images.igdb.com/igdb/image/upload/t_screenshot_med/ozg4wanokhst4uehgkxs.jpg"
         alt="screenshot"

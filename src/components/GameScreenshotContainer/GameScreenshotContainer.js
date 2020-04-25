@@ -5,12 +5,17 @@ import GameScreenshotDisplay from "../GameScreenshotDisplay/GameScreenshotDispla
 import styles from "./GameScreenshotContainer.module.css";
 
 const GameScreenshotContainer = (props) => {
+  const onGameClick = (gameId) => {
+    props.onGameClick(gameId);
+  };
+
   const renderContent = () => {
     let games = [];
 
     for (let i = 0; i < props.games; i++) {
       games.push(
         <GameScreenshotDisplay
+          onGameClick={onGameClick}
           key={i}
           name="Skyrim"
           genre={["Action", "Fantasy"][0]}

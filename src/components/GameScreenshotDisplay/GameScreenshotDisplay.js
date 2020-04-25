@@ -3,8 +3,15 @@ import React from "react";
 import styles from "./GameScreenshotDisplay.module.css";
 
 const GameScreenshotDisplay = (props) => {
+  const onGameClick = (gameId) => {
+    props.onGameClick(gameId);
+  };
+
   return (
-    <div className={styles.gameScreenshotDisplay}>
+    <div
+      onClick={() => onGameClick(1)}
+      className={styles.gameScreenshotDisplay}
+    >
       <img
         className={styles.screenshot}
         src="https://images.igdb.com/igdb/image/upload/t_screenshot_med/muv70yw3rds1cw8ymr5v.jpg"

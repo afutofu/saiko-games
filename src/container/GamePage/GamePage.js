@@ -12,6 +12,10 @@ import styles from "./GamePage.module.css";
 class GamePage extends Component {
   state = {};
 
+  onGameClick = (gameId) => {
+    this.props.onGameClick(gameId);
+  };
+
   render() {
     return (
       <div className={styles.gamePage}>
@@ -25,7 +29,7 @@ class GamePage extends Component {
         <VideoContainer videos={3} />
         <div className={styles.container}>
           <SectionTitle title="recommendations" />
-          <GameCoverContainer games={4} />
+          <GameCoverContainer games={4} onGameClick={this.onGameClick} />
           <div className={styles.reviewsDetails}>
             <div className={styles.reviews}>
               <SectionTitle title="reviews" />

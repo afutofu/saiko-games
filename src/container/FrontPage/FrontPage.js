@@ -36,19 +36,19 @@ class FrontPage extends Component {
                 very core of the world."
           />
           <SectionTitle title="latest releases" />
-          <GameCoverContainer games={4} />
+          <GameCoverContainer games={4} onGameClick={this.onGameClick} />
           <SectionTitle title="trending" />
-          <TrendingGamesContainer games={3} />
+          <TrendingGamesContainer games={3} onGameClick={this.onGameClick} />
         </div>
         <VideoContainer videos={3} />
         <div className={styles.container}>
           <SectionTitle title="highest rated games" big />
           <SectionTitle title="past years" color="#DED375" />
-          <GameScreenshotContainer games={3} />
+          <GameScreenshotContainer games={3} onGameClick={this.onGameClick} />
           <SectionTitle title="past 5 years" color="#DED375" />
-          <GameScreenshotContainer games={3} />
+          <GameScreenshotContainer games={3} onGameClick={this.onGameClick} />
           <SectionTitle title="all time" color="#DED375" />
-          <GameScreenshotContainer games={3} />
+          <GameScreenshotContainer games={3} onGameClick={this.onGameClick} />
         </div>
       </div>
     );

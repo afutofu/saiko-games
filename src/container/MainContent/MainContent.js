@@ -19,7 +19,7 @@ class MainContent extends Component {
 
   renderContent = () => {
     if (this.state.gameId) {
-      return <GamePage />;
+      return <GamePage onGameClick={this.onGameClick} />;
     } else {
       return <FrontPage onGameClick={this.onGameClick} />;
     }
