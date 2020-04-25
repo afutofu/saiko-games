@@ -62,9 +62,9 @@ class GameFirstView extends Component {
               </div>
             </div>
             <div className={styles.ratings}>
-              <RatingBox title="external critic" rating={70} />
-              <RatingBox title="member score" rating={90} />
-              <RatingBox title="overall rating" rating={80} />
+              <RatingBox title="external critic" rating={70} delay={1} />
+              <RatingBox title="member score" rating={90} delay={2} />
+              <RatingBox title="overall rating" rating={80} delay={3} />
             </div>
           </div>
         </div>

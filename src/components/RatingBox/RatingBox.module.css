@@ -20,6 +20,7 @@
 
 .rating {
   position: relative;
+  opacity: 0;
 }
 
 .title,
@@ -34,10 +35,31 @@
   height: 100%;
   transform: translateX(-100%);
   background: greenyellow;
+  z-index: 0;
 }
 
-.slideIn {
+.slideIn1 {
   animation: slideIn 1s 1s ease forwards;
+}
+
+.slideIn2 {
+  animation: slideIn 1s 2s ease forwards;
+}
+
+.slideIn3 {
+  animation: slideIn 1s 3s ease forwards;
+}
+
+.fadeIn1 {
+  animation: fadeIn 1s 1s ease forwards;
+}
+
+.fadeIn2 {
+  animation: fadeIn 1s 2s ease forwards;
+}
+
+.fadeIn3 {
+  animation: fadeIn 1s 3s ease forwards;
 }
 
 @keyframes slideIn {
@@ -46,5 +68,14 @@
   }
   to {
     transform: translateX(0%);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
