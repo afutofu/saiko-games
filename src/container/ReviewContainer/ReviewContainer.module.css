@@ -23,4 +23,10 @@
   cursor: pointer;
   color: black;
   outline: none;
+  transition: 0.2s;
+}
+
+.loadMoreButton:hover {
+  transform: scale(1.1);
+  /* color: white; */
 }
