@@ -4,11 +4,15 @@ import styles from "./Navbar.module.css";
 import Logo from "../../components/Logo/Logo";
 import SearchBar from "../../components/SearchBar/SearchBar";
 
-const Navbar = () => {
+const Navbar = (props) => {
+  const onLogoClick = () => {
+    props.onLogoClick();
+  };
+
   return (
     <div className={styles.navbar}>
       <div className={styles.container}>
-        <Logo />
+        <Logo onLogoClick={onLogoClick} />
         <SearchBar />
       </div>
     </div>

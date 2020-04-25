@@ -11,6 +11,7 @@ import styles from "./GamePage.module.css";
 
 class GamePage extends Component {
   state = {};
+
   render() {
     return (
       <div className={styles.gamePage}>

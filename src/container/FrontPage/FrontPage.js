@@ -13,7 +13,6 @@ class FrontPage extends Component {
   state = {};
 
   onGameClick = (gameId) => {
-    console.log("game clicked");
     this.props.onGameClick(gameId);
   };
 
