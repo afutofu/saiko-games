@@ -1,20 +1,50 @@
 .ratingBox {
   position: relative;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   width: 200px;
   height: 40px;
-  border: 0.5px solid rgba(0, 0, 0, 0.2);
-  padding-left: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 0 10px;
+  box-sizing: border-box;
   margin-bottom: 20px !important;
+  overflow: hidden;
 }
 
 .title {
+  position: relative;
   text-transform: capitalize;
   margin: 0;
 }
 
+.rating {
+  position: relative;
+}
+
+.title,
+.rating {
+  z-index: 100;
+}
+
 .ratingBar {
   position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  transform: translateX(-100%);
+  background: greenyellow;
+}
+
+.slideIn {
+  animation: slideIn 1s 1s ease forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
 }
