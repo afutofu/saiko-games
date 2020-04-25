@@ -28,7 +28,7 @@ class GamePage extends Component {
           <div className={styles.reviewsDetails}>
             <div className={styles.reviews}>
               <SectionTitle title="reviews" />
-              <ReviewContainer reviews={6} />
+              <ReviewContainer reviews={16} />
             </div>
             <div className={styles.details}>
               <SectionTitle title="details" />

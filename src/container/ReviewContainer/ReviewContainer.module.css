@@ -2,4 +2,25 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+.reviews {
+  display: flex;
+  flex-direction: column;
+}
+
+.loadMoreButton {
+  margin-top: 1vh;
+  height: 5vh;
+  width: 15vw;
+  background: gold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  color: black;
+  outline: none;
 }

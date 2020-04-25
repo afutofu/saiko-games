@@ -8,29 +8,61 @@ class ReviewContainer extends Component {
   constructor(props) {
     super(props);
 
-    let reviews = [];
-    let visibleReviews = [];
+    let reviews = [],
+      visibleReviews = [],
+      index = 0;
 
     for (let i = 0; i < props.reviews; i++) {
       reviews.push(<Review />);
-      console.log(i);
     }
-
-    console.log(reviews);
 
     for (let i = 0; i < reviews.length; i++) {
       if (i === 5) {
         break;
       }
       visibleReviews.push(<Review />);
+      index++;
     }
 
-    this.state = { reviews: props.reviews, visibleReviews: visibleReviews };
+    this.state = {
+      reviews: reviews,
+      visibleReviews: visibleReviews,
+      reviewIndex: index,
+    };
   }
 
+  onLoadMoreClick = () => {
+    let newVisibleReviews = [],
+      newIndex = 0;
+
+    const { reviews, visibleReviews, reviewIndex } = this.state;
+
+    for (newIndex; newIndex < reviewIndex + 5; newIndex++) {
+      if (newIndex > reviews.length) {
+        break;
+      }
+      newVisibleReviews.push(reviews[newIndex]);
+    }
+
+    this.setState({ visibleReviews: newVisibleReviews, reviewIndex: newIndex });
+  };
+
   render() {
+    const { reviews, visibleReviews, reviewIndex } = this.state;
+
     return (
-      <div className={styles.reviewContainer}>{this.state.visibleReviews}</div>
+      <div className={styles.reviewContainer}>
+        <div className={styles.reviews}>{this.state.visibleReviews}</div>
+        {console.log(reviews.length, reviewIndex)}
+        {reviews.length > reviewIndex ? (
+          <button
+            className={styles.loadMoreButton}
+            onClick={this.onLoadMoreClick}
+          >
+            Load More Reviews
+          </button>
+        ) : null}
+      </div>
     );
   }
 }
