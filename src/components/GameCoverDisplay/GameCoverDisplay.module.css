@@ -2,9 +2,16 @@
 @value infoPadding: 10px;
 
 .gameCoverDisplay {
-  border: 0.5px solid rgba(112, 112, 112, 0.3);
-  height: 100%;
+  position: relative;
   box-sizing: border-box;
+  border: 1px solid rgba(112, 112, 112, 0.3);
+  height: 100%;
+  width: 200px;
+}
+
+.gameCoverDisplay:hover {
+  cursor: pointer;
+  border: 1px solid rgba(112, 112, 112, 1);
 }
 
 .gameCoverDisplay * {
@@ -12,7 +19,9 @@
 }
 
 .cover {
-  width: displayWidth;
+  position: relative;
+  width: 100%;
+  height: 265px;
 }
 
 .infoContainer {
