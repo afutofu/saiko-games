@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import Navbar from "../Navbar/Navbar";
 import FrontPage from "../FrontPage/FrontPage";
 import GamePage from "../GamePage/GamePage";
+import GameSearchPage from "../GameSearchPage/GameSearchPage";
 
 import styles from "./MainContent.module.css";
 
@@ -10,10 +11,12 @@ class MainContent extends Component {
   state = { gameId: null };
 
   onLogoClick = () => {
+    window.scrollTo(0, 0);
     this.setState({ gameId: null });
   };
 
   onGameClick = (gameId) => {
+    window.scrollTo(0, 0);
     this.setState({ gameId: gameId });
   };
 
@@ -29,7 +32,8 @@ class MainContent extends Component {
     return (
       <React.Fragment>
         <Navbar onLogoClick={this.onLogoClick} />
-        {this.renderContent()}
+        {/* {this.renderContent()} */}
+        <GameSearchPage />
       </React.Fragment>
     );
   }
