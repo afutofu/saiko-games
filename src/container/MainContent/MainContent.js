@@ -8,32 +8,32 @@ import GameSearchPage from "../GameSearchPage/GameSearchPage";
 import styles from "./MainContent.module.css";
 
 class MainContent extends Component {
-  state = { gameId: null, searchTerm: "" };
+  state = { pageId: 0, gameId: null, searchTerm: "" };
 
   onLogoClick = () => {
     window.scrollTo(0, 0);
-    this.setState({ gameId: null });
+    this.setState({ pageId: 0, gameId: null });
   };
 
   onGameClick = (gameId) => {
     window.scrollTo(0, 0);
-    this.setState({ gameId: gameId });
+    this.setState({ pageId: 1, gameId: gameId });
   };
 
   onSearch = (gameName) => {
     window.scrollTo(0, 0);
-    this.setState({ searchTerm: gameName });
+    this.setState({ pageId: 2, searchTerm: gameName });
   };
 
   renderContent = () => {
-    if (this.state.searchTerm) {
-      return <GameSearchPage onGameClick={this.onGameClick} />;
-    }
-
-    if (this.state.gameId) {
-      return <GamePage onGameClick={this.onGameClick} />;
-    } else {
-      return <FrontPage onGameClick={this.onGameClick} />;
+    console.log(this.state.pageId);
+    switch (this.state.pageId) {
+      case 0:
+        return <FrontPage onGameClick={this.onGameClick} />;
+      case 1:
+        return <GamePage onGameClick={this.onGameClick} />;
+      case 2:
+        return <GameSearchPage onGameClick={this.onGameClick} />;
     }
   };
 

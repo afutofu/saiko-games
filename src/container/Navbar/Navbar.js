@@ -9,11 +9,15 @@ const Navbar = (props) => {
     props.onLogoClick();
   };
 
+  const onSearch = (searchTerm) => {
+    props.onSearch(searchTerm);
+  };
+
   return (
     <div className={styles.navbar}>
       <div className={styles.container}>
         <Logo onLogoClick={onLogoClick} />
-        <SearchBar />
+        <SearchBar onSearch={onSearch} />
       </div>
     </div>
   );
