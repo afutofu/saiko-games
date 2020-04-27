@@ -3,6 +3,7 @@ import React from "react";
 import GameCoverDisplay2 from "../GameCoverDisplay2/GameCoverDisplay2";
 
 import styles from "./GameCoverDisplay2Container.module.css";
+import GameFirstView from "../../container/GameFirstView/GameFirstView";
 
 const GameCoverDisplay2Container = (props) => {
   const onGameClick = (gameId) => {
@@ -12,21 +13,33 @@ const GameCoverDisplay2Container = (props) => {
   const renderGames = () => {
     let games = [];
 
-    for (let i = 0; i < props.games; i++) {
+    console.log(props.games);
+
+    props.games.forEach((game, id) => {
+      let genres = [];
+      if (genres === undefined) {
+        game.genres.forEach((genre) => {
+          genres.push(genre.name);
+        });
+      } else {
+        genres.push("");
+      }
+
+      const cover = "https:" + game.cover.url.replace("t_thumb", "t_cover_big");
+
       games.push(
-        <div className={styles.game}>
+        <div key={id} className={styles.game}>
           <GameCoverDisplay2
             onGameClick={onGameClick}
-            name="Spiral Knights"
-            genres={["RPG", "Adventure"]}
-            storyline="You have crashed. You are stranded. But you are not alone. The Spiral Knights have awoken on an alien world. Their equipment stores have been 
-          raided and their starship, The Skylark, will not recover from the crash. Now they must work together to survive on a journey that will take them to the 
-          very core of the world."
-            rating={81}
+            cover={cover}
+            name={game.name}
+            genres={genres}
+            storyline={game.storyline}
+            rating={Math.round(game.rating)}
           />
         </div>
       );
-    }
+    });
 
     return games;
   };

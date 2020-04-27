@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import GameCoverDisplay2Container from "../../components/GameCoverDisplay2Container/GameCoverDisplay2Container";
@@ -6,7 +7,22 @@ import GameCoverDisplay2Container from "../../components/GameCoverDisplay2Contai
 import styles from "./GameSearchPage.module.css";
 
 class GameSearchPage extends Component {
-  state = {};
+  state = { games: [] };
+
+  componentDidMount() {
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = `https://api-v3.igdb.com/games?search=${this.props.searchTerm}&fields=cover.url,name,genres.name,storyline,summary,rating`;
+
+    axios
+      .get(proxyurl + url)
+      .then((res) => {
+        console.log(res.data);
+        this.setState({ games: res.data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   onGameClick = (gameId) => {
     this.props.onGameClick(gameId);
@@ -22,10 +38,12 @@ class GameSearchPage extends Component {
         />
         <div className={styles.background} />
         <div className={styles.container}>
-          <SectionTitle title={`games like "${this.props.searchTerm}"`} />
+          <SectionTitle
+            title={`games matched with "${this.props.searchTerm}"`}
+          />
           <GameCoverDisplay2Container
             onGameClick={this.onGameClick}
-            games={3}
+            games={this.state.games}
           />
         </div>
       </div>
