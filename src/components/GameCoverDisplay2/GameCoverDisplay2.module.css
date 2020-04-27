@@ -1,0 +1,57 @@
+.gameCoverDisplay {
+  position: relative;
+  height: 30vh;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  display: flex;
+}
+
+.gameCoverDisplay:hover {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.cover {
+  position: relative;
+  height: 100%;
+}
+
+.infoContainer {
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  padding-top: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow-y: hidden;
+}
+
+.infoContainer * {
+  margin: 0;
+}
+
+.name {
+  font-size: 35px;
+  margin-bottom: 7px;
+}
+
+.genres {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.storyline {
+  line-height: 1.6rem;
+  font-size: 22px;
+}
+
+.rating {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 25px;
+}
