@@ -7,14 +7,15 @@ import GameCoverDisplay2Container from "../../components/GameCoverDisplay2Contai
 import styles from "./GameSearchPage.module.css";
 
 class GameSearchPage extends Component {
-  state = { games: [] };
+  state = { games: [], loading: true };
 
   componentDidMount() {
     this.getGames(this.props.searchTerm);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps !== this.props) {
+    if (nextProps.searchTerm !== this.props.searchTerm) {
+      this.setState({ loading: true });
       this.getGames(nextProps.searchTerm);
     }
   }
@@ -26,10 +27,11 @@ class GameSearchPage extends Component {
     axios
       .get(proxyurl + url)
       .then((res) => {
-        this.setState({ games: res.data });
+        this.setState({ games: res.data, loading: false });
       })
       .catch((err) => {
         console.log(err);
+        this.setState({ loading: false });
       });
   };
 
@@ -38,8 +40,6 @@ class GameSearchPage extends Component {
   };
 
   render() {
-    console.log(this.state.games);
-
     return (
       <div className={styles.gameSearchPage}>
         <img
@@ -52,11 +52,22 @@ class GameSearchPage extends Component {
           <SectionTitle
             title={`games matched with "${this.props.searchTerm}"`}
           />
-          <GameCoverDisplay2Container
-            onGameClick={this.onGameClick}
-            games={this.state.games}
-          />
+          {!this.state.loading ? (
+            <GameCoverDisplay2Container
+              onGameClick={this.onGameClick}
+              games={this.state.games}
+            />
+          ) : null}
         </div>
+        {this.state.loading ? (
+          <div className={styles.spinner}>
+            <div className={styles.rect1}></div>
+            <div className={styles.rect2}></div>
+            <div className={styles.rect3}></div>
+            <div className={styles.rect4}></div>
+            <div className={styles.rect5}></div>
+          </div>
+        ) : null}
       </div>
     );
   }
