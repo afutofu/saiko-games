@@ -8,7 +8,7 @@ import GameSearchPage from "../GameSearchPage/GameSearchPage";
 import styles from "./MainContent.module.css";
 
 class MainContent extends Component {
-  state = { gameId: null };
+  state = { gameId: null, searchTerm: "" };
 
   onLogoClick = () => {
     window.scrollTo(0, 0);
@@ -20,7 +20,16 @@ class MainContent extends Component {
     this.setState({ gameId: gameId });
   };
 
+  onSearch = (gameName) => {
+    window.scrollTo(0, 0);
+    this.setState({ searchTerm: gameName });
+  };
+
   renderContent = () => {
+    if (this.state.searchTerm) {
+      return <GameSearchPage onGameClick={this.onGameClick} />;
+    }
+
     if (this.state.gameId) {
       return <GamePage onGameClick={this.onGameClick} />;
     } else {
@@ -31,9 +40,8 @@ class MainContent extends Component {
   render() {
     return (
       <React.Fragment>
-        <Navbar onLogoClick={this.onLogoClick} />
-        {/* {this.renderContent()} */}
-        <GameSearchPage />
+        <Navbar onLogoClick={this.onLogoClick} onSearch={this.onSearch} />
+        {this.renderContent()}
       </React.Fragment>
     );
   }

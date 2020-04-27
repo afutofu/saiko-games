@@ -3,8 +3,12 @@ import React from "react";
 import styles from "./GameCoverDisplay2.module.css";
 
 const GameCoverDisplay2 = (props) => {
+  const onGameClick = (gameId) => {
+    props.onGameClick(gameId);
+  };
+
   return (
-    <div className={styles.gameCoverDisplay}>
+    <div onClick={() => onGameClick(1)} className={styles.gameCoverDisplay}>
       <img
         src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7j.jpg"
         className={styles.cover}

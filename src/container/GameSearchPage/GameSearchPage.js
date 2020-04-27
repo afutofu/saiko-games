@@ -7,6 +7,11 @@ import styles from "./GameSearchPage.module.css";
 
 class GameSearchPage extends Component {
   state = {};
+
+  onGameClick = (gameId) => {
+    this.props.onGameClick(gameId);
+  };
+
   render() {
     return (
       <div className={styles.gameSearchPage}>
