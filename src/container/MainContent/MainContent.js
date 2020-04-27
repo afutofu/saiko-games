@@ -1,14 +1,15 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 import Navbar from "../Navbar/Navbar";
 import FrontPage from "../FrontPage/FrontPage";
 import GamePage from "../GamePage/GamePage";
 import GameSearchPage from "../GameSearchPage/GameSearchPage";
 
-import styles from "./MainContent.module.css";
-
 class MainContent extends Component {
   state = { pageId: 0, gameId: null, searchTerm: "" };
+
+  componentDidMount() {}
 
   onLogoClick = () => {
     window.scrollTo(0, 0);
@@ -26,14 +27,20 @@ class MainContent extends Component {
   };
 
   renderContent = () => {
-    console.log(this.state.pageId);
     switch (this.state.pageId) {
       case 0:
         return <FrontPage onGameClick={this.onGameClick} />;
       case 1:
         return <GamePage onGameClick={this.onGameClick} />;
       case 2:
-        return <GameSearchPage onGameClick={this.onGameClick} />;
+        return (
+          <GameSearchPage
+            onGameClick={this.onGameClick}
+            searchTerm={this.state.searchTerm}
+          />
+        );
+      default:
+        return null;
     }
   };
 

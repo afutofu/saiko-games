@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
-import GameCoverDisplay2 from "../../components/GameCoverDisplay2/GameCoverDisplay2";
 import GameCoverDisplay2Container from "../../components/GameCoverDisplay2Container/GameCoverDisplay2Container";
 
 import styles from "./GameSearchPage.module.css";
@@ -23,7 +22,7 @@ class GameSearchPage extends Component {
         />
         <div className={styles.background} />
         <div className={styles.container}>
-          <SectionTitle title="games" />
+          <SectionTitle title={`games like "${this.props.searchTerm}"`} />
           <GameCoverDisplay2Container
             onGameClick={this.onGameClick}
             games={3}
