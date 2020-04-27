@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import GameCoverDisplay2 from "../../components/GameCoverDisplay2/GameCoverDisplay2";
+import GameCoverDisplay2Container from "../../components/GameCoverDisplay2Container/GameCoverDisplay2Container";
 
 import styles from "./GameSearchPage.module.css";
 
@@ -23,14 +24,9 @@ class GameSearchPage extends Component {
         <div className={styles.background} />
         <div className={styles.container}>
           <SectionTitle title="games" />
-          <GameCoverDisplay2
+          <GameCoverDisplay2Container
             onGameClick={this.onGameClick}
-            name="Spiral Knights"
-            genres={["RPG", "Adventure"]}
-            storyline="You have crashed. You are stranded. But you are not alone. The Spiral Knights have awoken on an alien world. Their equipment stores have been 
-                raided and their starship, The Skylark, will not recover from the crash. Now they must work together to survive on a journey that will take them to the 
-                very core of the world."
-            rating={81}
+            games={3}
           />
         </div>
       </div>

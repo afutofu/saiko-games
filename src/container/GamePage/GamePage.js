@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import GameFirstView from "../GameFirstView/GameFirstView";
 import VideoContainer from "../VideoContainer/VideoContainer";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
-import GameCoverContainer from "../GameCoverContainer/GameCoverContainer";
+import GameCoverContainer from "../../components/GameCoverContainer/GameCoverContainer";
 import GameDetails from "../../components/GameDetails/GameDetails";
 import ReviewContainer from "../ReviewContainer/ReviewContainer";
 

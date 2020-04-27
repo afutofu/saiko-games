@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import FeaturedGame from "../../components/FeaturedGame/FeaturedGame";
-import GameCoverContainer from "../GameCoverContainer/GameCoverContainer";
+import GameCoverContainer from "../../components/GameCoverContainer/GameCoverContainer";
 import TrendingGamesContainer from "../TrendingGamesContainer/TrendingGamesContainer";
 import VideoContainer from "../VideoContainer/VideoContainer";
 import GameScreenshotContainer from "../../components/GameScreenshotContainer/GameScreenshotContainer";
