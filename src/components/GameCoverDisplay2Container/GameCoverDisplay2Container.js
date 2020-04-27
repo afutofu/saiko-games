@@ -3,7 +3,6 @@ import React from "react";
 import GameCoverDisplay2 from "../GameCoverDisplay2/GameCoverDisplay2";
 
 import styles from "./GameCoverDisplay2Container.module.css";
-import GameFirstView from "../../container/GameFirstView/GameFirstView";
 
 const GameCoverDisplay2Container = (props) => {
   const onGameClick = (gameId) => {
@@ -12,8 +11,6 @@ const GameCoverDisplay2Container = (props) => {
 
   const renderGames = () => {
     let games = [];
-
-    console.log(props.games);
 
     props.games.forEach((game, id) => {
       let genres = [];
@@ -25,7 +22,11 @@ const GameCoverDisplay2Container = (props) => {
         genres.push("");
       }
 
-      const cover = "https:" + game.cover.url.replace("t_thumb", "t_cover_big");
+      let cover = null;
+
+      if (game.cover) {
+        cover = "https:" + game.cover.url.replace("t_thumb", "t_cover_big");
+      }
 
       games.push(
         <div key={id} className={styles.game}>
@@ -34,7 +35,7 @@ const GameCoverDisplay2Container = (props) => {
             cover={cover}
             name={game.name}
             genres={genres}
-            storyline={game.storyline}
+            storyline={game.storyline ? game.storyline : game.summary}
             rating={Math.round(game.rating)}
           />
         </div>

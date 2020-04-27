@@ -10,25 +10,36 @@ class GameSearchPage extends Component {
   state = { games: [] };
 
   componentDidMount() {
+    this.getGames(this.props.searchTerm);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps !== this.props) {
+      this.getGames(nextProps.searchTerm);
+    }
+  }
+
+  getGames = (searchTerm) => {
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
-    const url = `https://api-v3.igdb.com/games?search=${this.props.searchTerm}&fields=cover.url,name,genres.name,storyline,summary,rating`;
+    const url = `https://api-v3.igdb.com/games?search=${searchTerm}&fields=cover.url,name,genres.name,storyline,summary,rating`;
 
     axios
       .get(proxyurl + url)
       .then((res) => {
-        console.log(res.data);
         this.setState({ games: res.data });
       })
       .catch((err) => {
         console.log(err);
       });
-  }
+  };
 
   onGameClick = (gameId) => {
     this.props.onGameClick(gameId);
   };
 
   render() {
+    console.log(this.state.games);
+
     return (
       <div className={styles.gameSearchPage}>
         <img

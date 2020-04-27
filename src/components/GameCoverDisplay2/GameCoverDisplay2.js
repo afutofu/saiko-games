@@ -9,12 +9,12 @@ const GameCoverDisplay2 = (props) => {
 
   return (
     <div onClick={() => onGameClick(1)} className={styles.gameCoverDisplay}>
-      <img src={props.cover} className={styles.cover} alt="cover" />
+      <img src={props.cover} className={styles.cover} alt="No Cover Found" />
       <div className={styles.infoContainer}>
         <h3 className={styles.name}>{props.name}</h3>
         <p className={styles.genres}>{props.genres.join(", ")}</p>
         <p className={styles.storyline}>{props.storyline}</p>
-        <h3 className={styles.rating}>{props.rating}</h3>
+        <h3 className={styles.rating}>{props.rating ? props.rating : ""}</h3>
       </div>
     </div>
   );

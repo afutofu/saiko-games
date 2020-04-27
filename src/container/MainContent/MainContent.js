@@ -23,7 +23,10 @@ class MainContent extends Component {
 
   onSearch = (gameName) => {
     window.scrollTo(0, 0);
-    this.setState({ pageId: 2, searchTerm: gameName });
+    this.setState({
+      pageId: 2,
+      searchTerm: gameName,
+    });
   };
 
   renderContent = () => {
