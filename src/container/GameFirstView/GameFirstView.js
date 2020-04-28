@@ -6,6 +6,21 @@ import styles from "./GameFirstView.module.css";
 
 class GameFirstView extends Component {
   state = {};
+
+  toDateTime = (secs) => {
+    let t = new Date(1970, 0, 1);
+    t.setSeconds(secs);
+    return t;
+  };
+
+  dayDifference = () => {
+    const currentTime = Math.floor(Date.now() / 1000);
+    const releaseTime = this.props.gameInfo.first_release_date;
+    const timeDifference = currentTime - releaseTime;
+    const days = Math.floor(timeDifference / (3600 * 24));
+    return days;
+  };
+
   render() {
     const gameInfo = this.props.gameInfo;
 
@@ -46,16 +61,35 @@ class GameFirstView extends Component {
                 <div className={styles.detailList}>
                   <p>
                     <span className={styles.title}>Platforms: </span>
-                    PC (Windows), Mac OS
+                    {gameInfo.platforms
+                      .map((platform) => {
+                        return platform.name;
+                      })
+                      .join(", ")}
                   </p>
                 </div>
-                <a className={styles.websiteLink}>Visit the official website</a>
+                <a
+                  href={gameInfo.websites[0].url}
+                  target="_blank"
+                  className={styles.websiteLink}
+                >
+                  Visit the official website
+                </a>
               </div>
             </div>
             <div className={styles.about}>
               <h1 className={styles.title}>{gameInfo.name}</h1>
               <div className={styles.secondaryInfo}>
-                <p>20th Jan 2020 30 days ago</p>
+                <p>
+                  <span>
+                    {this.toDateTime(
+                      gameInfo.first_release_date
+                    ).toDateString()}
+                  </span>
+                  <span className={styles.daysAgo}>
+                    {this.dayDifference()} days ago
+                  </span>
+                </p>
                 <p>Studio X</p>
               </div>
               <div className={styles.aboutInfo}>

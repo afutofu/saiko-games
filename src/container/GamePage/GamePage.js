@@ -24,7 +24,7 @@ class GamePage extends Component {
     const proxyurl = "https://cors-anywhere.herokuapp.com/",
       url = `https://api-v3.igdb.com/games`;
 
-    const body = `fields id,name,cover,cover.url, collection.name,genres.name, themes.name, first_release_date, storyline, summary, platforms, aggregated_rating, rating, total_rating, screenshots.url, videos.video_id,involved_companies.*, involved_companies.company.name, game_engines.name, similar_games.name, websites; where id = ${this.props.gameId};`;
+    const body = `fields id,name,cover,cover.url, collection.name,genres.name, themes.name, first_release_date, storyline, summary, platforms.name, aggregated_rating, rating, total_rating, screenshots.url, videos.video_id,involved_companies.*, involved_companies.company.name, game_engines.name, similar_games.name, websites.url; where id = ${this.props.gameId};`;
 
     axios
       .post(proxyurl + url, body)
