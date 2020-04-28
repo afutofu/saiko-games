@@ -14,7 +14,7 @@ const GameScreenshotDisplay = (props) => {
     >
       <img
         className={styles.screenshot}
-        src="https://images.igdb.com/igdb/image/upload/t_screenshot_med/muv70yw3rds1cw8ymr5v.jpg"
+        src={props.screenshot}
         alt="screenshot"
       />
       <div className={styles.background}>

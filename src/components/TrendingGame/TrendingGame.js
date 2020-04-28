@@ -10,19 +10,15 @@ const TrendingGame = (props) => {
   return (
     <div onClick={() => onGameClick(1)} className={styles.trendingGame}>
       <img
-        src="https://images.igdb.com/igdb/image/upload/t_screenshot_med/ozg4wanokhst4uehgkxs.jpg"
-        alt="screenshot"
+        src={props.screenshot}
+        alt="No screenshot found"
         className={styles.screenshot}
       />
       <div className={styles.container}>
-        <img
-          src="https://images.igdb.com/igdb/image/upload/t_cover_big/zvicevewoj0hfcqjaqx6.jpg"
-          alt="Cover"
-          className={styles.cover}
-        />
+        <img src={props.cover} alt="No cover found" className={styles.cover} />
         <div className={styles.infoContainer}>
           <h1 className={styles.name}>{props.name}</h1>
-          <h3 className={styles.genres}>{props.genres.join(", ")}</h3>
+          <h3 className={styles.genres}>{props.genres}</h3>
           <p className={styles.storyline}>{props.storyline}</p>
         </div>
       </div>

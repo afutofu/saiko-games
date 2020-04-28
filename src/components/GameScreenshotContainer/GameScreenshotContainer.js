@@ -12,17 +12,23 @@ const GameScreenshotContainer = (props) => {
   const renderContent = () => {
     let games = [];
 
-    for (let i = 0; i < props.games; i++) {
+    props.games.forEach((game) => {
       games.push(
         <GameScreenshotDisplay
           onGameClick={onGameClick}
-          key={i}
-          name="Skyrim"
-          genre={["Action", "Fantasy"][0]}
-          rating="96"
+          key={game.id}
+          screenshot={
+            game.screenshots !== null
+              ? "https:" +
+                game.screenshots[0].url.replace("t_thumb", "t_screenshot_med")
+              : "https://images.igdb.com/igdb/image/upload/t_screenshot_med/muv70yw3rds1cw8ymr5v.jpg"
+          }
+          name={game.name}
+          genre={game.genres[0] !== null ? game.genres.name : null}
+          rating={game.total_rating ? Math.round(game.total_rating) : null}
         />
       );
-    }
+    });
 
     return <div className={styles.gameScreenshotContainer}> {games}</div>;
   };

@@ -13,15 +13,37 @@ class TrendingGameContainer extends Component {
   };
 
   renderContent = () => {
+    const games = this.props.games;
+    const game = games[0];
+    let genres = [];
+
+    if (games.genres) {
+      games.genres.forEach((genre) => genres.push(genre));
+    }
+
     return (
       <div className={styles.trendingGame}>
         <TrendingGame
           onGameClick={this.onGameClick}
-          name="Mount & Blade: Bannerlord"
-          genres={["RPG", "Action", "Simulator"]}
-          storyline="Mount & Blade II: Bannerlord is the eagerly awaited sequel to the acclaimed medieval combat simulator and role-playing game Mount & Blade: Warband. Set 200 years before, it expands both the detailed fighting system and the world of Calradia. Bombard mountain fastnesses with siege engines, establish secret criminal empires in the back alleys of cities, or charge into the thick of chaotic battles in your quest for power."
+          cover={
+            game.cover.url
+              ? "https:" + game.cover.url.replace("t_thumb", "t_cover_big")
+              : null
+          }
+          screenshot={
+            game.screenshots !== null
+              ? "https:" +
+                game.screenshots[0].url.replace("t_thumb", "t_screenshot_med")
+              : "https://images.igdb.com/igdb/image/upload/t_screenshot_med/muv70yw3rds1cw8ymr5v.jpg"
+          }
+          name={game.name}
+          genres={genres.join(" ")}
+          storyline={game.storyline ? game.storyline : game.summary}
         />
-        <GameScreenshotContainer games={3} onGameClick={this.onGameClick} />
+        <GameScreenshotContainer
+          games={games.slice(1, games.length)}
+          onGameClick={this.onGameClick}
+        />
       </div>
     );
   };

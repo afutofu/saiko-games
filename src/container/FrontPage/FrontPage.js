@@ -16,10 +16,10 @@ class FrontPage extends Component {
     background: null,
     featuredGames: [],
     latestReleases: [],
+    trendingGames: [],
   };
 
   componentDidMount() {
-    console.log(Math.floor(Date.now() / 1000));
     this.getGames();
   }
 
@@ -37,8 +37,12 @@ class FrontPage extends Component {
         "user-key": "53a5ae29b1fdf5a3f7886a5ea6dceffd",
         "Content-Type": "text/plain",
       };
+
+    // Getting featured games from trailing 6 months
     // let body =
-    //   "fields name, genres.name, cover.url, storyline, summary, screenshots.url, videos.video_id; sort popularity desc; where total_rating > 85 & category = 0 & first_release_date > 1585402200; limit 3;";
+    //   `fields name, genres.name, cover.url, storyline, summary, screenshots.url, videos.video_id; sort popularity desc; where total_rating > 89 & category = 0 & first_release_date > ${
+    //   Math.floor(Date.now() / 1000) - 15778800
+    // } & first_release_date < ${Math.floor(Date.now() / 1000)}; limit 3;`;
 
     // axios
     //   .post(proxyurl + url, body, {
@@ -60,18 +64,38 @@ class FrontPage extends Component {
     //     this.getGames();
     //   });
 
-    let body = `fields name, genres.name, cover.url, total_rating, first_release_date; sort first_release_date desc;where category = 0 & first_release_date > ${
-      Math.floor(Date.now() / 1000) - 2629800
-    } & first_release_date < ${Math.floor(Date.now() / 1000)}; limit 5;`;
+    // Getting latest games between now and one month ago
+    // let body = `fields name, genres.name, cover.url, total_rating; sort first_release_date desc;where category = 0 & first_release_date > ${
+    //   Math.floor(Date.now() / 1000) - 2629800
+    // } & first_release_date < ${Math.floor(Date.now() / 1000)}; limit 5;`;
+
+    // axios
+    //   .post(proxyurl + url, body, {
+    //     headers: headers,
+    //   })
+    //   .then((res) => {
+    //     console.log("latest games data loaded");
+    //     console.log(res.data);
+    //     this.setState({ latestReleases: res.data });
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //     this.getGames();
+    //   });
+
+    // Get data for trending games from trailing 2 months
+    let body = `fields name, genres.name, cover.url, screenshots.url, total_rating, storyline, summary; sort popularity desc; where category = 0 & first_release_date > ${
+      Math.floor(Date.now() / 1000) - 5259600
+    } & first_release_date < ${Math.floor(Date.now() / 1000)}; limit 4;`;
 
     axios
       .post(proxyurl + url, body, {
         headers: headers,
       })
       .then((res) => {
-        console.log("latest games data loaded");
+        console.log("trending games data loaded");
         console.log(res.data);
-        this.setState({ latestReleases: res.data });
+        this.setState({ trendingGames: res.data });
       })
       .catch((err) => {
         console.log(err);
@@ -118,17 +142,22 @@ class FrontPage extends Component {
             />
           ) : null}
           <SectionTitle title="trending" />
-          <TrendingGamesContainer games={3} onGameClick={this.onGameClick} />
+          {this.state.trendingGames.length > 0 ? (
+            <TrendingGamesContainer
+              games={this.state.trendingGames}
+              onGameClick={this.onGameClick}
+            />
+          ) : null}
         </div>
         <VideoContainer videos={3} />
         <div className={styles.container}>
-          <SectionTitle title="highest rated games" big />
+          {/* <SectionTitle title="highest rated games" big />
           <SectionTitle title="past years" color="#DED375" />
           <GameScreenshotContainer games={3} onGameClick={this.onGameClick} />
           <SectionTitle title="past 5 years" color="#DED375" />
           <GameScreenshotContainer games={3} onGameClick={this.onGameClick} />
           <SectionTitle title="all time" color="#DED375" />
-          <GameScreenshotContainer games={3} onGameClick={this.onGameClick} />
+          <GameScreenshotContainer games={3} onGameClick={this.onGameClick} /> */}
         </div>
       </div>
     );
