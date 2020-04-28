@@ -7,8 +7,7 @@ const FeaturedGame = (props) => {
     const game = props.game,
       screenshot =
         "https:" + game.screenshots[0].url.replace("t_thumb", "t_1080p"),
-      cover =
-        "https:" + game.screenshots[1].url.replace("t_thumb", "t_cover_big");
+      cover = "https:" + game.cover.url.replace("t_thumb", "t_cover_big");
     let genres = [];
 
     console.log(game);

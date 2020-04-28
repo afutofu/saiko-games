@@ -8,11 +8,7 @@ const GameCoverDisplay = (props) => {
       onClick={() => props.onGameClick(1)}
       className={styles.gameCoverDisplay}
     >
-      <img
-        src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7j.jpg"
-        className={styles.cover}
-        alt="cover"
-      />
+      <img src={props.cover} className={styles.cover} alt="cover" />
       <div className={styles.infoContainer}>
         <h3 className={styles.name}>{props.name}</h3>
         <p className={styles.genre}>{props.genre}</p>

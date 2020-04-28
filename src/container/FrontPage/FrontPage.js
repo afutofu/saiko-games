@@ -11,9 +11,15 @@ import GameScreenshotContainer from "../../components/GameScreenshotContainer/Ga
 import styles from "./FrontPage.module.css";
 
 class FrontPage extends Component {
-  state = { loading: true, featuredGames: [] };
+  state = {
+    loading: true,
+    background: null,
+    featuredGames: [],
+    latestReleases: [],
+  };
 
   componentDidMount() {
+    console.log(Math.floor(Date.now() / 1000));
     this.getGames();
   }
 
@@ -25,22 +31,47 @@ class FrontPage extends Component {
   }
 
   getGames = () => {
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
-    const url = `https://api-v3.igdb.com/games`;
-    const body =
-      "fields name, genres.name, cover.url, storyline, summary, screenshots.url, videos.video_id; sort popularity desc; where total_rating > 85 & category = 0 & first_release_date > 1585402200; limit 3;";
-    const headers = {
-      "user-key": "53a5ae29b1fdf5a3f7886a5ea6dceffd",
-      "Content-Type": "text/plain",
-    };
+    const proxyurl = "https://cors-anywhere.herokuapp.com/",
+      url = `https://api-v3.igdb.com/games`,
+      headers = {
+        "user-key": "53a5ae29b1fdf5a3f7886a5ea6dceffd",
+        "Content-Type": "text/plain",
+      };
+    // let body =
+    //   "fields name, genres.name, cover.url, storyline, summary, screenshots.url, videos.video_id; sort popularity desc; where total_rating > 85 & category = 0 & first_release_date > 1585402200; limit 3;";
+
+    // axios
+    //   .post(proxyurl + url, body, {
+    //     headers: headers,
+    //   })
+    //   .then((res) => {
+    //     console.log("featured game data loaded");
+    //     const background =
+    //       "https:" +
+    //       res.data[0].screenshots[1].url.replace("t_thumb", "t_1080p");
+    //     this.setState({
+    //       loading: false,
+    //       background: background,
+    //       featuredGames: res.data,
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //     this.getGames();
+    //   });
+
+    let body = `fields name, genres.name, cover.url, total_rating, first_release_date; sort first_release_date desc;where category = 0 & first_release_date > ${
+      Math.floor(Date.now() / 1000) - 2629800
+    } & first_release_date < ${Math.floor(Date.now() / 1000)}; limit 5;`;
 
     axios
       .post(proxyurl + url, body, {
         headers: headers,
       })
       .then((res) => {
-        console.log("featured game data loaded");
-        this.setState({ loading: false, featuredGames: res.data });
+        console.log("latest games data loaded");
+        console.log(res.data);
+        this.setState({ latestReleases: res.data });
       })
       .catch((err) => {
         console.log(err);
@@ -55,11 +86,20 @@ class FrontPage extends Component {
   render() {
     return (
       <div className={styles.frontPage}>
-        <img
-          className={styles.backgroundImage}
-          src="https://images.igdb.com/igdb/image/upload/t_1080p/qifkxxpckhq4wyxgquqe.jpg"
-          alt="bg"
-        />
+        {this.state.featuredGames.length > 0 ? (
+          <img
+            className={styles.backgroundImage}
+            src={this.state.background}
+            alt="Background"
+          />
+        ) : (
+          <img
+            className={styles.backgroundImage}
+            src="https://images.igdb.com/igdb/image/upload/t_1080p/qifkxxpckhq4wyxgquqe.jpg"
+            alt="Background"
+          />
+        )}
+
         <div className={styles.background} />
         <div className={styles.container}>
           <SectionTitle title="featured" />
@@ -71,7 +111,12 @@ class FrontPage extends Component {
           ) : null}
 
           <SectionTitle title="latest releases" />
-          <GameCoverContainer games={4} onGameClick={this.onGameClick} />
+          {this.state.latestReleases.length > 0 ? (
+            <GameCoverContainer
+              games={this.state.latestReleases}
+              onGameClick={this.onGameClick}
+            />
+          ) : null}
           <SectionTitle title="trending" />
           <TrendingGamesContainer games={3} onGameClick={this.onGameClick} />
         </div>
