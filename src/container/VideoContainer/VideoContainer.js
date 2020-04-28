@@ -8,18 +8,31 @@ class VideosContainer extends Component {
 
     let videos = [];
 
-    this.props.games.forEach((game, id) => {
-      console.log(game);
-      videos.push(
-        <iframe
-          index={id}
-          title={game.videos.id}
-          key={game.videos.id}
-          className={styles.video}
-          src={`https://www.youtube.com/embed/${game.videos[0].video_id}`}
-        ></iframe>
-      );
-    });
+    if (this.props.gamePage) {
+      this.props.gameInfo.videos.map((video, id) => {
+        videos.push(
+          <iframe
+            index={id}
+            title={video.id}
+            key={video.id}
+            className={styles.video}
+            src={`https://www.youtube.com/embed/${video.video_id}`}
+          ></iframe>
+        );
+      });
+    } else {
+      this.props.games.forEach((game, id) => {
+        videos.push(
+          <iframe
+            index={id}
+            title={game.videos.id}
+            key={game.videos.id}
+            className={styles.video}
+            src={`https://www.youtube.com/embed/${game.videos[0].video_id}`}
+          ></iframe>
+        );
+      });
+    }
 
     this.state = { videos: videos, video: videos[0] };
   }

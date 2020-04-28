@@ -57,7 +57,7 @@ class GamePage extends Component {
         />
         <div className={styles.background} />
         <GameFirstView gameInfo={this.state.gameInfo} />
-        {/* <VideoContainer videos={3} /> */}
+        <VideoContainer gameInfo={this.state.gameInfo} gamePage />
         <div className={styles.container}>
           <SectionTitle title="recommendations" />
           {/* <GameCoverContainer games={4} onGameClick={this.onGameClick} /> */}
