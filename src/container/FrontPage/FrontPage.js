@@ -17,6 +17,9 @@ class FrontPage extends Component {
     featuredGames: [],
     latestReleases: [],
     trendingGames: [],
+    topPastYear: [],
+    topPast5Years: [],
+    topAllTime: [],
   };
 
   componentDidMount() {
@@ -36,18 +39,18 @@ class FrontPage extends Component {
       Math.floor(Date.now() / 1000) - 15778800
     } & first_release_date < ${Math.floor(Date.now() / 1000)}; limit 3;`;
 
-    // this.fetchData(body)
-    //   .then((data) => {
-    //     const background =
-    //       "https:" + data[0].screenshots[1].url.replace("t_thumb", "t_1080p");
-    //     this.setState({ loading: false, background, featuredGames: data });
-    //   })
-    //   .catch((err) => console.log(err));
+    this.fetchData(body)
+      .then((data) => {
+        const background =
+          "https:" + data[0].screenshots[1].url.replace("t_thumb", "t_1080p");
+        this.setState({ loading: false, background, featuredGames: data });
+      })
+      .catch((err) => console.log(err));
 
     // Getting latest games between now and one month ago
     body = `fields name, genres.name, cover.url, total_rating; sort first_release_date desc;where category = 0 & first_release_date > ${
       Math.floor(Date.now() / 1000) - 2629800
-    } & first_release_date < ${Math.floor(Date.now() / 1000)}; limit 5;`;
+    } & first_release_date < ${Math.floor(Date.now() / 1000)}; limit 4;`;
 
     // this.fetchData(body)
     //   .then((data) => this.setState({ latestReleases: data }))
@@ -60,6 +63,33 @@ class FrontPage extends Component {
 
     // this.fetchData(body)
     //   .then((data) => this.setState({ trendingGames: data }))
+    //   .catch((err) => console.log(err));
+
+    // Get data for highest rated games for the past year
+    body = `fields name, genres.name, screenshots.url, total_rating; sort total_rating desc; where total_rating > 50 & category = 0 & first_release_date > ${
+      Math.floor(Date.now() / 1000) - 31557600
+    } & first_release_date < ${Math.floor(Date.now() / 1000)}; limit 3;`;
+
+    // this.fetchData(body)
+    //   .then((data) => this.setState({ topPastYear: data }))
+    //   .catch((err) => console.log(err));
+
+    // Get data for highest rated games for the past 5 years
+    body = `fields name, genres.name, screenshots.url, total_rating; sort total_rating desc; where total_rating > 50 & total_rating_count > 25 & category = 0 & first_release_date > ${
+      Math.floor(Date.now() / 1000) - 157788000
+    } & first_release_date < ${Math.floor(Date.now() / 1000)}; limit 3;`;
+
+    // this.fetchData(body)
+    //   .then((data) => this.setState({ topPast5Years: data }))
+    //   .catch((err) => console.log(err));
+
+    // Get data for highest rated games of all time
+    body = `fields name, genres.name, screenshots.url, total_rating, total_rating_count; sort total_rating desc; where total_rating > 50 & total_rating_count >= 50 & category = 0 & first_release_date < ${Math.floor(
+      Date.now() / 1000
+    )}; limit 3;`;
+
+    // this.fetchData(body)
+    //   .then((data) => this.setState({ topAllTime: data }))
     //   .catch((err) => console.log(err));
   };
 
@@ -122,13 +152,22 @@ class FrontPage extends Component {
         ) : null}
 
         <div className={styles.container}>
-          {/* <SectionTitle title="highest rated games" big />
+          <SectionTitle title="highest rated games" big />
           <SectionTitle title="past years" color="#DED375" />
-          <GameScreenshotContainer games={3} onGameClick={this.onGameClick} />
+          <GameScreenshotContainer
+            games={this.state.topPastYear}
+            onGameClick={this.onGameClick}
+          />
           <SectionTitle title="past 5 years" color="#DED375" />
-          <GameScreenshotContainer games={3} onGameClick={this.onGameClick} />
+          <GameScreenshotContainer
+            games={this.state.topPast5Years}
+            onGameClick={this.onGameClick}
+          />
           <SectionTitle title="all time" color="#DED375" />
-          <GameScreenshotContainer games={3} onGameClick={this.onGameClick} /> */}
+          <GameScreenshotContainer
+            games={this.state.topAllTime}
+            onGameClick={this.onGameClick}
+          />
         </div>
       </div>
     );

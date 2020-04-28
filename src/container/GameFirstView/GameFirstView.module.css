@@ -85,11 +85,12 @@
 
 .about .title {
   position: absolute;
-  bottom: 135%;
+  bottom: 125%;
   width: 60vw;
-  font-size: 4.2rem;
+  font-size: 4rem;
   color: white;
   letter-spacing: 0.1rem;
+  line-height: 4rem;
 }
 
 .secondaryInfo {

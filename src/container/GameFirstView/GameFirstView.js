@@ -7,13 +7,18 @@ import styles from "./GameFirstView.module.css";
 class GameFirstView extends Component {
   state = {};
   render() {
+    const gameInfo = this.props.gameInfo;
+
     return (
       <div className={styles.gameFirstView}>
         <div className={styles.wideContainer}>
           <div className={styles.container}>
             <div className={styles.smallDetail}>
               <img
-                src="https://images.igdb.com/igdb/image/upload/t_cover_big/co1trn.jpg"
+                src={
+                  "https:" +
+                  gameInfo.cover.url.replace("t_thumb", "t_cover_big")
+                }
                 alt="Cover"
                 className={styles.cover}
               />
@@ -21,13 +26,21 @@ class GameFirstView extends Component {
                 <div className={styles.detailList}>
                   <p>
                     <span className={styles.title}>Genres: </span>
-                    RPG, Adventure
+                    {gameInfo.genres
+                      .map((genre) => {
+                        return genre.name;
+                      })
+                      .join(", ")}
                   </p>
                 </div>
                 <div className={styles.detailList}>
                   <p>
                     <span className={styles.title}>Themes: </span>
-                    Action, Fanatasy, Sandbox, Open World
+                    {gameInfo.themes
+                      .map((theme) => {
+                        return theme.name;
+                      })
+                      .join(", ")}
                   </p>
                 </div>
                 <div className={styles.detailList}>
@@ -40,31 +53,32 @@ class GameFirstView extends Component {
               </div>
             </div>
             <div className={styles.about}>
-              <h1 className={styles.title}>SPIRAL KNIGHTS</h1>
+              <h1 className={styles.title}>{gameInfo.name}</h1>
               <div className={styles.secondaryInfo}>
                 <p>20th Jan 2020 30 days ago</p>
                 <p>Studio X</p>
               </div>
               <div className={styles.aboutInfo}>
-                <p>
-                  You have crashed. You are stranded. But you are not alone. The
-                  Spiral Knights have awoken on an alien world. Their equipment
-                  stores have been raided and their starship, The Skylark, will
-                  not recover from the crash. Now they must work together to
-                  survive on a journey that will take them to the very core of
-                  the world.
-                </p>
-                <p>
-                  Join the ranks of the Spiral Knights. Stranded on an alien
-                  world, you must explore the ever-changing Clockworks beneath
-                  its surface.
-                </p>
+                <p>{gameInfo.storyline}</p>
+                <p>{gameInfo.summary}</p>
               </div>
             </div>
             <div className={styles.ratings}>
-              <RatingBox title="external critic" rating={70} delay={1} />
-              <RatingBox title="member score" rating={90} delay={2} />
-              <RatingBox title="overall rating" rating={80} delay={3} />
+              <RatingBox
+                title="external critic"
+                rating={Math.round(gameInfo.aggregated_rating)}
+                delay={1}
+              />
+              <RatingBox
+                title="member score"
+                rating={Math.round(gameInfo.rating)}
+                delay={2}
+              />
+              <RatingBox
+                title="overall rating"
+                rating={Math.round(gameInfo.total_rating)}
+                delay={3}
+              />
             </div>
           </div>
         </div>

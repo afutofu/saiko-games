@@ -6,7 +6,7 @@ import GamePage from "../GamePage/GamePage";
 import GameSearchPage from "../GameSearchPage/GameSearchPage";
 
 class MainContent extends Component {
-  state = { pageId: 0, gameId: null, searchTerm: "" };
+  state = { pageId: 1, gameId: 37001, searchTerm: "" };
 
   componentDidMount() {}
 
@@ -33,7 +33,9 @@ class MainContent extends Component {
       case 0:
         return <FrontPage onGameClick={this.onGameClick} />;
       case 1:
-        return <GamePage onGameClick={this.onGameClick} />;
+        return (
+          <GamePage onGameClick={this.onGameClick} gameId={this.state.gameId} />
+        );
       case 2:
         return (
           <GameSearchPage

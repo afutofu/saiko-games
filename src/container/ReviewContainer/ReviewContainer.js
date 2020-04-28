@@ -13,14 +13,14 @@ class ReviewContainer extends Component {
       index = 0;
 
     for (let i = 0; i < props.reviews; i++) {
-      reviews.push(<Review />);
+      reviews.push(<Review key={i} />);
     }
 
     for (let i = 0; i < reviews.length; i++) {
       if (i === 5) {
         break;
       }
-      visibleReviews.push(<Review />);
+      visibleReviews.push(<Review key={i} />);
       index++;
     }
 
