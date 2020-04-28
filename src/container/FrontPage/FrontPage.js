@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import FeaturedGame from "../../components/FeaturedGame/FeaturedGame";
@@ -10,7 +11,42 @@ import GameScreenshotContainer from "../../components/GameScreenshotContainer/Ga
 import styles from "./FrontPage.module.css";
 
 class FrontPage extends Component {
-  state = {};
+  state = { loading: true, featuredGames: [] };
+
+  componentDidMount() {
+    this.getGames();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.key !== this.props.key) {
+      this.setState({ loading: true });
+      this.getGames();
+    }
+  }
+
+  getGames = () => {
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url = `https://api-v3.igdb.com/games`;
+    const body =
+      "fields name, genres.name, cover.url, storyline, summary, screenshots.url, videos.video_id; sort popularity desc; where total_rating > 85 & category = 0 & first_release_date > 1585402200; limit 3;";
+    const headers = {
+      "user-key": "53a5ae29b1fdf5a3f7886a5ea6dceffd",
+      "Content-Type": "text/plain",
+    };
+
+    axios
+      .post(proxyurl + url, body, {
+        headers: headers,
+      })
+      .then((res) => {
+        console.log("featured game data loaded");
+        this.setState({ loading: false, featuredGames: res.data });
+      })
+      .catch((err) => {
+        console.log(err);
+        this.getGames();
+      });
+  };
 
   onGameClick = (gameId) => {
     this.props.onGameClick(gameId);
@@ -27,14 +63,13 @@ class FrontPage extends Component {
         <div className={styles.background} />
         <div className={styles.container}>
           <SectionTitle title="featured" />
-          <FeaturedGame
-            onGameClick={this.onGameClick}
-            name="Spiral Knights"
-            genres={["RPG", "Adventure"]}
-            storyline="You have crashed. You are stranded. But you are not alone. The Spiral Knights have awoken on an alien world. Their equipment stores have been 
-                raided and their starship, The Skylark, will not recover from the crash. Now they must work together to survive on a journey that will take them to the 
-                very core of the world."
-          />
+          {this.state.featuredGames.length > 0 ? (
+            <FeaturedGame
+              onGameClick={this.onGameClick}
+              game={this.state.featuredGames[0]}
+            />
+          ) : null}
+
           <SectionTitle title="latest releases" />
           <GameCoverContainer games={4} onGameClick={this.onGameClick} />
           <SectionTitle title="trending" />
