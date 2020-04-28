@@ -8,17 +8,18 @@ class VideosContainer extends Component {
 
     let videos = [];
 
-    for (let i = 0; i < props.videos; i++) {
+    this.props.games.forEach((game, id) => {
+      console.log(game);
       videos.push(
         <iframe
-          index={i}
-          title={i}
-          key={i}
+          index={id}
+          title={game.videos.id}
+          key={game.videos.id}
           className={styles.video}
-          src="https://www.youtube.com/embed/P7OQRA2kDyE"
+          src={`https://www.youtube.com/embed/${game.videos[0].video_id}`}
         ></iframe>
       );
-    }
+    });
 
     this.state = { videos: videos, video: videos[0] };
   }
@@ -27,13 +28,11 @@ class VideosContainer extends Component {
 
   onNextVideo = () => {
     const newIndex = this.state.video.props.index + 1;
-    console.log(newIndex);
     this.setState({ video: this.state.videos[newIndex] });
   };
 
   onPrevVideo = () => {
     const newIndex = this.state.video.props.index - 1;
-    console.log(newIndex);
     this.setState({ video: this.state.videos[newIndex] });
   };
 

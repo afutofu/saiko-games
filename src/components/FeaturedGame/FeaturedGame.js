@@ -10,8 +10,6 @@ const FeaturedGame = (props) => {
       cover = "https:" + game.cover.url.replace("t_thumb", "t_cover_big");
     let genres = [];
 
-    console.log(game);
-
     if (genres) {
       game.genres.forEach((genre) => {
         genres.push(genre.name);
@@ -26,7 +24,9 @@ const FeaturedGame = (props) => {
           <div className={styles.infoContainer}>
             <h1 className={styles.name}>{game.name}</h1>
             <h3 className={styles.genres}>{genres.join(", ")}</h3>
-            <p className={styles.storyline}>{game.storyline}</p>
+            <p className={styles.storyline}>
+              {game.storyline ? game.storyline : game.summary}
+            </p>
           </div>
         </div>
       </div>

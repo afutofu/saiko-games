@@ -31,76 +31,44 @@ class FrontPage extends Component {
   }
 
   getGames = () => {
-    const proxyurl = "https://cors-anywhere.herokuapp.com/",
-      url = `https://api-v3.igdb.com/games`,
-      headers = {
-        "user-key": "53a5ae29b1fdf5a3f7886a5ea6dceffd",
-        "Content-Type": "text/plain",
-      };
+    // Getting featured games for trailing 6 months
+    let body = `fields name, genres.name, cover.url, storyline, summary, screenshots.url, videos.video_id; sort popularity desc; where total_rating > 89 & category = 0 & first_release_date > ${
+      Math.floor(Date.now() / 1000) - 15778800
+    } & first_release_date < ${Math.floor(Date.now() / 1000)}; limit 3;`;
 
-    // Getting featured games from trailing 6 months
-    // let body =
-    //   `fields name, genres.name, cover.url, storyline, summary, screenshots.url, videos.video_id; sort popularity desc; where total_rating > 89 & category = 0 & first_release_date > ${
-    //   Math.floor(Date.now() / 1000) - 15778800
-    // } & first_release_date < ${Math.floor(Date.now() / 1000)}; limit 3;`;
-
-    // axios
-    //   .post(proxyurl + url, body, {
-    //     headers: headers,
-    //   })
-    //   .then((res) => {
-    //     console.log("featured game data loaded");
+    // this.fetchData(body)
+    //   .then((data) => {
     //     const background =
-    //       "https:" +
-    //       res.data[0].screenshots[1].url.replace("t_thumb", "t_1080p");
-    //     this.setState({
-    //       loading: false,
-    //       background: background,
-    //       featuredGames: res.data,
-    //     });
+    //       "https:" + data[0].screenshots[1].url.replace("t_thumb", "t_1080p");
+    //     this.setState({ loading: false, background, featuredGames: data });
     //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //     this.getGames();
-    //   });
+    //   .catch((err) => console.log(err));
 
     // Getting latest games between now and one month ago
-    // let body = `fields name, genres.name, cover.url, total_rating; sort first_release_date desc;where category = 0 & first_release_date > ${
-    //   Math.floor(Date.now() / 1000) - 2629800
-    // } & first_release_date < ${Math.floor(Date.now() / 1000)}; limit 5;`;
+    body = `fields name, genres.name, cover.url, total_rating; sort first_release_date desc;where category = 0 & first_release_date > ${
+      Math.floor(Date.now() / 1000) - 2629800
+    } & first_release_date < ${Math.floor(Date.now() / 1000)}; limit 5;`;
 
-    // axios
-    //   .post(proxyurl + url, body, {
-    //     headers: headers,
-    //   })
-    //   .then((res) => {
-    //     console.log("latest games data loaded");
-    //     console.log(res.data);
-    //     this.setState({ latestReleases: res.data });
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //     this.getGames();
-    //   });
+    // this.fetchData(body)
+    //   .then((data) => this.setState({ latestReleases: data }))
+    //   .catch((err) => console.log(err));
 
     // Get data for trending games from trailing 2 months
-    let body = `fields name, genres.name, cover.url, screenshots.url, total_rating, storyline, summary; sort popularity desc; where category = 0 & first_release_date > ${
+    body = `fields name, genres.name, cover.url, screenshots.url, total_rating, storyline, summary; sort popularity desc; where category = 0 & first_release_date > ${
       Math.floor(Date.now() / 1000) - 5259600
     } & first_release_date < ${Math.floor(Date.now() / 1000)}; limit 4;`;
 
-    axios
-      .post(proxyurl + url, body, {
-        headers: headers,
-      })
-      .then((res) => {
-        console.log("trending games data loaded");
-        console.log(res.data);
-        this.setState({ trendingGames: res.data });
-      })
-      .catch((err) => {
-        console.log(err);
-        this.getGames();
-      });
+    // this.fetchData(body)
+    //   .then((data) => this.setState({ trendingGames: data }))
+    //   .catch((err) => console.log(err));
+  };
+
+  fetchData = async (body) => {
+    const proxyurl = "https://cors-anywhere.herokuapp.com/",
+      url = `https://api-v3.igdb.com/games`;
+
+    const res = await axios.post(proxyurl + url, body);
+    return res.data;
   };
 
   onGameClick = (gameId) => {
@@ -149,7 +117,10 @@ class FrontPage extends Component {
             />
           ) : null}
         </div>
-        <VideoContainer videos={3} />
+        {this.state.featuredGames.length > 0 ? (
+          <VideoContainer games={this.state.featuredGames} />
+        ) : null}
+
         <div className={styles.container}>
           {/* <SectionTitle title="highest rated games" big />
           <SectionTitle title="past years" color="#DED375" />
