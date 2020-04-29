@@ -24,7 +24,7 @@ class GamePage extends Component {
     const proxyurl = "https://cors-anywhere.herokuapp.com/",
       url = `https://api-v3.igdb.com/games`;
 
-    const body = `fields id,name,cover,cover.url, collection.name,genres.name, themes.name, first_release_date, storyline, summary, platforms.name, aggregated_rating, rating, total_rating, screenshots.url, videos.video_id,involved_companies.*, involved_companies.company.name, game_engines.name, similar_games.name, similar_games.cover.url, similar_games.total_rating, similar_games.genres.name, websites.url; where id = ${this.props.gameId};`;
+    const body = `fields id,name,cover,cover.url, collection.name,genres.name, themes.name, first_release_date, storyline, summary, platforms.name, aggregated_rating, rating, total_rating, screenshots.url, videos.video_id,involved_companies.*, involved_companies.company.name, game_engines.name, similar_games.name, similar_games.cover.url, similar_games.total_rating, similar_games.genres.name, websites.url, game_modes.name, game_engines.name, franchise.name, release_dates.created_at, release_dates.platform.name; where id = ${this.props.gameId};`;
 
     axios
       .post(proxyurl + url, body)
@@ -72,11 +72,10 @@ class GamePage extends Component {
             <div className={styles.details}>
               <SectionTitle title="details" />
               <GameDetails
-                releaseDates={5}
-                gameModes={3}
-                series={1}
-                franchises={1}
-                gameEngine={2}
+                releaseDates={gameInfo.release_dates}
+                gameModes={gameInfo.game_modes}
+                franchise={gameInfo.franchise ? gameInfo.franchise.name : null}
+                gameEngines={gameInfo.game_engines}
               />
             </div>
           </div>

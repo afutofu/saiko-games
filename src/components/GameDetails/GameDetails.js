@@ -3,33 +3,43 @@ import React from "react";
 import styles from "./GameDetails.module.css";
 
 const GameDetails = (props) => {
+  const toDateTime = (secs) => {
+    let t = new Date(1970, 0, 1);
+    t.setSeconds(secs);
+    return t;
+  };
+
   let releaseDates = [],
     gameModes = [],
-    series = [],
-    franchises = [],
-    gameEngine = [];
+    franchise = [],
+    gameEngines = [];
 
-  for (let i = 0; i < props.releaseDates; i++) {
+  props.releaseDates.forEach((releaseDate) => {
     releaseDates.push(
-      <p className={styles.detailEntry}>Oct 07, 2011 - Android</p>
+      <p key={releaseDate.id} className={styles.detailEntry}>
+        {toDateTime(releaseDate.created_at).toDateString()} -{" "}
+        {releaseDate.platform.name}
+      </p>
     );
+  });
+
+  if (props.gameModes) {
+    props.gameModes.forEach((gameMode) => {
+      gameModes.push(
+        <p key={gameMode.id} className={styles.detailEntry}>
+          {gameMode.name}
+        </p>
+      );
+    });
   }
 
-  for (let i = 0; i < props.gameModes; i++) {
-    gameModes.push(<p className={styles.detailEntry}>Single player</p>);
-  }
-
-  for (let i = 0; i < props.series; i++) {
-    series.push(<p className={styles.detailEntry}>Spiral Knights</p>);
-  }
-
-  for (let i = 0; i < props.franchises; i++) {
-    franchises.push(<p className={styles.detailEntry}>Spiral Knights</p>);
-  }
-
-  for (let i = 0; i < props.gameEngine; i++) {
-    gameEngine.push(<p className={styles.detailEntry}>Bedrock Engine</p>);
-  }
+  props.gameEngines.forEach((gameEngine) => {
+    gameEngines.push(
+      <p key={gameEngine.id} className={styles.detailEntry}>
+        {gameEngine.name}
+      </p>
+    );
+  });
 
   return (
     <div className={styles.gameDetails}>
@@ -41,17 +51,17 @@ const GameDetails = (props) => {
         <p className={styles.title}>Game Modes: </p>
         {gameModes}
       </div>
+
+      {props.franchise ? (
+        <div className={styles.detailSection}>
+          <p className={styles.title}>Franchise: </p>
+          {franchise}
+        </div>
+      ) : null}
+
       <div className={styles.detailSection}>
-        <p className={styles.title}>Series: </p>
-        {series}
-      </div>
-      <div className={styles.detailSection}>
-        <p className={styles.title}>Franchises: </p>
-        {franchises}
-      </div>
-      <div className={styles.detailSection}>
-        <p className={styles.title}>Game Engine: </p>
-        {gameEngine}
+        <p className={styles.title}>Game Engines: </p>
+        {gameEngines}
       </div>
     </div>
   );
