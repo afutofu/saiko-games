@@ -1,13 +1,15 @@
 import React from "react";
 
+import faker from "faker";
+
 import styles from "./Review.module.css";
 
 const Review = (props) => {
   return (
     <div className={styles.review}>
       <div className={styles.info}>
-        <div className={styles.picture} />
-        <h3 className={styles.username}>Bob Marley</h3>
+        <img src={faker.internet.avatar()} alt="" className={styles.picture} />
+        <h3 className={styles.username}>{faker.internet.userName()}</h3>
       </div>
       <p className={styles.userReview}>
         laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo
