@@ -93,7 +93,7 @@ class GameFirstView extends Component {
                 <p>{gameInfo.involved_companies[0].company.name}</p>
               </div>
               <div className={styles.aboutInfo}>
-                <p>{gameInfo.storyline}</p>
+                {gameInfo.storyline ? <p>{gameInfo.storyline}</p> : null}
                 <p>{gameInfo.summary}</p>
               </div>
             </div>

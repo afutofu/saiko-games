@@ -6,7 +6,7 @@ import GamePage from "../GamePage/GamePage";
 import GameSearchPage from "../GameSearchPage/GameSearchPage";
 
 class MainContent extends Component {
-  state = { pageId: 1, gameId: 37001, searchTerm: "" };
+  state = { pageId: 0, gameId: null, searchTerm: "", background: null };
 
   componentDidMount() {}
 
@@ -28,10 +28,20 @@ class MainContent extends Component {
     });
   };
 
+  setBackground = (bg) => {
+    console.log(bg);
+    this.setState({ background: bg });
+  };
+
   renderContent = () => {
     switch (this.state.pageId) {
       case 0:
-        return <FrontPage onGameClick={this.onGameClick} />;
+        return (
+          <FrontPage
+            onGameClick={this.onGameClick}
+            setBackground={this.setBackground}
+          />
+        );
       case 1:
         return (
           <GamePage onGameClick={this.onGameClick} gameId={this.state.gameId} />
@@ -41,6 +51,7 @@ class MainContent extends Component {
           <GameSearchPage
             onGameClick={this.onGameClick}
             searchTerm={this.state.searchTerm}
+            background={this.state.background}
           />
         );
       default:

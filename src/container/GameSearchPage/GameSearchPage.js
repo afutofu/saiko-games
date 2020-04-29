@@ -22,16 +22,19 @@ class GameSearchPage extends Component {
 
   getGames = (searchTerm) => {
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
-    const url = `https://api-v3.igdb.com/games?search=${searchTerm}&fields=cover.url,name,genres.name,storyline,summary,rating`;
+    const url = "https://api-v3.igdb.com/games";
+
+    const body = `search "${searchTerm}"; fields cover.url,name,genres.name,storyline,summary,rating;`;
 
     axios
-      .get(proxyurl + url)
+      .post(proxyurl + url, body)
       .then((res) => {
+        console.log(res.data);
         this.setState({ games: res.data, loading: false });
       })
       .catch((err) => {
         console.log(err);
-        this.setState({ loading: false });
+        setTimeout(() => this.setState(this.getGames()), 3000);
       });
   };
 
@@ -44,8 +47,8 @@ class GameSearchPage extends Component {
       <div className={styles.gameSearchPage}>
         <img
           className={styles.backgroundImage}
-          src="https://images.igdb.com/igdb/image/upload/t_1080p/qifkxxpckhq4wyxgquqe.jpg"
-          alt="bg"
+          src={this.props.background}
+          alt="https://images.igdb.com/igdb/image/upload/t_1080p/qifkxxpckhq4wyxgquqe.jpg"
         />
         <div className={styles.background} />
         <div className={styles.container}>

@@ -26,12 +26,16 @@ class FrontPage extends Component {
     this.getGames();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.key !== this.props.key) {
-      this.setState({ loading: true });
-      this.getGames();
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.key !== this.props.key) {
+  //     this.setState({ loading: true });
+  //     this.getGames();
+  //   }
+  // }
+
+  setBackground = (bg) => {
+    this.props.setBackground(bg);
+  };
 
   getGames = () => {
     // Getting featured games for trailing 6 months
@@ -41,8 +45,12 @@ class FrontPage extends Component {
 
     this.fetchData(body)
       .then((data) => {
-        const background =
-          "https:" + data[0].screenshots[1].url.replace("t_thumb", "t_1080p");
+        let background = null;
+        if (data[0].screenshots) {
+          background =
+            "https:" + data[0].screenshots[1].url.replace("t_thumb", "t_1080p");
+          this.setBackground(background);
+        }
         this.setState({ loading: false, background, featuredGames: data });
       })
       .catch((err) => console.log(err));
