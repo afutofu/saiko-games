@@ -23,7 +23,11 @@ const GameCoverDisplay2 = (props) => {
       <div className={styles.infoContainer}>
         <h3 className={styles.name}>{props.name}</h3>
         <p className={styles.genres}>{props.genres.join(", ")}</p>
-        <p className={styles.storyline}>{props.storyline}</p>
+        {props.storyline ? (
+          <p className={styles.storyline}>{props.storyline}</p>
+        ) : props.summary ? (
+          <p className={styles.storyline}>{props.summary}</p>
+        ) : null}
         <h3 className={styles.rating}>{props.rating ? props.rating : ""}</h3>
       </div>
     </div>

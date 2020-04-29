@@ -122,7 +122,9 @@ class GameFirstView extends Component {
                     {this.dayDifference()} days ago
                   </span>
                 </p>
-                <p>{gameInfo.involved_companies[0].company.name}</p>
+                {gameInfo.involved_companies ? (
+                  <p>{gameInfo.involved_companies[0].company.name}</p>
+                ) : null}
               </div>
               <div className={styles.aboutInfo}>
                 {gameInfo.storyline ? <p>{gameInfo.storyline}</p> : null}
