@@ -24,7 +24,7 @@ class GamePage extends Component {
     const proxyurl = "https://cors-anywhere.herokuapp.com/",
       url = `https://api-v3.igdb.com/games`;
 
-    const body = `fields id,name,cover,cover.url, collection.name,genres.name, themes.name, first_release_date, storyline, summary, platforms.name, aggregated_rating, rating, total_rating, screenshots.url, videos.video_id,involved_companies.*, involved_companies.company.name, game_engines.name, similar_games.name, websites.url; where id = ${this.props.gameId};`;
+    const body = `fields id,name,cover,cover.url, collection.name,genres.name, themes.name, first_release_date, storyline, summary, platforms.name, aggregated_rating, rating, total_rating, screenshots.url, videos.video_id,involved_companies.*, involved_companies.company.name, game_engines.name, similar_games.name, similar_games.cover.url, similar_games.total_rating, similar_games.genres.name, websites.url; where id = ${this.props.gameId};`;
 
     axios
       .post(proxyurl + url, body)
@@ -60,7 +60,10 @@ class GamePage extends Component {
         <VideoContainer gameInfo={this.state.gameInfo} gamePage />
         <div className={styles.container}>
           <SectionTitle title="recommendations" />
-          {/* <GameCoverContainer games={4} onGameClick={this.onGameClick} /> */}
+          <GameCoverContainer
+            games={gameInfo.similar_games.slice(0, 4)}
+            onGameClick={this.onGameClick}
+          />
           <div className={styles.reviewsDetails}>
             <div className={styles.reviews}>
               <SectionTitle title="reviews" />

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import GameCoverDisplay from "../GameCoverDisplay/GameCoverDisplay";
 
+import nocover from "../../assets/images/nocover.jpg";
+
 import styles from "./GameCoverContainer.module.css";
 
 class GameCoverContainer extends Component {
@@ -22,7 +24,7 @@ class GameCoverContainer extends Component {
           cover={
             game.cover !== null
               ? "https:" + game.cover.url.replace("t_thumb", "t_cover_big")
-              : "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7j.jpg"
+              : nocover
           }
           name={game.name}
           genre={game.genres ? game.genres[0].name : null}
