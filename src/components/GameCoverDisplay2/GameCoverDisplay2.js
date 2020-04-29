@@ -8,7 +8,10 @@ const GameCoverDisplay2 = (props) => {
   };
 
   return (
-    <div onClick={() => onGameClick(1)} className={styles.gameCoverDisplay}>
+    <div
+      onClick={() => onGameClick(props.id)}
+      className={styles.gameCoverDisplay}
+    >
       <img src={props.cover} className={styles.cover} alt="No Cover Found" />
       <div className={styles.infoContainer}>
         <h3 className={styles.name}>{props.name}</h3>

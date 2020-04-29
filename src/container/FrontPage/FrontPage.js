@@ -60,45 +60,45 @@ class FrontPage extends Component {
       Math.floor(Date.now() / 1000) - 2629800
     } & first_release_date < ${Math.floor(Date.now() / 1000)}; limit 4;`;
 
-    // this.fetchData(body)
-    //   .then((data) => this.setState({ latestReleases: data }))
-    //   .catch((err) => console.log(err));
+    this.fetchData(body)
+      .then((data) => this.setState({ latestReleases: data }))
+      .catch((err) => console.log(err));
 
     // Get data for trending games from trailing 2 months
     body = `fields name, genres.name, cover.url, screenshots.url, total_rating, storyline, summary; sort popularity desc; where category = 0 & first_release_date > ${
       Math.floor(Date.now() / 1000) - 5259600
     } & first_release_date < ${Math.floor(Date.now() / 1000)}; limit 4;`;
 
-    // this.fetchData(body)
-    //   .then((data) => this.setState({ trendingGames: data }))
-    //   .catch((err) => console.log(err));
+    this.fetchData(body)
+      .then((data) => this.setState({ trendingGames: data }))
+      .catch((err) => console.log(err));
 
     // Get data for highest rated games for the past year
     body = `fields name, genres.name, screenshots.url, total_rating; sort total_rating desc; where total_rating > 50 & category = 0 & first_release_date > ${
       Math.floor(Date.now() / 1000) - 31557600
     } & first_release_date < ${Math.floor(Date.now() / 1000)}; limit 3;`;
 
-    // this.fetchData(body)
-    //   .then((data) => this.setState({ topPastYear: data }))
-    //   .catch((err) => console.log(err));
+    this.fetchData(body)
+      .then((data) => this.setState({ topPastYear: data }))
+      .catch((err) => console.log(err));
 
     // Get data for highest rated games for the past 5 years
     body = `fields name, genres.name, screenshots.url, total_rating; sort total_rating desc; where total_rating > 50 & total_rating_count > 25 & category = 0 & first_release_date > ${
       Math.floor(Date.now() / 1000) - 157788000
     } & first_release_date < ${Math.floor(Date.now() / 1000)}; limit 3;`;
 
-    // this.fetchData(body)
-    //   .then((data) => this.setState({ topPast5Years: data }))
-    //   .catch((err) => console.log(err));
+    this.fetchData(body)
+      .then((data) => this.setState({ topPast5Years: data }))
+      .catch((err) => console.log(err));
 
     // Get data for highest rated games of all time
     body = `fields name, genres.name, screenshots.url, total_rating, total_rating_count; sort total_rating desc; where total_rating > 50 & total_rating_count >= 50 & category = 0 & first_release_date < ${Math.floor(
       Date.now() / 1000
     )}; limit 3;`;
 
-    // this.fetchData(body)
-    //   .then((data) => this.setState({ topAllTime: data }))
-    //   .catch((err) => console.log(err));
+    this.fetchData(body)
+      .then((data) => this.setState({ topAllTime: data }))
+      .catch((err) => console.log(err));
   };
 
   fetchData = async (body) => {

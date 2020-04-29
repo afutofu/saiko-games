@@ -11,7 +11,6 @@ const GameDetails = (props) => {
 
   let releaseDates = [],
     gameModes = [],
-    franchise = [],
     gameEngines = [];
 
   props.releaseDates.forEach((releaseDate) => {
@@ -33,7 +32,7 @@ const GameDetails = (props) => {
     });
   }
 
-  props.gameEngines.forEach((gameEngine) => {
+  props.game_engines.forEach((gameEngine) => {
     gameEngines.push(
       <p key={gameEngine.id} className={styles.detailEntry}>
         {gameEngine.name}
@@ -55,7 +54,7 @@ const GameDetails = (props) => {
       {props.franchise ? (
         <div className={styles.detailSection}>
           <p className={styles.title}>Franchise: </p>
-          {franchise}
+          {props.franchise}
         </div>
       ) : null}
 

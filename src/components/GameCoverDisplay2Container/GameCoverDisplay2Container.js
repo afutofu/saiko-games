@@ -12,7 +12,7 @@ const GameCoverDisplay2Container = (props) => {
   const renderGames = () => {
     let games = [];
 
-    props.games.forEach((game, id) => {
+    props.games.forEach((game) => {
       let genres = [];
       if (genres === undefined) {
         game.genres.forEach((genre) => {
@@ -29,9 +29,10 @@ const GameCoverDisplay2Container = (props) => {
       }
 
       games.push(
-        <div key={id} className={styles.game}>
+        <div key={game.id} className={styles.game}>
           <GameCoverDisplay2
             onGameClick={onGameClick}
+            id={game.id}
             cover={cover}
             name={game.name}
             genres={genres}

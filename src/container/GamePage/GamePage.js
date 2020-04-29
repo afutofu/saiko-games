@@ -71,10 +71,13 @@ class GamePage extends Component {
             </div>
             <div className={styles.details}>
               <SectionTitle title="details" />
+              {console.log(gameInfo.franchise !== null)}
               <GameDetails
                 releaseDates={gameInfo.release_dates}
                 gameModes={gameInfo.game_modes}
-                franchise={gameInfo.franchise ? gameInfo.franchise.name : null}
+                franchise={
+                  gameInfo.franchise !== null ? gameInfo.franchise.name : null
+                }
                 gameEngines={gameInfo.game_engines}
               />
             </div>
