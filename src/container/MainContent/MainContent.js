@@ -9,9 +9,9 @@ import defaultBackground from "../../assets/images/defaultBackground.jpg";
 
 class MainContent extends Component {
   state = {
-    pageId: 2,
+    pageId: 0,
     gameId: null,
-    searchTerm: "nocturne",
+    searchTerm: "",
     background: defaultBackground,
   };
 
@@ -36,7 +36,6 @@ class MainContent extends Component {
   };
 
   setBackground = (bg) => {
-    console.log(bg);
     this.setState({ background: bg });
   };
 

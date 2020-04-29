@@ -8,6 +8,8 @@ import TrendingGamesContainer from "../TrendingGamesContainer/TrendingGamesConta
 import VideoContainer from "../VideoContainer/VideoContainer";
 import GameScreenshotContainer from "../../components/GameScreenshotContainer/GameScreenshotContainer";
 
+import defaultBackground from "../../assets/images/defaultBackground.jpg";
+
 import styles from "./FrontPage.module.css";
 
 class FrontPage extends Component {
@@ -37,20 +39,31 @@ class FrontPage extends Component {
     this.props.setBackground(bg);
   };
 
+  checkBackground = (game) => {
+    if (
+      game.screenshots &&
+      game.screenshots !== null &&
+      game.screenshots.length > 1
+    ) {
+      return "https:" + game.screenshots[1].url.replace("t_thumb", "t_1080p");
+    } else if (game.artworks && game.artworks !== null) {
+      return "https:" + game.artworks[0].url.replace("t_thumb", "t_1080p");
+    } else {
+      return defaultBackground;
+    }
+  };
+
   getGames = () => {
     // Getting featured games for trailing 6 months
-    let body = `fields name, genres.name, cover.url, storyline, summary, screenshots.url, videos.video_id; sort popularity desc; where total_rating > 89 & category = 0 & first_release_date > ${
+    let body = `fields name, genres.name, cover.url, storyline, summary, screenshots.url, artworks.url, videos.video_id; sort popularity desc; where total_rating > 89 & category = 0 & first_release_date > ${
       Math.floor(Date.now() / 1000) - 15778800
-    } & first_release_date < ${Math.floor(Date.now() / 1000)}; limit 3;`;
+    } & first_release_date < ${Math.floor(Date.now() / 1000)}; limit 5;`;
 
     this.fetchData(body)
       .then((data) => {
-        let background = null;
-        if (data[0].screenshots) {
-          background =
-            "https:" + data[0].screenshots[1].url.replace("t_thumb", "t_1080p");
-          this.setBackground(background);
-        }
+        let background = this.checkBackground(data[0]);
+        this.setBackground(background);
+
         this.setState({ loading: false, background, featuredGames: data });
       })
       .catch((err) => console.log(err));
@@ -120,13 +133,13 @@ class FrontPage extends Component {
           <img
             className={styles.backgroundImage}
             src={this.state.background}
-            alt="Background"
+            alt="No background available"
           />
         ) : (
           <img
             className={styles.backgroundImage}
-            src="https://images.igdb.com/igdb/image/upload/t_1080p/qifkxxpckhq4wyxgquqe.jpg"
-            alt="Background"
+            src={defaultBackground}
+            alt="No background available"
           />
         )}
 

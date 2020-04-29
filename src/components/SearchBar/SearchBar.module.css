@@ -15,6 +15,7 @@
   padding: 3px 7px;
   box-sizing: border-box;
   outline: none;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .searchInput:hover,
@@ -22,6 +23,11 @@
 .searchInput:focus {
   border: 1px solid gold;
   padding: 3px 6px;
+}
+
+.searchInput::placeholder {
+  color: rgba(0, 0, 0, 0.3);
+  transform: translateY(0%);
 }
 
 .button {

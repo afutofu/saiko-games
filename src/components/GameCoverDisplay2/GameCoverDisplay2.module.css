@@ -27,7 +27,6 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  overflow-y: scroll;
 }
 
 .infoContainer * {
@@ -48,6 +47,7 @@
 .storyline {
   line-height: 2rem;
   font-size: 22px;
+  overflow-y: scroll;
 }
 
 .rating {

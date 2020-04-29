@@ -7,7 +7,7 @@ import GameCoverDisplay2Container from "../../components/GameCoverDisplay2Contai
 import styles from "./GameSearchPage.module.css";
 
 class GameSearchPage extends Component {
-  state = { games: [], loading: true };
+  state = { games: [], loading: true, errorCount: 0 };
 
   componentDidMount() {
     this.getGames(this.props.searchTerm);
@@ -34,7 +34,13 @@ class GameSearchPage extends Component {
       })
       .catch((err) => {
         console.log(err);
-        setTimeout(() => this.setState(this.getGames()), 3000);
+
+        if (this.state.errorCount < 3) {
+          this.setState({ errorCount: this.state.errorCount + 1 });
+          setTimeout(() => this.setState(this.getGames()), 5000);
+        } else {
+          this.setState({ errorCount: 0 });
+        }
       });
   };
 
