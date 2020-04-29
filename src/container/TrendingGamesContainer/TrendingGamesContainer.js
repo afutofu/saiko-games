@@ -25,6 +25,7 @@ class TrendingGameContainer extends Component {
       <div className={styles.trendingGame}>
         <TrendingGame
           onGameClick={this.onGameClick}
+          gameId={game.id}
           cover={
             game.cover.url
               ? "https:" + game.cover.url.replace("t_thumb", "t_cover_big")

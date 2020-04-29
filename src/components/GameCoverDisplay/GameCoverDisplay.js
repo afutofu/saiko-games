@@ -5,7 +5,7 @@ import styles from "./GameCoverDisplay.module.css";
 const GameCoverDisplay = (props) => {
   return (
     <div
-      onClick={() => props.onGameClick(1)}
+      onClick={() => props.onGameClick(props.gameId)}
       className={styles.gameCoverDisplay}
     >
       <img src={props.cover} className={styles.cover} alt="cover" />

@@ -50,7 +50,11 @@ class MainContent extends Component {
         );
       case 1:
         return (
-          <GamePage onGameClick={this.onGameClick} gameId={this.state.gameId} />
+          <GamePage
+            onGameClick={this.onGameClick}
+            gameId={this.state.gameId}
+            search={this.state.searchTerm}
+          />
         );
       case 2:
         return (

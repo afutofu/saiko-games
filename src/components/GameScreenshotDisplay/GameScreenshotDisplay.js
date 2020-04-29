@@ -9,7 +9,7 @@ const GameScreenshotDisplay = (props) => {
 
   return (
     <div
-      onClick={() => onGameClick(1)}
+      onClick={() => onGameClick(props.gameId)}
       className={styles.gameScreenshotDisplay}
     >
       <img

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import GameCoverDisplay from "../GameCoverDisplay/GameCoverDisplay";
 
-import nocover from "../../assets/images/nocover.jpg";
+import noCover from "../../assets/images/noCover.jpg";
 
 import styles from "./GameCoverContainer.module.css";
 
@@ -21,10 +21,11 @@ class GameCoverContainer extends Component {
         <GameCoverDisplay
           onGameClick={this.onGameClick}
           key={game.id}
+          gameId={game.id}
           cover={
-            game.cover !== null
+            game.cover && game.cover !== null
               ? "https:" + game.cover.url.replace("t_thumb", "t_cover_big")
-              : nocover
+              : noCover
           }
           name={game.name}
           genre={game.genres ? game.genres[0].name : null}

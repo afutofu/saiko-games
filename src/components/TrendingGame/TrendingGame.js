@@ -8,7 +8,10 @@ const TrendingGame = (props) => {
   };
 
   return (
-    <div onClick={() => onGameClick(1)} className={styles.trendingGame}>
+    <div
+      onClick={() => onGameClick(props.gameId)}
+      className={styles.trendingGame}
+    >
       <img
         src={props.screenshot}
         alt="No screenshot found"

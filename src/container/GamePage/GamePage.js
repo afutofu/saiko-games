@@ -19,11 +19,18 @@ class GamePage extends Component {
     this.getGameInfo(this.props.gameId);
   }
 
-  getGameInfo = () => {
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.gameId !== this.props.gameId) {
+      this.setState({ loading: true });
+      this.getGameInfo(nextProps.gameId);
+    }
+  }
+
+  getGameInfo = (gameId) => {
     const proxyurl = "https://cors-anywhere.herokuapp.com/",
       url = `https://api-v3.igdb.com/games`;
 
-    const body = `fields id,name,cover,cover.url, collection.name,genres.name, themes.name, first_release_date, storyline, summary, platforms.name, aggregated_rating, rating, total_rating, screenshots.url, videos.video_id,involved_companies.*, involved_companies.company.name, game_engines.name, similar_games.name, similar_games.cover.url, similar_games.total_rating, similar_games.genres.name, websites.url, game_modes.name, game_engines.name, franchise.name, release_dates.created_at, release_dates.platform.name, artworks.url; where id = ${this.props.gameId};`;
+    const body = `fields id,name,cover,cover.url, collection.name,genres.name, themes.name, first_release_date, storyline, summary, platforms.name, aggregated_rating, rating, total_rating, screenshots.url, videos.video_id,involved_companies.*, involved_companies.company.name, game_engines.name, similar_games.name, similar_games.cover.url, similar_games.total_rating, similar_games.genres.name, websites.url, game_modes.name, game_engines.name, franchise.name, release_dates.created_at, release_dates.platform.name, artworks.url; where id = ${gameId};`;
 
     axios
       .post(proxyurl + url, body)

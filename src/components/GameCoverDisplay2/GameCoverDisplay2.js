@@ -11,7 +11,7 @@ const GameCoverDisplay2 = (props) => {
 
   return (
     <div
-      onClick={() => onGameClick(props.id)}
+      onClick={() => onGameClick(props.gameId)}
       className={styles.gameCoverDisplay}
     >
       {props.cover ? (

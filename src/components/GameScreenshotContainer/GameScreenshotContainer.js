@@ -17,6 +17,7 @@ const GameScreenshotContainer = (props) => {
         <GameScreenshotDisplay
           onGameClick={onGameClick}
           key={game.id}
+          gameId={game.id}
           screenshot={
             game.screenshots !== null
               ? "https:" +

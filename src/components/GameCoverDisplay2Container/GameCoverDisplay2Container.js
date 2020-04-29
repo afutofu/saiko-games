@@ -31,8 +31,9 @@ const GameCoverDisplay2Container = (props) => {
       games.push(
         <div key={game.id} className={styles.game}>
           <GameCoverDisplay2
+            key={game.id}
             onGameClick={onGameClick}
-            id={game.id}
+            gameId={game.id}
             cover={cover}
             name={game.name}
             genres={genres}
