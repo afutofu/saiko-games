@@ -66,9 +66,9 @@ class FrontPage extends Component {
       Math.floor(Date.now() / 1000) - 2629800
     } & first_release_date < ${Math.floor(Date.now() / 1000)}; limit 4;`;
 
-    // this.fetchData(body)
-    //   .then((data) => this.setState({ latestReleases: data }))
-    //   .catch((err) => console.log(err));
+    this.fetchData(body)
+      .then((data) => this.setState({ latestReleases: data }))
+      .catch((err) => console.log(err));
 
     // Get data for trending games from trailing 2 months
     body = `fields name, genres.name, cover.url, screenshots.url, total_rating, storyline, summary; sort popularity desc; where category = 0 & first_release_date > ${

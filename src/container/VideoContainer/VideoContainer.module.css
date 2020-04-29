@@ -38,7 +38,7 @@
   position: absolute;
   display: flex;
   width: 100%;
-  transition: 1s;
+  transition: 0.5s;
 }
 
 .video {
