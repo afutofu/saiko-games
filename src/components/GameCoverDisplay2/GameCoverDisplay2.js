@@ -1,5 +1,7 @@
 import React from "react";
 
+import noCover from "../../assets/images/noCover.jpg";
+
 import styles from "./GameCoverDisplay2.module.css";
 
 const GameCoverDisplay2 = (props) => {
@@ -12,7 +14,12 @@ const GameCoverDisplay2 = (props) => {
       onClick={() => onGameClick(props.id)}
       className={styles.gameCoverDisplay}
     >
-      <img src={props.cover} className={styles.cover} alt="No Cover Found" />
+      {props.cover ? (
+        <img src={props.cover} alt="No cover found" className={styles.cover} />
+      ) : (
+        <img src={noCover} alt="No cover found" className={styles.cover} />
+      )}
+
       <div className={styles.infoContainer}>
         <h3 className={styles.name}>{props.name}</h3>
         <p className={styles.genres}>{props.genres.join(", ")}</p>

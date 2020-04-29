@@ -5,8 +5,15 @@ import FrontPage from "../FrontPage/FrontPage";
 import GamePage from "../GamePage/GamePage";
 import GameSearchPage from "../GameSearchPage/GameSearchPage";
 
+import defaultBackground from "../../assets/images/defaultBackground.jpg";
+
 class MainContent extends Component {
-  state = { pageId: 0, gameId: null, searchTerm: "", background: null };
+  state = {
+    pageId: 2,
+    gameId: null,
+    searchTerm: "nocturne",
+    background: defaultBackground,
+  };
 
   componentDidMount() {}
 

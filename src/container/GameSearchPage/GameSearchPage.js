@@ -45,11 +45,20 @@ class GameSearchPage extends Component {
   render() {
     return (
       <div className={styles.gameSearchPage}>
-        <img
-          className={styles.backgroundImage}
-          src={this.props.background}
-          alt="https://images.igdb.com/igdb/image/upload/t_1080p/qifkxxpckhq4wyxgquqe.jpg"
-        />
+        {this.props.background ? (
+          <img
+            className={styles.backgroundImage}
+            src={this.props.background}
+            alt="No background found"
+          />
+        ) : (
+          <img
+            className={styles.backgroundImage}
+            src="https://images.igdb.com/igdb/image/upload/t_1080p/qifkxxpckhq4wyxgquqe.jpg"
+            alt="No background found"
+          />
+        )}
+
         <div className={styles.background} />
         <div className={styles.container}>
           <SectionTitle

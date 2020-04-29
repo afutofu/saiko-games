@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import RatingBox from "../../components/RatingBox/RatingBox";
 
+import noCover from "../../assets/images/noCover.jpg";
+
 import styles from "./GameFirstView.module.css";
 
 class GameFirstView extends Component {
@@ -29,52 +31,82 @@ class GameFirstView extends Component {
         <div className={styles.wideContainer}>
           <div className={styles.container}>
             <div className={styles.smallDetail}>
-              <img
-                src={
-                  "https:" +
-                  gameInfo.cover.url.replace("t_thumb", "t_cover_big")
-                }
-                alt="Cover"
-                className={styles.cover}
-              />
+              {gameInfo.cover ? (
+                <img
+                  src={
+                    "https:" +
+                    gameInfo.cover.url.replace("t_thumb", "t_cover_big")
+                  }
+                  alt="Cover"
+                  className={styles.cover}
+                />
+              ) : (
+                <img
+                  src={noCover}
+                  alt="No cover found"
+                  className={styles.cover}
+                />
+              )}
               <div className={styles.detailListContainer}>
                 <div className={styles.detailList}>
                   <p>
-                    <span className={styles.title}>Genres: </span>
-                    {gameInfo.genres
-                      .map((genre) => {
-                        return genre.name;
-                      })
-                      .join(", ")}
+                    {gameInfo.genres ? (
+                      <React.Fragment>
+                        <span className={styles.title}>Genres: </span>
+                        {gameInfo.genres
+                          .map((genre) => {
+                            return genre.name;
+                          })
+                          .join(", ")}
+                      </React.Fragment>
+                    ) : (
+                      "No genre available"
+                    )}
                   </p>
                 </div>
                 <div className={styles.detailList}>
                   <p>
-                    <span className={styles.title}>Themes: </span>
-                    {gameInfo.themes
-                      .map((theme) => {
-                        return theme.name;
-                      })
-                      .join(", ")}
+                    {gameInfo.themes ? (
+                      <React.Fragment>
+                        <span className={styles.title}>Themes: </span>
+                        {gameInfo.themes
+                          .map((theme) => {
+                            return theme.name;
+                          })
+                          .join(", ")}
+                      </React.Fragment>
+                    ) : (
+                      "No genre available"
+                    )}
                   </p>
                 </div>
                 <div className={styles.detailList}>
                   <p>
-                    <span className={styles.title}>Platforms: </span>
-                    {gameInfo.platforms
-                      .map((platform) => {
-                        return platform.name;
-                      })
-                      .join(", ")}
+                    {gameInfo.platforms ? (
+                      <React.Fragment>
+                        <span className={styles.title}>Platforms: </span>
+                        {gameInfo.platforms
+                          .map((platform) => {
+                            return platform.name;
+                          })
+                          .join(", ")}
+                      </React.Fragment>
+                    ) : (
+                      "No platforms available"
+                    )}
                   </p>
                 </div>
-                <a
-                  href={gameInfo.websites[0].url}
-                  target="_blank"
-                  className={styles.websiteLink}
-                >
-                  Visit the official website
-                </a>
+                {gameInfo.websites ? (
+                  <a
+                    href={gameInfo.websites[0].url}
+                    target="_blank"
+                    className={styles.websiteLink}
+                  >
+                    Visit the official website
+                  </a>
+                ) : (
+                  "Official website not available"
+                )}
               </div>
             </div>
             <div className={styles.about}>
