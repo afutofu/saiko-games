@@ -58,7 +58,7 @@ class VideosContainer extends Component {
           <iframe
             index={id}
             title={game.videos.id}
-            key={game.videos.id}
+            key={id}
             className={styles.video}
             src={`https://www.youtube.com/embed/${game.videos[0].video_id}`}
           ></iframe>

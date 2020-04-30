@@ -2,10 +2,17 @@
   position: relative;
   width: 100%;
   height: 40vh;
-  background-color: #7173a1;
+  background: none;
   color: white;
   margin-bottom: 20px;
   cursor: pointer;
+  box-sizing: border-box;
+  border: 2px solid rgba(0, 0, 0, 0);
+  transition: border 1s;
+}
+
+.trendingGame:hover {
+  border: 2px solid rgba(255, 215, 0, 0.6);
 }
 
 .screenshot {
@@ -59,8 +66,9 @@
 }
 
 .storyline {
-  line-height: 1.6rem;
-  font-size: 20px;
+  line-height: 1.8rem;
+  letter-spacing: 0.08rem;
+  font-size: 22px;
   overflow-y: scroll;
   overflow-x: hidden;
 }
