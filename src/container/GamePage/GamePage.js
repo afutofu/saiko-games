@@ -36,7 +36,6 @@ class GamePage extends Component {
     axios
       .post(proxyurl + url, body)
       .then((res) => {
-        console.log(res.data[0]);
         this.setState({ loading: false, gameInfo: res.data[0] });
       })
       .catch((err) => {
@@ -52,6 +51,10 @@ class GamePage extends Component {
 
   onGameClick = (gameId) => {
     this.props.onGameClick(gameId);
+  };
+
+  onBackToSearch = () => {
+    this.props.onBackToSearch();
   };
 
   renderBackground = (gameInfo) => {
@@ -109,7 +112,12 @@ class GamePage extends Component {
       <div className={styles.gamePage}>
         {this.renderBackground(gameInfo)}
         <div className={styles.background} />
-        <GameFirstView gameInfo={gameInfo} />
+
+        <GameFirstView
+          gameInfo={gameInfo}
+          onBackToSearch={this.props.onBackToSearch}
+        />
+
         {gameInfo.videos ? (
           <VideoContainer gameInfo={gameInfo} gamePage />
         ) : (

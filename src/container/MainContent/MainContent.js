@@ -9,17 +9,16 @@ import defaultBackground from "../../assets/images/defaultBackground.jpg";
 
 class MainContent extends Component {
   state = {
-    pageId: 0,
+    pageId: 2,
     gameId: null,
-    searchTerm: "",
+    searchTerm: "counter strike",
     background: defaultBackground,
+    searchPosition: null,
   };
-
-  componentDidMount() {}
 
   onLogoClick = () => {
     window.scrollTo(0, 0);
-    this.setState({ pageId: 0, gameId: null });
+    this.setState({ pageId: 0, gameId: null, searchTerm: "" });
   };
 
   onGameClick = (gameId) => {
@@ -32,7 +31,18 @@ class MainContent extends Component {
     this.setState({
       pageId: 2,
       searchTerm: gameName,
+      searchPosition: null,
     });
+  };
+
+  onBackToSearch = () => {
+    console.log("go back to", 0, this.state.searchPosition);
+    this.setState({ pageId: 2 });
+  };
+
+  setSearchPosition = (y) => {
+    this.setState({ searchPosition: y });
+    console.log("search pos:", y);
   };
 
   setBackground = (bg) => {
@@ -52,6 +62,7 @@ class MainContent extends Component {
         return (
           <GamePage
             onGameClick={this.onGameClick}
+            onBackToSearch={this.onBackToSearch}
             gameId={this.state.gameId}
             search={this.state.searchTerm}
           />
@@ -61,6 +72,8 @@ class MainContent extends Component {
           <GameSearchPage
             onGameClick={this.onGameClick}
             searchTerm={this.state.searchTerm}
+            searchPosition={this.state.searchPosition}
+            setSearchPosition={this.setSearchPosition}
             background={this.state.background}
           />
         );

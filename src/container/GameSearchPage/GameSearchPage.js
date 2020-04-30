@@ -16,6 +16,13 @@ class GameSearchPage extends Component {
     this.getGames(this.props.searchTerm);
   }
 
+  componentDidUpdate() {
+    if (this.props.searchPosition) {
+      window.scrollTo(0, this.props.searchPosition);
+      console.log("go back?");
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.searchTerm !== this.props.searchTerm) {
       this.setState({ loading: true });
@@ -32,7 +39,6 @@ class GameSearchPage extends Component {
     axios
       .post(proxyurl + url, body)
       .then((res) => {
-        console.log(res.data);
         this.setState({ games: res.data, loading: false });
       })
       .catch((err) => {
@@ -47,6 +53,7 @@ class GameSearchPage extends Component {
   };
 
   onGameClick = (gameId) => {
+    this.props.setSearchPosition(window.pageYOffset);
     this.props.onGameClick(gameId);
   };
 

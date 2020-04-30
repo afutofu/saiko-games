@@ -1,8 +1,7 @@
 .gameFirstView {
   position: relative;
   width: 100%;
-  min-height: 88vh;
-  top: 6vh;
+  min-height: 94vh;
   overflow: hidden;
 }
 
@@ -125,4 +124,21 @@
 .ratings {
   width: 25%;
   padding: 20px;
+}
+
+.goBackButton {
+  position: absolute;
+  background: none;
+  border: none;
+  padding: none;
+  margin: none;
+  top: 45%;
+  left: 10%;
+  transform: translate(-50%);
+  cursor: pointer;
+}
+
+.goBackButton i {
+  color: white;
+  font-size: 1.6rem;
 }

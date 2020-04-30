@@ -32,11 +32,22 @@ class GameFirstView extends Component {
     return websites[0].url;
   };
 
+  onBackToSearch = () => {
+    this.props.onBackToSearch();
+  };
+
   render() {
     const gameInfo = this.props.gameInfo;
 
     return (
       <div className={styles.gameFirstView}>
+        <button
+          onClick={() => this.onBackToSearch()}
+          className={styles.goBackButton}
+        >
+          <i className="fa fa-chevron-left"></i>
+        </button>
+
         <div className={styles.wideContainer}>
           <div className={styles.container}>
             <div className={styles.smallDetail}>
