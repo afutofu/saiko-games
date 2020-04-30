@@ -14,7 +14,8 @@ import styles from "./FrontPage.module.css";
 
 class FrontPage extends Component {
   state = {
-    loading: true,
+    toBeLoaded: 1,
+    loaded: 0,
     background: null,
     featuredGames: [],
     latestReleases: [],
@@ -57,7 +58,11 @@ class FrontPage extends Component {
     //     let background = this.checkBackground(data[0]);
     //     this.setBackground(background);
 
-    //     this.setState({ loading: false, background, featuredGames: data });
+    //     this.setState({
+    //       loaded: this.state.loaded + 1,
+    //       background,
+    //       featuredGames: data,
+    //     });
     //   })
     //   .catch((err) => console.log(err));
 
@@ -67,7 +72,9 @@ class FrontPage extends Component {
     } & first_release_date < ${Math.floor(Date.now() / 1000)}; limit 4;`;
 
     this.fetchData(body)
-      .then((data) => this.setState({ latestReleases: data }))
+      .then((data) =>
+        this.setState({ loaded: this.state.loaded + 1, latestReleases: data })
+      )
       .catch((err) => console.log(err));
 
     // Get data for trending games from trailing 2 months
@@ -76,7 +83,9 @@ class FrontPage extends Component {
     } & first_release_date < ${Math.floor(Date.now() / 1000)}; limit 4;`;
 
     // this.fetchData(body)
-    //   .then((data) => this.setState({ trendingGames: data }))
+    //   .then((data) =>
+    //     this.setState({ loaded: this.state.loaded + 1, trendingGames: data })
+    //   )
     //   .catch((err) => console.log(err));
 
     // Get data for highest rated games for the past year
@@ -85,7 +94,7 @@ class FrontPage extends Component {
     } & first_release_date < ${Math.floor(Date.now() / 1000)}; limit 3;`;
 
     // this.fetchData(body)
-    //   .then((data) => this.setState({ topPastYear: data }))
+    //   .then((data) => this.setState({ loading: false, topPastYear: data }))
     //   .catch((err) => console.log(err));
 
     // Get data for highest rated games for the past 5 years
@@ -94,7 +103,7 @@ class FrontPage extends Component {
     } & first_release_date < ${Math.floor(Date.now() / 1000)}; limit 3;`;
 
     // this.fetchData(body)
-    //   .then((data) => this.setState({ topPast5Years: data }))
+    //   .then((data) => this.setState({ loading: false,topPast5Years: data }))
     //   .catch((err) => console.log(err));
 
     // Get data for highest rated games of all time
@@ -103,7 +112,7 @@ class FrontPage extends Component {
     )}; limit 3;`;
 
     // this.fetchData(body)
-    //   .then((data) => this.setState({ topAllTime: data }))
+    //   .then((data) => this.setState({loading: false, topAllTime: data }))
     //   .catch((err) => console.log(err));
   };
 
@@ -120,6 +129,19 @@ class FrontPage extends Component {
   };
 
   render() {
+    if (this.state.loaded < this.state.toBeLoaded) {
+      return (
+        <div className={styles.frontPage}>
+          <img
+            className={styles.backgroundImage}
+            src={defaultBackground}
+            alt="No background available"
+          />
+          <div className={styles.background} />
+        </div>
+      );
+    }
+
     return (
       <div className={styles.frontPage}>
         {this.state.featuredGames.length > 0 ? (

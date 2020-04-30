@@ -9,6 +9,7 @@ class VideosContainer extends Component {
     let videos = [];
 
     if (this.props.gamePage) {
+      // If video container is used in game page
       this.props.gameInfo.videos.map((video, id) => {
         videos.push(
           <iframe
@@ -21,6 +22,7 @@ class VideosContainer extends Component {
         );
       });
     } else {
+      // If used in front page
       this.props.games.forEach((game, id) => {
         videos.push(
           <iframe
