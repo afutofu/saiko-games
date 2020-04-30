@@ -15,12 +15,23 @@ class GameFirstView extends Component {
     return t;
   };
 
-  dayDifference = () => {
+  timeSinceRelease = () => {
     const currentTime = Math.floor(Date.now() / 1000);
     const releaseTime = this.props.gameInfo.first_release_date;
     const timeDifference = currentTime - releaseTime;
-    const days = Math.floor(timeDifference / (3600 * 24));
-    return days;
+    let days = Math.floor(timeDifference / (3600 * 24));
+
+    console.log(days);
+    if (days > 365) {
+      const years = Math.floor(days / 365);
+      days = days - years * 365;
+      if (years > 1) {
+        return `${years} years ${days} days ago`;
+      }
+      return `${years} year ${days} days ago`;
+    }
+
+    return `${days} days ago`;
   };
 
   getOfficialWebsite = (websites) => {
@@ -141,7 +152,7 @@ class GameFirstView extends Component {
                     ).toDateString()}
                   </span>
                   <span className={styles.daysAgo}>
-                    {this.dayDifference()} days ago
+                    {this.timeSinceRelease()}
                   </span>
                 </p>
                 {gameInfo.involved_companies ? (

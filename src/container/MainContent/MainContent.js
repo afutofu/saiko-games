@@ -9,9 +9,9 @@ import defaultBackground from "../../assets/images/defaultBackground.jpg";
 
 class MainContent extends Component {
   state = {
-    pageId: 2,
+    pageId: 0,
     gameId: null,
-    searchTerm: "counter strike",
+    searchTerm: null,
     background: defaultBackground,
     searchPosition: null,
     fromSearch: false,
