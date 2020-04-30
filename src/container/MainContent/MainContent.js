@@ -14,6 +14,7 @@ class MainContent extends Component {
     searchTerm: "counter strike",
     background: defaultBackground,
     searchPosition: null,
+    fromSearch: false,
   };
 
   onLogoClick = () => {
@@ -23,7 +24,12 @@ class MainContent extends Component {
 
   onGameClick = (gameId) => {
     window.scrollTo(0, 0);
-    this.setState({ pageId: 1, gameId: gameId });
+    this.setState((prevState) => {
+      if (prevState.pageId === 2) {
+        return { pageId: 1, gameId, fromSearch: true };
+      }
+      return { pageId: 1, gameId, searchPosition: null, fromSearch: false };
+    });
   };
 
   onSearch = (gameName) => {
@@ -64,7 +70,7 @@ class MainContent extends Component {
             onGameClick={this.onGameClick}
             onBackToSearch={this.onBackToSearch}
             gameId={this.state.gameId}
-            search={this.state.searchTerm}
+            fromSearch={this.state.fromSearch}
           />
         );
       case 2:

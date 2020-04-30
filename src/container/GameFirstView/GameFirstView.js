@@ -41,12 +41,14 @@ class GameFirstView extends Component {
 
     return (
       <div className={styles.gameFirstView}>
-        <button
-          onClick={() => this.onBackToSearch()}
-          className={styles.goBackButton}
-        >
-          <i className="fa fa-chevron-left"></i>
-        </button>
+        {this.props.fromSearch ? (
+          <button
+            onClick={() => this.onBackToSearch()}
+            className={styles.goBackButton}
+          >
+            <i className="fa fa-chevron-left"></i>
+          </button>
+        ) : null}
 
         <div className={styles.wideContainer}>
           <div className={styles.container}>

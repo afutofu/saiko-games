@@ -114,6 +114,7 @@ class GamePage extends Component {
         <div className={styles.background} />
 
         <GameFirstView
+          fromSearch={this.props.fromSearch}
           gameInfo={gameInfo}
           onBackToSearch={this.props.onBackToSearch}
         />
