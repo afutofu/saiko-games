@@ -39,7 +39,7 @@ const GameCoverDisplay2Container = (props) => {
             genres={genres}
             storyline={game.storyline ? game.storyline : game.summary}
             summary={game.summary ? game.summary : game.summary}
-            rating={Math.round(game.rating)}
+            rating={Math.round(game.total_rating)}
           />
         </div>
       );
