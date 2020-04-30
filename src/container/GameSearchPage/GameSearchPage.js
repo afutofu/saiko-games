@@ -3,6 +3,9 @@ import axios from "axios";
 
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import GameCoverDisplay2Container from "../../components/GameCoverDisplay2Container/GameCoverDisplay2Container";
+import Spinner from "../../components/Spinner/Spinner";
+
+import defaultBackground from "../../assets/images/defaultBackground.jpg";
 
 import styles from "./GameSearchPage.module.css";
 
@@ -48,6 +51,20 @@ class GameSearchPage extends Component {
   };
 
   render() {
+    if (this.state.loading) {
+      return (
+        <div style={{ height: "100vh" }}>
+          <img
+            className={styles.backgroundImage}
+            src={defaultBackground}
+            alt="No background available"
+          />
+          <Spinner />
+          <div className={styles.background} />
+        </div>
+      );
+    }
+
     return (
       <div className={styles.gameSearchPage}>
         {this.props.background ? (
@@ -59,7 +76,7 @@ class GameSearchPage extends Component {
         ) : (
           <img
             className={styles.backgroundImage}
-            src="https://images.igdb.com/igdb/image/upload/t_1080p/qifkxxpckhq4wyxgquqe.jpg"
+            src={defaultBackground}
             alt="No background found"
           />
         )}
@@ -69,22 +86,11 @@ class GameSearchPage extends Component {
           <SectionTitle
             title={`games matched with "${this.props.searchTerm}"`}
           />
-          {!this.state.loading ? (
-            <GameCoverDisplay2Container
-              onGameClick={this.onGameClick}
-              games={this.state.games}
-            />
-          ) : null}
+          <GameCoverDisplay2Container
+            onGameClick={this.onGameClick}
+            games={this.state.games}
+          />
         </div>
-        {this.state.loading ? (
-          <div className={styles.spinner}>
-            <div className={styles.rect1}></div>
-            <div className={styles.rect2}></div>
-            <div className={styles.rect3}></div>
-            <div className={styles.rect4}></div>
-            <div className={styles.rect5}></div>
-          </div>
-        ) : null}
       </div>
     );
   }

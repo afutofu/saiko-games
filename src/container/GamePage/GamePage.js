@@ -7,6 +7,7 @@ import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import GameCoverContainer from "../../components/GameCoverContainer/GameCoverContainer";
 import GameDetails from "../../components/GameDetails/GameDetails";
 import ReviewContainer from "../ReviewContainer/ReviewContainer";
+import Spinner from "../../components/Spinner/Spinner";
 
 import defaultBackground from "../../assets/images/defaultBackground.jpg";
 
@@ -89,7 +90,17 @@ class GamePage extends Component {
     const gameInfo = this.state.gameInfo;
 
     if (this.state.loading) {
-      return <div className={styles.gamePage}></div>;
+      return (
+        <div style={{ height: "100vh" }}>
+          <img
+            className={styles.backgroundImage}
+            src={defaultBackground}
+            alt="No background available"
+          />
+          <Spinner />
+          <div className={styles.background} />
+        </div>
+      );
     }
 
     console.log(gameInfo);
@@ -106,11 +117,20 @@ class GamePage extends Component {
         )}
 
         <div className={styles.container}>
-          <SectionTitle title="recommendations" />
-          <GameCoverContainer
-            games={gameInfo.similar_games.slice(0, 4)}
-            onGameClick={this.onGameClick}
-          />
+          {gameInfo.similar_games ? (
+            <React.Fragment>
+              <SectionTitle title="recommendations" />
+              <GameCoverContainer
+                games={
+                  gameInfo.similar_games.length > 4
+                    ? gameInfo.similar_games.slice(0, 4)
+                    : gameInfo.similar_games
+                }
+                onGameClick={this.onGameClick}
+              />
+            </React.Fragment>
+          ) : null}
+
           <div className={styles.reviewsDetails}>
             <div className={styles.reviews}>
               <SectionTitle title="reviews" />

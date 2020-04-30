@@ -7,6 +7,7 @@ import GameCoverContainer from "../../components/GameCoverContainer/GameCoverCon
 import TrendingGamesContainer from "../TrendingGamesContainer/TrendingGamesContainer";
 import VideoContainer from "../VideoContainer/VideoContainer";
 import GameScreenshotContainer from "../../components/GameScreenshotContainer/GameScreenshotContainer";
+import Spinner from "../../components/Spinner/Spinner";
 
 import defaultBackground from "../../assets/images/defaultBackground.jpg";
 
@@ -131,12 +132,13 @@ class FrontPage extends Component {
   render() {
     if (this.state.loaded < this.state.toBeLoaded) {
       return (
-        <div className={styles.frontPage}>
+        <div style={{ height: "100vh" }}>
           <img
             className={styles.backgroundImage}
             src={defaultBackground}
             alt="No background available"
           />
+          <Spinner />
           <div className={styles.background} />
         </div>
       );
