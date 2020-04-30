@@ -13,7 +13,7 @@ import defaultBackground from "../../assets/images/defaultBackground.jpg";
 import styles from "./GamePage.module.css";
 
 class GamePage extends Component {
-  state = { loading: true, gameInfo: null };
+  state = { loading: true, gameInfo: null, errorCount: 0 };
 
   componentDidMount() {
     this.getGameInfo(this.props.gameId);
@@ -30,7 +30,7 @@ class GamePage extends Component {
     const proxyurl = "https://cors-anywhere.herokuapp.com/",
       url = `https://api-v3.igdb.com/games`;
 
-    const body = `fields id,name,cover,cover.url, collection.name,genres.name, themes.name, first_release_date, storyline, summary, platforms.name, aggregated_rating, rating, total_rating, screenshots.url, videos.video_id,involved_companies.*, involved_companies.company.name, game_engines.name, similar_games.name, similar_games.cover.url, similar_games.total_rating, similar_games.genres.name, websites.url, game_modes.name, game_engines.name, franchise.name, release_dates.created_at, release_dates.platform.name, artworks.url; where id = ${gameId};`;
+    const body = `fields id,name,cover,cover.url, collection.name,genres.name, themes.name, first_release_date, storyline, summary, platforms.name, aggregated_rating, rating, total_rating, screenshots.url, videos.video_id,involved_companies.*, involved_companies.company.name, game_engines.name, similar_games.name, similar_games.cover.url, similar_games.total_rating, similar_games.genres.name, websites.category, websites.url, game_modes.name, game_engines.name, franchise.name, release_dates.created_at, release_dates.platform.name, artworks.url; where id = ${gameId};`;
 
     axios
       .post(proxyurl + url, body)
@@ -38,7 +38,15 @@ class GamePage extends Component {
         console.log(res.data[0]);
         this.setState({ loading: false, gameInfo: res.data[0] });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        if (this.state.errorCount < 3) {
+          this.setState({ errorCount: this.state.errorCount + 1 });
+          setTimeout(() => this.setState(this.getGames()), 5000);
+        } else {
+          this.setState({ errorCount: 0 });
+        }
+      });
   };
 
   onGameClick = (gameId) => {

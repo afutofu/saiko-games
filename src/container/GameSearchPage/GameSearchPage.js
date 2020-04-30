@@ -24,7 +24,7 @@ class GameSearchPage extends Component {
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
     const url = "https://api-v3.igdb.com/games";
 
-    const body = `search "${searchTerm}"; fields cover.url,name,genres.name,storyline,summary,rating;`;
+    const body = `search "${searchTerm}"; fields cover.url,name,genres.name,storyline,summary,rating; limit 50;`;
 
     axios
       .post(proxyurl + url, body)
@@ -34,7 +34,6 @@ class GameSearchPage extends Component {
       })
       .catch((err) => {
         console.log(err);
-
         if (this.state.errorCount < 3) {
           this.setState({ errorCount: this.state.errorCount + 1 });
           setTimeout(() => this.setState(this.getGames()), 5000);

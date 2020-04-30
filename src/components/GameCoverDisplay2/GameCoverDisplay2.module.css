@@ -50,6 +50,7 @@
   line-height: 2rem;
   font-size: 22px;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .rating {

@@ -23,6 +23,15 @@ class GameFirstView extends Component {
     return days;
   };
 
+  getOfficialWebsite = (websites) => {
+    for (const website of websites) {
+      if (website.category === 1) {
+        return website.url;
+      }
+    }
+    return websites[0].url;
+  };
+
   render() {
     const gameInfo = this.props.gameInfo;
 
@@ -98,7 +107,7 @@ class GameFirstView extends Component {
                 </div>
                 {gameInfo.websites ? (
                   <a
-                    href={gameInfo.websites[0].url}
+                    href={this.getOfficialWebsite(gameInfo.websites)}
                     target="_blank"
                     className={styles.websiteLink}
                   >
