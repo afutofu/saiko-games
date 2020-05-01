@@ -42,6 +42,8 @@ class RatingBox extends Component {
           ratingStyles.push(styles.fadeIn3);
           ratingBarStyles.push(styles.slideIn3);
           break;
+        default:
+          return null;
       }
     }
 

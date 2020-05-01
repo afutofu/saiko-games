@@ -50,7 +50,7 @@ class FrontPage extends Component {
 
   getGames = () => {
     // Getting featured games for trailing 6 months
-    let body = `fields name, genres.name, cover.url, storyline, summary, screenshots.url, artworks.url, videos.video_id; sort popularity desc; where total_rating > 89 & category = 0 & first_release_date > ${
+    let body = `fields name, genres.name, cover.url, storyline, summary, screenshots.url, artworks.url, videos.name, videos.video_id; sort popularity desc; where total_rating > 89 & category = 0 & first_release_date > ${
       Math.floor(Date.now() / 1000) - 15778800
     } & first_release_date < ${Math.floor(Date.now() / 1000)}; limit 5;`;
 
@@ -198,7 +198,7 @@ class FrontPage extends Component {
 
         <div className={styles.container}>
           <SectionTitle title="highest rated games" big />
-          <SectionTitle title="past years" color="#DED375" />
+          <SectionTitle title="past year" color="#DED375" />
           <GameScreenshotContainer
             games={this.state.topPastYear}
             onGameClick={this.onGameClick}

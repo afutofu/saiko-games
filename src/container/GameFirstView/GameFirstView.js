@@ -21,7 +21,6 @@ class GameFirstView extends Component {
     const timeDifference = currentTime - releaseTime;
     let days = Math.floor(timeDifference / (3600 * 24));
 
-    console.log(days);
     if (days > 365) {
       const years = Math.floor(days / 365);
       days = days - years * 365;
@@ -133,6 +132,7 @@ class GameFirstView extends Component {
                   <a
                     href={this.getOfficialWebsite(gameInfo.websites)}
                     target="_blank"
+                    rel="noopener noreferrer"
                     className={styles.websiteLink}
                   >
                     Visit the official website

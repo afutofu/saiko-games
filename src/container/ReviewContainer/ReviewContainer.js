@@ -35,7 +35,7 @@ class ReviewContainer extends Component {
     let newVisibleReviews = [],
       newIndex = 0;
 
-    const { reviews, visibleReviews, reviewIndex } = this.state;
+    const { reviews, reviewIndex } = this.state;
 
     for (newIndex; newIndex < reviewIndex + 5; newIndex++) {
       if (newIndex > reviews.length) {
@@ -48,7 +48,7 @@ class ReviewContainer extends Component {
   };
 
   render() {
-    const { reviews, visibleReviews, reviewIndex } = this.state;
+    const { reviews, reviewIndex } = this.state;
 
     return (
       <div className={styles.reviewContainer}>

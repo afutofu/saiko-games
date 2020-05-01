@@ -39,7 +39,6 @@ class GamePage extends Component {
         this.setState({ loading: false, gameInfo: res.data[0] });
       })
       .catch((err) => {
-        console.log(err);
         if (this.state.errorCount < 3) {
           this.setState({ errorCount: this.state.errorCount + 1 });
           setTimeout(() => this.setState(this.getGames()), 5000);
@@ -106,8 +105,6 @@ class GamePage extends Component {
       );
     }
 
-    console.log(gameInfo);
-
     return (
       <div className={styles.gamePage}>
         {this.renderBackground(gameInfo)}
@@ -147,7 +144,6 @@ class GamePage extends Component {
             </div>
             <div className={styles.details}>
               <SectionTitle title="details" />
-              {console.log(gameInfo.franchise !== null)}
               <GameDetails
                 releaseDates={gameInfo.release_dates}
                 gameModes={gameInfo.game_modes}

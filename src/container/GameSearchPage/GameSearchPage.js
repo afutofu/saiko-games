@@ -19,7 +19,6 @@ class GameSearchPage extends Component {
   componentDidUpdate() {
     if (this.props.searchPosition) {
       window.scrollTo(0, this.props.searchPosition);
-      console.log("go back?");
     }
   }
 
@@ -39,11 +38,9 @@ class GameSearchPage extends Component {
     axios
       .post(proxyurl + url, body)
       .then((res) => {
-        console.log("api call");
         this.setState({ games: res.data, loading: false });
       })
       .catch((err) => {
-        console.log(err);
         if (this.state.errorCount < 3) {
           this.setState({ errorCount: this.state.errorCount + 1 });
           setTimeout(() => this.setState(this.getGames()), 5000);

@@ -12,44 +12,56 @@ class VideosContainer extends Component {
       // If video container is used in game page
       const { gameInfo } = this.props;
 
-      gameInfo.videos.map((video, id) => {
+      for (let i = 0; i < gameInfo.videos.length; i++) {
+        const video = gameInfo.videos[i];
         media.push(
           <iframe
-            index={id}
-            title={video.id}
+            index={i}
+            title={video.name}
             key={video.id}
             className={styles.video}
             src={`https://www.youtube.com/embed/${video.video_id}`}
           ></iframe>
         );
-      });
-
-      let videoLength = media.length;
-      if (gameInfo.screenshots) {
-        gameInfo.screenshots.map((screenshot, id) => {
-          media.push(
-            <img
-              index={videoLength + id}
-              key={screenshot.id}
-              className={styles.video}
-              src={"https:" + screenshot.url.replace("t_thumb", "t_1080p")}
-            />
-          );
-        });
       }
 
-      videoLength = media.length;
+      let mediaLength = media.length;
+
+      for (
+        let i = mediaLength;
+        i - mediaLength < gameInfo.screenshots.length;
+        i++
+      ) {
+        const screenshot = gameInfo.screenshots[i - mediaLength];
+        media.push(
+          <img
+            index={i}
+            key={screenshot.id}
+            className={styles.video}
+            alt="Screenshot failed to load"
+            src={"https:" + screenshot.url.replace("t_thumb", "t_1080p")}
+          />
+        );
+      }
+
+      mediaLength = media.length;
       if (gameInfo.artworks) {
-        gameInfo.artworks.map((artwork, id) => {
+        for (
+          let i = mediaLength;
+          i - mediaLength < gameInfo.artworks.length;
+          i++
+        ) {
+          const artwork = gameInfo.artworks[i - mediaLength];
           media.push(
             <img
-              index={videoLength + id}
+              index={i}
               key={artwork.id}
               className={styles.video}
+              alt="Artwork failed to load"
               src={"https:" + artwork.url.replace("t_thumb", "t_1080p")}
             />
           );
-        });
+        }
       }
     } else {
       // If used in front page
@@ -65,7 +77,6 @@ class VideosContainer extends Component {
         );
       });
     }
-
     this.state = { media: media, mediaItem: media[0] };
   }
 

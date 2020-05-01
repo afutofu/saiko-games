@@ -23,7 +23,11 @@ const FeaturedGame = (props) => {
             onClick={() => props.onGameClick(game.id)}
             className={styles.featuredGame}
           >
-            <img src={screenshot} className={styles.screenshot} />
+            <img
+              src={screenshot}
+              className={styles.screenshot}
+              alt="Screenshot failed to load"
+            />
             <div className={styles.container}>
               <img src={cover} alt="Cover" className={styles.cover} />
               <div className={styles.infoContainer}>
