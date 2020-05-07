@@ -44,6 +44,14 @@ class FrontPage extends Component {
     }
   };
 
+  fetchData = async (body) => {
+    const proxyurl = "https://cors-anywhere.herokuapp.com/",
+      url = `https://api-v3.igdb.com/games`;
+
+    const res = await axios.post(proxyurl + url, body);
+    return res.data;
+  };
+
   getGames = () => {
     // Getting featured games for trailing 6 months
     let body = `fields name, genres.name, cover.url, storyline, summary, screenshots.url, artworks.url, videos.name, videos.video_id; sort popularity desc; where total_rating > 89 & category = 0 & first_release_date > ${
@@ -118,18 +126,6 @@ class FrontPage extends Component {
       .catch((err) => console.log(err));
   };
 
-  fetchData = async (body) => {
-    const proxyurl = "https://cors-anywhere.herokuapp.com/",
-      url = `https://api-v3.igdb.com/games`;
-
-    const res = await axios.post(proxyurl + url, body);
-    return res.data;
-  };
-
-  onGameClick = (gameId) => {
-    this.props.onGameClick(gameId);
-  };
-
   render() {
     // If all items not loaded, display spinner
     if (this.state.loaded < this.state.toBeLoaded) {
@@ -166,25 +162,16 @@ class FrontPage extends Component {
         <div className={styles.container}>
           <SectionTitle title="featured" />
           {this.state.featuredGames.length > 0 ? (
-            <FeaturedGame
-              onGameClick={this.onGameClick}
-              game={this.state.featuredGames[0]}
-            />
+            <FeaturedGame game={this.state.featuredGames[0]} />
           ) : null}
 
           <SectionTitle title="latest releases" />
           {this.state.latestReleases.length > 0 ? (
-            <GameCoverContainer
-              games={this.state.latestReleases}
-              onGameClick={this.onGameClick}
-            />
+            <GameCoverContainer games={this.state.latestReleases} />
           ) : null}
           <SectionTitle title="trending" />
           {this.state.trendingGames.length > 0 ? (
-            <TrendingGamesContainer
-              games={this.state.trendingGames}
-              onGameClick={this.onGameClick}
-            />
+            <TrendingGamesContainer games={this.state.trendingGames} />
           ) : null}
         </div>
         {this.state.featuredGames.length > 0 ? (
@@ -194,20 +181,11 @@ class FrontPage extends Component {
         <div className={styles.container}>
           <SectionTitle title="highest rated games" big />
           <SectionTitle title="past year" color="#DED375" />
-          <GameScreenshotContainer
-            games={this.state.topPastYear}
-            onGameClick={this.onGameClick}
-          />
+          <GameScreenshotContainer games={this.state.topPastYear} />
           <SectionTitle title="past 5 years" color="#DED375" />
-          <GameScreenshotContainer
-            games={this.state.topPast5Years}
-            onGameClick={this.onGameClick}
-          />
+          <GameScreenshotContainer games={this.state.topPast5Years} />
           <SectionTitle title="all time" color="#DED375" />
-          <GameScreenshotContainer
-            games={this.state.topAllTime}
-            onGameClick={this.onGameClick}
-          />
+          <GameScreenshotContainer games={this.state.topAllTime} />
         </div>
       </div>
     );
