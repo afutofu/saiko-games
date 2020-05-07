@@ -15,7 +15,7 @@ import styles from "./FrontPage.module.css";
 
 class FrontPage extends Component {
   state = {
-    toBeLoaded: 10,
+    toBeLoaded: 6,
     loaded: 0,
     background: null,
     featuredGames: [],
@@ -30,11 +30,7 @@ class FrontPage extends Component {
     this.getGames();
   }
 
-  setBackground = (bg) => {
-    this.props.setBackground(bg);
-  };
-
-  checkBackground = (game) => {
+  getBackgroundLink = (game) => {
     if (
       game.screenshots &&
       game.screenshots !== null &&
@@ -56,8 +52,7 @@ class FrontPage extends Component {
 
     this.fetchData(body)
       .then((data) => {
-        let background = this.checkBackground(data[0]);
-        this.setBackground(background);
+        let background = this.getBackgroundLink(data[0]);
 
         this.setState({
           loaded: this.state.loaded + 1,

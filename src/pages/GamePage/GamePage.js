@@ -20,6 +20,13 @@ class GamePage extends Component {
     this.getGameInfo(this.props.match.params.gameId);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.match.params.gameId !== this.props.match.params.gameId) {
+      this.setState({ loading: true });
+      this.getGameInfo(nextProps.match.params.gameId);
+    }
+  }
+
   getGameInfo = (gameId) => {
     const proxyurl = "https://cors-anywhere.herokuapp.com/",
       url = `https://api-v3.igdb.com/games`;
@@ -34,15 +41,11 @@ class GamePage extends Component {
       .catch((err) => {
         if (this.state.errorCount < 3) {
           this.setState({ errorCount: this.state.errorCount + 1 });
-          setTimeout(() => this.setState(this.getGames()), 5000);
+          setTimeout(() => this.setState(this.getGameInfo()), 5000);
         } else {
           this.setState({ errorCount: 0 });
         }
       });
-  };
-
-  onBackToSearch = () => {
-    this.props.onBackToSearch();
   };
 
   renderBackground = (gameInfo) => {

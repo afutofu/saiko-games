@@ -15,7 +15,7 @@ const App = () => {
         <Navbar />
         <Switch>
           <Route path="/" exact component={FrontPage} />
-          <Route path="/search/:searchTerm" exact component={GameSearchPage} />
+          <Route path="/games" exact component={GameSearchPage} />
           <Route path="/games/:gameId" exact component={GamePage} />
         </Switch>
       </div>

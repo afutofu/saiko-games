@@ -2,7 +2,7 @@ import React from "react";
 
 import GameCoverDisplay2 from "../GameCoverDisplay2/GameCoverDisplay2";
 
-import styles from "./GameCoverDisplay2Container.module.css";
+import styles from "./GameCoverContainer2.module.css";
 
 const GameCoverDisplay2Container = (props) => {
   const onGameClick = (gameId) => {

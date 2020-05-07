@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import styles from "./FeaturedGame.module.css";
 
@@ -17,12 +18,9 @@ const FeaturedGame = (props) => {
     }
 
     return (
-      <React.Fragment>
+      <Link to={`/games/${props.game.id}`}>
         <div className={styles.featuredGameBox}>
-          <div
-            onClick={() => props.onGameClick(game.id)}
-            className={styles.featuredGame}
-          >
+          <div className={styles.featuredGame}>
             <img
               src={screenshot}
               className={styles.screenshot}
@@ -40,7 +38,7 @@ const FeaturedGame = (props) => {
             </div>
           </div>
         </div>
-      </React.Fragment>
+      </Link>
     );
   };
 

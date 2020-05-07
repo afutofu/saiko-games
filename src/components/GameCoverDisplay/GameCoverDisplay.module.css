@@ -1,11 +1,11 @@
-@value displayWidth: 200px;
+@value displayHeight: 100%;
 @value infoPadding: 10px;
 
 .gameCoverDisplay {
   position: relative;
   box-sizing: border-box;
   border: 2px solid rgba(112, 112, 112, 0.3);
-  height: 100%;
+  height: displayHeight;
   width: 200px;
   transition: 0.25s;
 }
@@ -17,6 +17,10 @@
 
 .gameCoverDisplay .infoContainer * {
   margin: 0;
+}
+
+.link {
+  height: 100%;
 }
 
 .cover {

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
-import GameCoverDisplay2Container from "../../components/GameCoverDisplay2Container/GameCoverDisplay2Container";
+import GameCoverDisplay2Container from "../../components/GameCoverContainer2/GameCoverContainer2";
 import Spinner from "../../components/Spinner/Spinner";
 
 import defaultBackground from "../../assets/images/defaultBackground.jpg";
@@ -13,16 +13,16 @@ class GameSearchPage extends Component {
   state = { games: [], loading: true, errorCount: 0 };
 
   componentDidMount() {
-    console.log(this.props.match);
-    this.getGames(this.props.match.params.searchTerm);
+    this.getGames(this.props.location.state.searchTerm);
   }
 
   componentWillReceiveProps(nextProps) {
     if (
-      nextProps.match.params.searchTerm !== this.props.match.params.searchTerm
+      nextProps.location.state.searchTerm !==
+      this.props.location.state.searchTerm
     ) {
       this.setState({ loading: true });
-      this.getGames(nextProps.match.params.searchTerm);
+      this.getGames(nextProps.location.state.searchTerm);
     }
   }
 
@@ -81,7 +81,7 @@ class GameSearchPage extends Component {
         <div className={styles.background} />
         <div className={styles.container}>
           <SectionTitle
-            title={`games matched with "${this.props.match.params.searchTerm}"`}
+            title={`games matched with "${this.props.location.state.searchTerm}`}
           />
           <GameCoverDisplay2Container games={this.state.games} />
         </div>

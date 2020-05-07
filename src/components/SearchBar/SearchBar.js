@@ -7,7 +7,7 @@ class SearchBar extends Component {
   state = { searchTerm: "", search: "", fireRedirect: false };
 
   onInputChange = (event) => {
-    this.setState({ search: event.target.value });
+    this.setState({ search: event.target.value, fireRedirect: false });
   };
 
   onSearch = (event) => {
@@ -35,7 +35,13 @@ class SearchBar extends Component {
           </button>
         </form>
         {this.state.fireRedirect && (
-          <Redirect to={`/search/${this.state.searchTerm}`} />
+          <Redirect
+            to={{
+              pathname: "/games",
+              search: `?search=${this.state.searchTerm}`,
+              state: { searchTerm: this.state.searchTerm },
+            }}
+          />
         )}
       </React.Fragment>
     );

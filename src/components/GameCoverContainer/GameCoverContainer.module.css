@@ -1,5 +1,6 @@
 .gameCoverContainer {
-  height: 332px;
+  display: relative;
+  height: 350px;
   display: flex;
   justify-content: space-around;
   overflow: hidden;
