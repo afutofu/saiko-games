@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 
-import Navbar from "../Navbar/Navbar";
-import FrontPage from "../FrontPage/FrontPage";
-import GamePage from "../GamePage/GamePage";
-import GameSearchPage from "../GameSearchPage/GameSearchPage";
+import FrontPage from "../../pages/FrontPage/FrontPage";
+import GamePage from "../../pages/GamePage/GamePage";
+import GameSearchPage from "../../pages/GameSearchPage/GameSearchPage";
 
 import defaultBackground from "../../assets/images/defaultBackground.jpg";
 
@@ -91,7 +90,7 @@ class MainContent extends Component {
   render() {
     return (
       <React.Fragment>
-        <Navbar onLogoClick={this.onLogoClick} onSearch={this.onSearch} />
+        {/* <Navbar onLogoClick={this.onLogoClick} onSearch={this.onSearch} /> */}
         {this.renderContent()}
       </React.Fragment>
     );

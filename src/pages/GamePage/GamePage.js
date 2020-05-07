@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-import GameFirstView from "../GameFirstView/GameFirstView";
-import VideoContainer from "../VideoContainer/VideoContainer";
+import GameFirstView from "../../container/GameFirstView/GameFirstView";
+import VideoContainer from "../../container/VideoContainer/VideoContainer";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import GameCoverContainer from "../../components/GameCoverContainer/GameCoverContainer";
 import GameDetails from "../../components/GameDetails/GameDetails";
-import ReviewContainer from "../ReviewContainer/ReviewContainer";
+import ReviewContainer from "../../container/ReviewContainer/ReviewContainer";
 import Spinner from "../../components/Spinner/Spinner";
 
 import defaultBackground from "../../assets/images/defaultBackground.jpg";
@@ -17,11 +17,11 @@ class GamePage extends Component {
   state = { loading: true, gameInfo: null, errorCount: 0 };
 
   componentDidMount() {
-    this.getGameInfo(this.props.gameId);
+    this.getGameInfo(this.props.match.params.gameId);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.gameId !== this.props.gameId) {
+    if (nextProps.gameId !== this.props.match.params.gameId) {
       this.setState({ loading: true });
       this.getGameInfo(nextProps.gameId);
     }

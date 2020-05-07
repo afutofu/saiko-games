@@ -4,8 +4,8 @@ import axios from "axios";
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
 import FeaturedGame from "../../components/FeaturedGame/FeaturedGame";
 import GameCoverContainer from "../../components/GameCoverContainer/GameCoverContainer";
-import TrendingGamesContainer from "../TrendingGamesContainer/TrendingGamesContainer";
-import VideoContainer from "../VideoContainer/VideoContainer";
+import TrendingGamesContainer from "../../container/TrendingGamesContainer/TrendingGamesContainer";
+import VideoContainer from "../../container/VideoContainer/VideoContainer";
 import GameScreenshotContainer from "../../components/GameScreenshotContainer/GameScreenshotContainer";
 import Spinner from "../../components/Spinner/Spinner";
 
@@ -15,7 +15,7 @@ import styles from "./FrontPage.module.css";
 
 class FrontPage extends Component {
   state = {
-    toBeLoaded: 6,
+    toBeLoaded: 10,
     loaded: 0,
     background: null,
     featuredGames: [],

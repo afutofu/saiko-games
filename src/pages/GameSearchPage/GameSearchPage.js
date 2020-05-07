@@ -13,7 +13,8 @@ class GameSearchPage extends Component {
   state = { games: [], loading: true, errorCount: 0 };
 
   componentDidMount() {
-    this.getGames(this.props.searchTerm);
+    console.log(this.props.match);
+    this.getGames(this.props.match.params.searchTerm);
   }
 
   componentDidUpdate() {
@@ -89,7 +90,7 @@ class GameSearchPage extends Component {
         <div className={styles.background} />
         <div className={styles.container}>
           <SectionTitle
-            title={`games matched with "${this.props.searchTerm}"`}
+            title={`games matched with "${this.props.match.params.searchTerm}"`}
           />
           <GameCoverDisplay2Container
             onGameClick={this.onGameClick}

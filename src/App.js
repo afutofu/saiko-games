@@ -1,14 +1,25 @@
 import React from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import MainContent from "./container/MainContent/MainContent";
+import Navbar from "./container/Navbar/Navbar";
+import FrontPage from "./pages/FrontPage/FrontPage";
+import GamePage from "./pages/GamePage/GamePage";
+import GameSearchPage from "./pages/GameSearchPage/GameSearchPage";
 
 import styles from "./App.module.css";
 
 const App = () => {
   return (
-    <div className={styles.app}>
-      <MainContent />
-    </div>
+    <Router>
+      <div className={styles.app}>
+        <Navbar />
+        <Switch>
+          <Route path="/" exact component={FrontPage} />
+          <Route path="/search/:searchTerm" exact component={GameSearchPage} />
+          <Route path="/:gameId" exact component={GamePage} />
+        </Switch>
+      </div>
+    </Router>
   );
 };
 
