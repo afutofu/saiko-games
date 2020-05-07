@@ -154,17 +154,25 @@ class GameFirstView extends Component {
             <div className={styles.ratings}>
               <RatingBox
                 title="external critic"
-                rating={Math.round(gameInfo.aggregated_rating)}
+                rating={
+                  gameInfo.aggregated_rating
+                    ? Math.round(gameInfo.aggregated_rating)
+                    : "N/A"
+                }
                 delay={1}
               />
               <RatingBox
                 title="member score"
-                rating={Math.round(gameInfo.rating)}
+                rating={gameInfo.rating ? Math.round(gameInfo.rating) : "N/A"}
                 delay={2}
               />
               <RatingBox
                 title="overall rating"
-                rating={Math.round(gameInfo.total_rating)}
+                rating={
+                  gameInfo.total_rating
+                    ? Math.round(gameInfo.total_rating)
+                    : "N/A"
+                }
                 delay={3}
               />
             </div>

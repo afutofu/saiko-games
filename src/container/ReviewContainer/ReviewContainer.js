@@ -8,15 +8,10 @@ class ReviewContainer extends Component {
   constructor(props) {
     super(props);
 
-    let reviews = [],
-      visibleReviews = [],
+    let visibleReviews = [],
       index = 0;
 
     for (let i = 0; i < props.reviews; i++) {
-      reviews.push(<Review key={i} />);
-    }
-
-    for (let i = 0; i < reviews.length; i++) {
       if (i === 5) {
         break;
       }
@@ -25,36 +20,35 @@ class ReviewContainer extends Component {
     }
 
     this.state = {
-      reviews: reviews,
       visibleReviews: visibleReviews,
       reviewIndex: index,
     };
   }
 
   onLoadMoreClick = () => {
-    let newVisibleReviews = [],
-      newIndex = 0;
+    let newVisibleReviews = this.state.visibleReviews,
+      newIndex = this.state.reviewIndex;
 
-    const { reviews, reviewIndex } = this.state;
+    const { reviewIndex } = this.state;
 
     for (newIndex; newIndex < reviewIndex + 5; newIndex++) {
-      if (newIndex > reviews.length) {
+      if (newIndex > this.props.reviews) {
         break;
       }
-      newVisibleReviews.push(reviews[newIndex]);
+      newVisibleReviews.push(<Review key={newIndex} />);
     }
 
     this.setState({ visibleReviews: newVisibleReviews, reviewIndex: newIndex });
   };
 
   render() {
-    const { reviews, reviewIndex } = this.state;
+    const { reviewIndex } = this.state;
 
     return (
       <div className={styles.reviewContainer}>
         <div className={styles.reviews}>{this.state.visibleReviews}</div>
-        {reviews.length === 0 ? <p>No reviews</p> : null}
-        {reviews.length > reviewIndex ? (
+        {this.props.reviews === 0 ? <p>No reviews</p> : null}
+        {this.props.reviews > reviewIndex ? (
           <button
             className={styles.loadMoreButton}
             onClick={this.onLoadMoreClick}

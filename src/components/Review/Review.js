@@ -12,8 +12,8 @@ const Review = (props) => {
         <h3 className={styles.username}>{faker.internet.userName()}</h3>
       </div>
       <p className={styles.userReview}>
-        laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo
-        necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente
+        laudantium enim quasi est quidem magnam voluptate ipsam eos tempora quo
+        necessitatibus dolor quam autem quasi reiciendis et nam sapiente
         accusantium
       </p>
     </div>

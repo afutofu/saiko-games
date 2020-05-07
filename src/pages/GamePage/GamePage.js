@@ -31,11 +31,12 @@ class GamePage extends Component {
     const proxyurl = "https://cors-anywhere.herokuapp.com/",
       url = `https://api-v3.igdb.com/games`;
 
-    const body = `fields id,name,cover,cover.url, collection.name,genres.name, themes.name, first_release_date, storyline, summary, platforms.name, aggregated_rating, rating, total_rating, screenshots.url, videos.video_id,involved_companies.*, involved_companies.company.name, game_engines.name, similar_games.name, similar_games.cover.url, similar_games.total_rating, similar_games.genres.name, websites.category, websites.url, game_modes.name, game_engines.name, franchise.name, release_dates.created_at, release_dates.platform.name, artworks.url; where id = ${gameId};`;
+    const body = `fields id,name,cover,cover.url, collection.name,genres.name, themes.name, first_release_date, storyline, summary, platforms.name, aggregated_rating, rating, rating_count, total_rating, screenshots.url, videos.video_id,involved_companies.*, involved_companies.company.name, game_engines.name, similar_games.name, similar_games.cover.url, similar_games.total_rating, similar_games.genres.name, websites.category, websites.url, game_modes.name, game_engines.name, franchise.name, release_dates.created_at, release_dates.platform.name, artworks.url; where id = ${gameId};`;
 
     axios
       .post(proxyurl + url, body)
       .then((res) => {
+        console.log(res.data);
         this.setState({ loading: false, gameInfo: res.data[0] });
       })
       .catch((err) => {
@@ -130,8 +131,16 @@ class GamePage extends Component {
 
           <div className={styles.reviewsDetails}>
             <div className={styles.reviews}>
-              <SectionTitle title="reviews" />
-              <ReviewContainer reviews={Math.random() * 15} />
+              <SectionTitle
+                title={
+                  gameInfo.rating_count
+                    ? gameInfo.rating_count > 1
+                      ? `${gameInfo.rating_count} reviews`
+                      : "1 review"
+                    : "no reviews"
+                }
+              />
+              <ReviewContainer reviews={gameInfo.rating_count} />
             </div>
             <div className={styles.details}>
               <SectionTitle title="details" />
