@@ -17,16 +17,12 @@ class GameSearchPage extends Component {
     this.getGames(this.props.match.params.searchTerm);
   }
 
-  componentDidUpdate() {
-    if (this.props.searchPosition) {
-      window.scrollTo(0, this.props.searchPosition);
-    }
-  }
-
   componentWillReceiveProps(nextProps) {
-    if (nextProps.searchTerm !== this.props.searchTerm) {
+    if (
+      nextProps.match.params.searchTerm !== this.props.match.params.searchTerm
+    ) {
       this.setState({ loading: true });
-      this.getGames(nextProps.searchTerm);
+      this.getGames(nextProps.match.params.searchTerm);
     }
   }
 
@@ -49,11 +45,6 @@ class GameSearchPage extends Component {
           this.setState({ errorCount: 0 });
         }
       });
-  };
-
-  onGameClick = (gameId) => {
-    this.props.setSearchPosition(window.pageYOffset);
-    this.props.onGameClick(gameId);
   };
 
   render() {
@@ -92,10 +83,7 @@ class GameSearchPage extends Component {
           <SectionTitle
             title={`games matched with "${this.props.match.params.searchTerm}"`}
           />
-          <GameCoverDisplay2Container
-            onGameClick={this.onGameClick}
-            games={this.state.games}
-          />
+          <GameCoverDisplay2Container games={this.state.games} />
         </div>
       </div>
     );

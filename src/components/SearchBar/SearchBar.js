@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 
 import styles from "./SearchBar.module.css";
 
 class SearchBar extends Component {
-  state = { search: "" };
+  state = { searchTerm: "", search: "", fireRedirect: false };
 
   onInputChange = (event) => {
     this.setState({ search: event.target.value });
@@ -11,24 +12,32 @@ class SearchBar extends Component {
 
   onSearch = (event) => {
     event.preventDefault();
-    this.props.onSearch(this.state.search);
-    this.setState({ search: "" });
+    this.setState({
+      searchTerm: this.state.search,
+      search: "",
+      fireRedirect: true,
+    });
   };
 
   render() {
     return (
-      <form className={styles.searchBar} onSubmit={this.onSearch}>
-        <input
-          type="text"
-          onChange={this.onInputChange}
-          value={this.state.search}
-          className={styles.searchInput}
-          placeholder="Search games..."
-        />
-        <button className={styles.button} type="submit">
-          <i className="fa fa-search"></i>
-        </button>
-      </form>
+      <React.Fragment>
+        <form className={styles.searchBar} onSubmit={this.onSearch}>
+          <input
+            type="text"
+            onChange={this.onInputChange}
+            value={this.state.search}
+            className={styles.searchInput}
+            placeholder="Search games..."
+          />
+          <button className={styles.button} type="submit">
+            <i className="fa fa-search"></i>
+          </button>
+        </form>
+        {this.state.fireRedirect && (
+          <Redirect to={`/search/${this.state.searchTerm}`} />
+        )}
+      </React.Fragment>
     );
   }
 }

@@ -20,13 +20,6 @@ class GamePage extends Component {
     this.getGameInfo(this.props.match.params.gameId);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.gameId !== this.props.match.params.gameId) {
-      this.setState({ loading: true });
-      this.getGameInfo(nextProps.gameId);
-    }
-  }
-
   getGameInfo = (gameId) => {
     const proxyurl = "https://cors-anywhere.herokuapp.com/",
       url = `https://api-v3.igdb.com/games`;
@@ -46,10 +39,6 @@ class GamePage extends Component {
           this.setState({ errorCount: 0 });
         }
       });
-  };
-
-  onGameClick = (gameId) => {
-    this.props.onGameClick(gameId);
   };
 
   onBackToSearch = () => {
@@ -132,7 +121,6 @@ class GamePage extends Component {
                     ? gameInfo.similar_games.slice(0, 4)
                     : gameInfo.similar_games
                 }
-                onGameClick={this.onGameClick}
               />
             </React.Fragment>
           ) : null}
