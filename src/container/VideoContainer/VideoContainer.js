@@ -1,114 +1,105 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
 import styles from "./VideoContainer.module.css";
 
-class VideosContainer extends Component {
-  constructor(props) {
-    super(props);
+const VideosContainer = (props) => {
+  const media = [];
 
-    let media = [];
+  if (props.gamePage) {
+    // If video container is used in game page
+    for (let i = 0; i < props.gameInfo.videos.length; i++) {
+      const video = props.gameInfo.videos[i];
+      media.push(
+        <iframe
+          index={i}
+          title={video.name}
+          key={video.id}
+          className={styles.video}
+          src={`https://www.youtube.com/embed/${video.video_id}`}
+        ></iframe>
+      );
+    }
 
-    if (this.props.gamePage) {
-      // If video container is used in game page
-      const { gameInfo } = this.props;
+    let mediaLength = media.length;
 
-      for (let i = 0; i < gameInfo.videos.length; i++) {
-        const video = gameInfo.videos[i];
-        media.push(
-          <iframe
-            index={i}
-            title={video.name}
-            key={video.id}
-            className={styles.video}
-            src={`https://www.youtube.com/embed/${video.video_id}`}
-          ></iframe>
-        );
-      }
+    for (
+      let i = mediaLength;
+      i - mediaLength < props.gameInfo.screenshots.length;
+      i++
+    ) {
+      const screenshot = props.gameInfo.screenshots[i - mediaLength];
+      media.push(
+        <img
+          index={i}
+          key={screenshot.id}
+          className={styles.video}
+          alt="Screenshot failed to load"
+          src={"https:" + screenshot.url.replace("t_thumb", "t_1080p")}
+        />
+      );
+    }
 
-      let mediaLength = media.length;
-
+    mediaLength = media.length;
+    if (props.gameInfo.artworks) {
       for (
         let i = mediaLength;
-        i - mediaLength < gameInfo.screenshots.length;
+        i - mediaLength < props.gameInfo.artworks.length;
         i++
       ) {
-        const screenshot = gameInfo.screenshots[i - mediaLength];
+        const artwork = props.gameInfo.artworks[i - mediaLength];
         media.push(
           <img
             index={i}
-            key={screenshot.id}
+            key={artwork.id}
             className={styles.video}
-            alt="Screenshot failed to load"
-            src={"https:" + screenshot.url.replace("t_thumb", "t_1080p")}
+            alt="Artwork failed to load"
+            src={"https:" + artwork.url.replace("t_thumb", "t_1080p")}
           />
         );
       }
-
-      mediaLength = media.length;
-      if (gameInfo.artworks) {
-        for (
-          let i = mediaLength;
-          i - mediaLength < gameInfo.artworks.length;
-          i++
-        ) {
-          const artwork = gameInfo.artworks[i - mediaLength];
-          media.push(
-            <img
-              index={i}
-              key={artwork.id}
-              className={styles.video}
-              alt="Artwork failed to load"
-              src={"https:" + artwork.url.replace("t_thumb", "t_1080p")}
-            />
-          );
-        }
-      }
-    } else {
-      // If used in front page
-      this.props.games.forEach((game, id) => {
-        media.push(
-          <iframe
-            index={id}
-            title={game.videos.id}
-            key={id}
-            className={styles.video}
-            src={`https://www.youtube.com/embed/${game.videos[0].video_id}`}
-          ></iframe>
-        );
-      });
     }
-    this.state = { media: media, mediaItem: media[0] };
+  } else {
+    // If used in front page
+    this.props.games.forEach((game, id) => {
+      media.push(
+        <iframe
+          index={id}
+          title={game.videos.id}
+          key={id}
+          className={styles.video}
+          src={`https://www.youtube.com/embed/${game.videos[0].video_id}`}
+        ></iframe>
+      );
+    });
   }
 
-  componentDidMount() {}
+  const [mediaItem, setMediaItem] = useState(media[0]);
 
-  onNextVideo = () => {
-    const newIndex = this.state.mediaItem.props.index + 1;
-    this.setState({ mediaItem: this.state.media[newIndex] });
+  const onNextVideo = () => {
+    const newIndex = mediaItem.props.index + 1;
+    setMediaItem(media[newIndex]);
   };
 
-  onPrevVideo = () => {
-    const newIndex = this.state.mediaItem.props.index - 1;
-    this.setState({ mediaItem: this.state.media[newIndex] });
+  const onPrevVideo = () => {
+    const newIndex = mediaItem.props.index - 1;
+    setMediaItem(media[newIndex]);
   };
 
-  renderContent = () => {
-    const { media, mediaItem } = this.state;
-
+  const renderContent = () => {
     return (
       <div className={styles.videosContainer}>
         <div className={styles.buttons}>
           {mediaItem.props.index === 0 ? (
             <div />
           ) : (
-            <button onClick={this.onPrevVideo} className={styles.prevButton}>
+            <button onClick={onPrevVideo} className={styles.prevButton}>
               <i className="fa fa-chevron-left"></i>
             </button>
           )}
           {mediaItem.props.index === media.length - 1 ? (
             <div />
           ) : (
-            <button onClick={this.onNextVideo} className={styles.nextButton}>
+            <button onClick={onNextVideo} className={styles.nextButton}>
               <i className="fa fa-chevron-right"></i>
             </button>
           )}
@@ -125,9 +116,7 @@ class VideosContainer extends Component {
     );
   };
 
-  render() {
-    return this.renderContent();
-  }
-}
+  return renderContent();
+};
 
 export default VideosContainer;

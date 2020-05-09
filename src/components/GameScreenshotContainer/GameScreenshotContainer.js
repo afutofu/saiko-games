@@ -9,7 +9,7 @@ const GameScreenshotContainer = (props) => {
     props.onGameClick(gameId);
   };
 
-  const renderContent = () => {
+  const getGames = () => {
     let games = [];
 
     props.games.forEach((game) => {
@@ -31,10 +31,10 @@ const GameScreenshotContainer = (props) => {
       );
     });
 
-    return <div className={styles.gameScreenshotContainer}> {games}</div>;
+    return games;
   };
 
-  return renderContent();
+  return <div className={styles.gameScreenshotContainer}> {getGames()}</div>;
 };
 
 export default GameScreenshotContainer;

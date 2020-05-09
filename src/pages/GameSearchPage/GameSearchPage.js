@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import SectionTitle from "../../components/SectionTitle/SectionTitle";
@@ -9,38 +9,46 @@ import defaultBackground from "../../assets/images/defaultBackground.jpg";
 
 import styles from "./GameSearchPage.module.css";
 
-class GameSearchPage extends Component {
-  state = { games: [], loading: true, errorCount: 0, background: null };
+const GameSearchPage = (props) => {
+  const [games, setGames] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [background, setBackground] = useState(null);
 
-  componentDidMount() {
-    this.getGames(this.props.location.state.searchTerm);
-  }
+  useEffect(() => {
+    setLoading(true);
+    getGames(props.location.state.searchTerm);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.location.state.searchTerm]);
 
-  componentWillReceiveProps(nextProps) {
-    if (
-      nextProps.location.state.searchTerm !==
-      this.props.location.state.searchTerm
-    ) {
-      this.setState({ loading: true });
-      this.getGames(nextProps.location.state.searchTerm);
+  const getBackgroundLink = (game) => {
+    if (!game) {
+      return defaultBackground;
     }
-  }
 
-  getBackgroundLink = (game) => {
     if (
       game.screenshots &&
       game.screenshots !== null &&
       game.screenshots.length > 1
     ) {
-      return "https:" + game.screenshots[1].url.replace("t_thumb", "t_1080p");
+      return (
+        "https:" +
+        game.screenshots[
+          Math.round(Math.random() * (game.screenshots.length - 1))
+        ].url.replace("t_thumb", "t_1080p")
+      );
     } else if (game.artworks && game.artworks !== null) {
-      return "https:" + game.artworks[0].url.replace("t_thumb", "t_1080p");
+      return (
+        "https:" +
+        game.artworks[
+          Math.round(Math.random() * (game.artworks.length - 1))
+        ].url.replace("t_thumb", "t_1080p")
+      );
     } else {
       return defaultBackground;
     }
   };
 
-  fetchData = async (body) => {
+  const fetchData = async (body) => {
     const proxyurl = "https://cors-anywhere.herokuapp.com/",
       url = `https://api-v3.igdb.com/games`;
 
@@ -48,40 +56,23 @@ class GameSearchPage extends Component {
     return res.data;
   };
 
-  getGames = (searchTerm) => {
-    // Getting featured games for trailing 6 months
-    let body = `fields screenshots.url, artworks.url; sort popularity desc; where total_rating > 89 & category = 0 & first_release_date > ${
-      Math.floor(Date.now() / 1000) - 15778800
-    } & first_release_date < ${Math.floor(Date.now() / 1000)}; limit 1;`;
+  const getGames = (searchTerm) => {
+    const body = `search "${searchTerm}"; fields cover.url,name,genres.name,storyline, summary, total_rating, screenshots.url, artworks.url; where category=0; limit 50;`;
 
-    this.fetchData(body)
+    fetchData(body)
       .then((data) => {
-        let background = this.getBackgroundLink(data[0]);
-
-        this.setState({
-          background,
-        });
-      })
-      .catch((err) => console.log(err));
-
-    body = `search "${searchTerm}"; fields cover.url,name,genres.name,storyline,summary,total_rating; where category=0; limit 50;`;
-
-    this.fetchData(body)
-      .then((data) => {
-        this.setState({ games: data, loading: false });
+        let background = getBackgroundLink(data[0]);
+        setBackground(background);
+        setGames(data);
+        setLoading(false);
       })
       .catch((err) => {
-        if (this.state.errorCount < 3) {
-          this.setState({ errorCount: this.state.errorCount + 1 });
-          setTimeout(() => this.setState(this.getGames()), 5000);
-        } else {
-          this.setState({ errorCount: 0 });
-        }
+        console.log(err);
       });
   };
 
-  render() {
-    if (this.state.loading) {
+  const renderContent = () => {
+    if (loading) {
       return (
         <div style={{ height: "100vh" }}>
           <img
@@ -97,10 +88,10 @@ class GameSearchPage extends Component {
 
     return (
       <div className={styles.gameSearchPage}>
-        {this.state.background ? (
+        {background ? (
           <img
             className={styles.backgroundImage}
-            src={this.state.background}
+            src={background}
             alt="No background found"
           />
         ) : (
@@ -114,13 +105,20 @@ class GameSearchPage extends Component {
         <div className={styles.background} />
         <div className={styles.container}>
           <SectionTitle
-            title={`games matched with "${this.props.location.state.searchTerm}`}
+            title={`games matched with "${props.location.state.searchTerm}`}
           />
-          <GameCoverDisplay2Container games={this.state.games} />
+
+          {games ? (
+            <GameCoverDisplay2Container games={games} />
+          ) : (
+            <p>No games found</p>
+          )}
         </div>
       </div>
     );
-  }
-}
+  };
+
+  return renderContent();
+};
 
 export default GameSearchPage;

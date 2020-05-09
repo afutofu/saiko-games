@@ -1,12 +1,16 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 
 import styles from "./RatingBox.module.css";
 
-class RatingBox extends Component {
-  state = { mounted: false };
+const RatingBox = (props) => {
+  const [mounted, setMounted] = useState(false);
 
-  percentageToColor(perc) {
-    var r,
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const percentageToColor = (perc) => {
+    let r,
       g,
       b = 0;
     if (perc < 50) {
@@ -16,20 +20,16 @@ class RatingBox extends Component {
       g = 255;
       r = Math.round(510 - 5.1 * perc);
     }
-    var h = r * 0x10000 + g * 0x100 + b * 0x1;
+    let h = r * 0x10000 + g * 0x100 + b * 0x1;
     return "#" + ("000000" + h.toString(16)).slice(-6);
-  }
+  };
 
-  componentDidMount() {
-    this.setState({ mounted: true });
-  }
-
-  render() {
+  const renderContent = () => {
     let ratingStyles = [styles.rating];
     let ratingBarStyles = [styles.ratingBar];
 
-    if (this.state.mounted) {
-      switch (this.props.delay) {
+    if (mounted) {
+      switch (props.delay) {
         case 1:
           ratingStyles.push(styles.fadeIn1);
           ratingBarStyles.push(styles.slideIn1);
@@ -49,18 +49,20 @@ class RatingBox extends Component {
 
     return (
       <div className={styles.ratingBox}>
-        <p className={styles.title}>{this.props.title}</p>
-        <p className={ratingStyles.join(" ")}>{this.props.rating}</p>
+        <p className={styles.title}>{props.title}</p>
+        <p className={ratingStyles.join(" ")}>{props.rating}</p>
         <div
           className={ratingBarStyles.join(" ")}
           style={{
-            width: `${this.props.rating}%`,
-            background: `${this.percentageToColor(this.props.rating)}`,
+            width: `${props.rating}%`,
+            background: `${percentageToColor(props.rating)}`,
           }}
         />
       </div>
     );
-  }
-}
+  };
+
+  return renderContent();
+};
 
 export default RatingBox;

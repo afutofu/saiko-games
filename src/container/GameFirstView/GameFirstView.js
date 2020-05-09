@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 import RatingBox from "../../components/RatingBox/RatingBox";
 
@@ -6,18 +6,16 @@ import noCover from "../../assets/images/noCover.jpg";
 
 import styles from "./GameFirstView.module.css";
 
-class GameFirstView extends Component {
-  state = {};
-
-  toDateTime = (secs) => {
+const GameFirstView = (props) => {
+  const toDateTime = (secs) => {
     let t = new Date(1970, 0, 1);
     t.setSeconds(secs);
     return t;
   };
 
-  timeSinceRelease = () => {
+  const timeSinceRelease = () => {
     const currentTime = Math.floor(Date.now() / 1000);
-    const releaseTime = this.props.gameInfo.first_release_date;
+    const releaseTime = props.gameInfo.first_release_date;
     const timeDifference = currentTime - releaseTime;
     let days = Math.floor(timeDifference / (3600 * 24));
 
@@ -33,7 +31,7 @@ class GameFirstView extends Component {
     return `${days} days ago`;
   };
 
-  getOfficialWebsite = (websites) => {
+  const getOfficialWebsite = (websites) => {
     for (const website of websites) {
       if (website.category === 1) {
         return website.url;
@@ -42,8 +40,8 @@ class GameFirstView extends Component {
     return websites[0].url;
   };
 
-  render() {
-    const gameInfo = this.props.gameInfo;
+  const renderContent = () => {
+    const gameInfo = props.gameInfo;
 
     return (
       <div className={styles.gameFirstView}>
@@ -117,7 +115,7 @@ class GameFirstView extends Component {
                 </div>
                 {gameInfo.websites ? (
                   <a
-                    href={this.getOfficialWebsite(gameInfo.websites)}
+                    href={getOfficialWebsite(gameInfo.websites)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={styles.websiteLink}
@@ -134,13 +132,9 @@ class GameFirstView extends Component {
               <div className={styles.secondaryInfo}>
                 <p>
                   <span>
-                    {this.toDateTime(
-                      gameInfo.first_release_date
-                    ).toDateString()}
+                    {toDateTime(gameInfo.first_release_date).toDateString()}
                   </span>
-                  <span className={styles.daysAgo}>
-                    {this.timeSinceRelease()}
-                  </span>
+                  <span className={styles.daysAgo}>{timeSinceRelease()}</span>
                 </p>
                 {gameInfo.involved_companies ? (
                   <p>{gameInfo.involved_companies[0].company.name}</p>
@@ -180,7 +174,9 @@ class GameFirstView extends Component {
         </div>
       </div>
     );
-  }
-}
+  };
+
+  return renderContent();
+};
 
 export default GameFirstView;

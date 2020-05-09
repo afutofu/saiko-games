@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 import GameCoverDisplay from "../GameCoverDisplay/GameCoverDisplay";
 
@@ -6,13 +6,11 @@ import noCover from "../../assets/images/noCover.jpg";
 
 import styles from "./GameCoverContainer.module.css";
 
-class GameCoverContainer extends Component {
-  state = {};
-
-  renderContent = () => {
+const GameCoverContainer = (props) => {
+  const getGames = () => {
     let games = [];
 
-    this.props.games.forEach((game) => {
+    props.games.forEach((game) => {
       games.push(
         <GameCoverDisplay
           key={game.id}
@@ -29,12 +27,10 @@ class GameCoverContainer extends Component {
       );
     });
 
-    return <div className={styles.gameCoverContainer}>{games}</div>;
+    return games;
   };
 
-  render() {
-    return this.renderContent();
-  }
-}
+  return <div className={styles.gameCoverContainer}>{getGames()}</div>;
+};
 
 export default GameCoverContainer;

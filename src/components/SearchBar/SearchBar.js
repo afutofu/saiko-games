@@ -1,51 +1,50 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 
 import styles from "./SearchBar.module.css";
 
-class SearchBar extends Component {
-  state = { searchTerm: "", search: "", fireRedirect: false };
+const SearchBar = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchValue, setSearchValue] = useState("");
+  const [redirect, setRedirect] = useState(false);
 
-  onInputChange = (event) => {
-    this.setState({ search: event.target.value, fireRedirect: false });
+  const onInputChange = (event) => {
+    setSearchValue(event.target.value);
+    setRedirect(false);
   };
 
-  onSearch = (event) => {
+  const onSearch = (event) => {
     event.preventDefault();
-    this.setState({
-      searchTerm: this.state.search,
-      search: "",
-      fireRedirect: true,
-    });
+    setSearchTerm(searchValue);
+    setSearchValue("");
+    setRedirect(true);
   };
 
-  render() {
-    return (
-      <React.Fragment>
-        <form className={styles.searchBar} onSubmit={this.onSearch}>
-          <input
-            type="text"
-            onChange={this.onInputChange}
-            value={this.state.search}
-            className={styles.searchInput}
-            placeholder="Search games..."
-          />
-          <button className={styles.button} type="submit">
-            <i className="fa fa-search"></i>
-          </button>
-        </form>
-        {this.state.fireRedirect && (
-          <Redirect
-            to={{
-              pathname: "/games",
-              search: `?search=${this.state.searchTerm}`,
-              state: { searchTerm: this.state.searchTerm },
-            }}
-          />
-        )}
-      </React.Fragment>
-    );
-  }
-}
+  return (
+    <React.Fragment>
+      <form className={styles.searchBar} onSubmit={onSearch}>
+        <input
+          type="text"
+          onChange={onInputChange}
+          value={searchValue}
+          className={styles.searchInput}
+          placeholder="Search games..."
+        />
+        <button className={styles.button} type="submit">
+          <i className="fa fa-search"></i>
+        </button>
+      </form>
+      {redirect && (
+        <Redirect
+          to={{
+            pathname: "/games",
+            search: `?search=${searchTerm}`,
+            state: { searchTerm: searchTerm },
+          }}
+        />
+      )}
+    </React.Fragment>
+  );
+};
 
 export default SearchBar;

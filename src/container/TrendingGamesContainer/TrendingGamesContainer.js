@@ -1,19 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 
 import TrendingGame from "../../components/TrendingGame/TrendingGame";
 import GameScreenshotContainer from "../../components/GameScreenshotContainer/GameScreenshotContainer";
 
 import styles from "./TrendingGamesContainer.module.css";
 
-class TrendingGameContainer extends Component {
-  state = { TrendingGame: {}, GameScreenshot: {} };
-
-  onGameClick = (gameId) => {
-    this.props.onGameClick(gameId);
-  };
-
-  renderContent = () => {
-    const games = this.props.games;
+const TrendingGameContainer = (props) => {
+  const renderContent = () => {
+    const games = props.games;
     const game = games[0];
     let genres = [];
 
@@ -24,7 +18,6 @@ class TrendingGameContainer extends Component {
     return (
       <div className={styles.trendingGame}>
         <TrendingGame
-          onGameClick={this.onGameClick}
           gameId={game.id}
           cover={
             game.cover.url
@@ -41,17 +34,12 @@ class TrendingGameContainer extends Component {
           genres={genres.join(" ")}
           storyline={game.storyline ? game.storyline : game.summary}
         />
-        <GameScreenshotContainer
-          games={games.slice(1, games.length)}
-          onGameClick={this.onGameClick}
-        />
+        <GameScreenshotContainer games={games.slice(1, games.length)} />
       </div>
     );
   };
 
-  render() {
-    return this.renderContent();
-  }
-}
+  return renderContent();
+};
 
 export default TrendingGameContainer;
