@@ -60,7 +60,7 @@ const VideosContainer = (props) => {
     }
   } else {
     // If used in front page
-    this.props.games.forEach((game, id) => {
+    props.games.forEach((game, id) => {
       media.push(
         <iframe
           index={id}

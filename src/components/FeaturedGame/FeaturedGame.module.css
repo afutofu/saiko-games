@@ -73,6 +73,6 @@
 .storyline {
   line-height: 1.9rem;
   font-size: 22px;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
 }
