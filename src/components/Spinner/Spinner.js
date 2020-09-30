@@ -12,6 +12,7 @@ const Spinner = () => {
       <div className={styles.rect5}></div>
     </div>
   );
+  // return <div className={styles.loader}></div>;
 };
 
 export default Spinner;
