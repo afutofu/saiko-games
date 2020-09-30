@@ -1,6 +1,6 @@
 import React from "react";
 
-import faker, { random } from "faker";
+import faker from "faker";
 
 import styles from "./Review.module.css";
 
@@ -34,7 +34,7 @@ const Review = (props) => {
         <h3 className={styles.username}>{faker.internet.userName()}</h3>
       </div>
       <p className={styles.userReview}>
-        {reviewList[Math.round(Math.random() * reviewList.length)]}
+        {reviewList[Math.round(Math.random() * (reviewList.length - 1))]}
       </p>
     </div>
   );

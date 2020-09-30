@@ -79,3 +79,21 @@
     opacity: 1;
   }
 }
+
+@media only screen and (max-width: 992px) {
+  .ratingBox {
+    width: 150px;
+    margin: 0 10px !important;
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  .ratingBox:first-of-type,
+  .ratingBox:last-of-type {
+    margin: 0 !important;
+  }
+
+  .ratingBox .title {
+    margin-right: 8px;
+  }
+}
