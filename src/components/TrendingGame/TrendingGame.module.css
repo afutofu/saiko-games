@@ -1,7 +1,7 @@
 .trendingGame {
   position: relative;
   width: 100%;
-  height: 40vh;
+  height: 300px;
   background: none;
   color: white;
   margin-bottom: 20px;
@@ -70,4 +70,36 @@
   font-size: 22px;
   overflow-y: scroll;
   overflow-x: hidden;
+}
+
+@media only screen and (max-width: 992px) {
+  .name {
+    font-size: 35px;
+  }
+
+  .storyline {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .cover {
+    display: none;
+  }
+
+  .container {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  .name {
+    font-size: 25px;
+  }
+
+  .genres {
+    font-size: 20px;
+  }
+
+  .storyline {
+    font-size: 16px;
+  }
 }

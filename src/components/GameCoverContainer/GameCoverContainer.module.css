@@ -1,8 +1,10 @@
 .gameCoverContainer {
   display: relative;
-  height: 350px;
+  left: 10px;
+  height: 300px;
   display: flex;
-  justify-content: space-around;
-  overflow: hidden;
-  flex-wrap: wrap;
+  justify-content: flex-start;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 20px;
 }

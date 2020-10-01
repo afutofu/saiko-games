@@ -1,6 +1,6 @@
 .gameCoverDisplay {
   position: relative;
-  height: 40vh;
+  height: 300px;
   width: 100%;
   border: 2px solid rgba(0, 0, 0, 0.1);
   box-sizing: border-box;

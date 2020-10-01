@@ -5,8 +5,8 @@ import styles from "./GameScreenshotDisplay.module.css";
 
 const GameScreenshotDisplay = (props) => {
   return (
-    <Link to={`/games/${props.gameId}`} className={styles.link}>
-      <div className={styles.gameScreenshotDisplay}>
+    <div className={styles.gameScreenshotDisplay}>
+      <Link to={`/games/${props.gameId}`} className={styles.link}>
         <img
           className={styles.screenshot}
           src={props.screenshot}
@@ -21,8 +21,8 @@ const GameScreenshotDisplay = (props) => {
             <h3 className={styles.rating}>{props.rating}</h3>
           </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 };
 

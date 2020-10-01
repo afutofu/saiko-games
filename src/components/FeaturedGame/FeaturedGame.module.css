@@ -1,12 +1,12 @@
 .featuredGameBox {
-  height: 40vh;
+  height: 300px;
 }
 
 .featuredGame {
   position: absolute;
   left: -5%;
   width: 110%;
-  height: 40vh;
+  height: 300px;
   background: none;
   color: white;
   margin-bottom: 41vh;
@@ -75,4 +75,41 @@
   font-size: 22px;
   overflow-y: auto;
   overflow-x: hidden;
+}
+
+@media only screen and (max-width: 992px) {
+  .featuredGame {
+    width: 100%;
+    left: 0;
+  }
+
+  .name {
+    font-size: 35px;
+  }
+
+  .storyline {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .cover {
+    display: none;
+  }
+
+  .container {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .name {
+    font-size: 25px;
+  }
+
+  .genres {
+    font-size: 20px;
+  }
+
+  .storyline {
+    font-size: 16px;
+  }
 }

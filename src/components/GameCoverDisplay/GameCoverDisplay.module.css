@@ -8,6 +8,11 @@
   height: displayHeight;
   width: 200px;
   transition: 0.25s;
+  margin: 0 20px;
+}
+
+.gameCoverDisplay:first-of-type {
+  margin-left: 0;
 }
 
 .gameCoverDisplay:hover {
@@ -54,6 +59,12 @@
   margin-right: 25px !important;
 }
 
+.nameExtraSmall {
+  font-size: 11px;
+  font-weight: 500;
+  margin-right: 25px !important;
+}
+
 .genre {
   font-size: 16px;
   margin-right: 32px;
@@ -61,6 +72,11 @@
 
 .genreSmall {
   font-size: 14px;
+  margin-right: 25px !important;
+}
+
+.genreExtraSmall {
+  font-size: 10px;
   margin-right: 25px !important;
 }
 
@@ -76,4 +92,11 @@
   top: 10px;
   right: infoPadding;
   font-size: 18px;
+}
+
+.ratingExtraSmall {
+  position: absolute;
+  top: 10px;
+  right: infoPadding;
+  font-size: 13px;
 }
