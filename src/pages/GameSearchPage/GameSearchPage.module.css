@@ -1,7 +1,7 @@
 .gameSearchPage {
   position: relative;
-  margin-top: 6vh;
-  min-height: 94vh;
+  margin-top: 4vh;
+  min-height: 96vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -34,6 +34,14 @@
   background-color: #fbfbfb;
   box-sizing: border-box;
   padding: 20px;
-  padding-top: 0px;
+  padding-top: 20px;
   z-index: 100;
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 992px) {
+  .container {
+    width: 100%;
+    overflow: hidden;
+  }
 }

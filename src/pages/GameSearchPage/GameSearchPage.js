@@ -105,7 +105,7 @@ const GameSearchPage = (props) => {
         <div className={styles.background} />
         <div className={styles.container}>
           <SectionTitle
-            title={`games matched with "${props.location.state.searchTerm}`}
+            title={`games matched with "${props.location.state.searchTerm}"`}
           />
 
           {games ? (

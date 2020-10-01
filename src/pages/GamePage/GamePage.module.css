@@ -1,6 +1,7 @@
 .gamePage {
   position: relative;
-  margin-top: 6vh;
+  margin-top: 4vh;
+  min-height: 96vh;
   width: 100%;
   display: flex;
   flex-direction: column;
