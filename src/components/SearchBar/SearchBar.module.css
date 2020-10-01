@@ -1,13 +1,13 @@
 .searchBar {
   position: relative;
-  width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
+  margin: 0 15px;
 }
 
 .searchInput {
-  width: 50%;
+  min-width: 200px;
   height: 50%;
   margin-right: 10px;
   font-size: 100%;
@@ -62,5 +62,23 @@
   100% {
     transform: scale(1);
     color: gold;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .searchInput {
+    min-width: 100px;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .searchBar {
+    margin-left: 0;
+  }
+
+  .searchInput {
+    min-width: 50px;
+    width: 100%;
   }
 }

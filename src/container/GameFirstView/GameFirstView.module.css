@@ -173,7 +173,7 @@
     left: 5%;
     bottom: 125%;
     width: 90%;
-    font-size: 45px;
+    font-size: 40px;
     color: white;
     letter-spacing: 0.1rem;
     line-height: 3.5rem;
@@ -194,6 +194,7 @@
   .about {
     width: 95%;
     border: none;
+    padding: 0 20px;
   }
 
   .ratings {
@@ -201,5 +202,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .about .title {
+    bottom: 122%;
+    font-size: 30px;
+    line-height: 2.5rem;
+  }
+
+  .secondaryInfo {
+    font-size: 14px;
   }
 }
