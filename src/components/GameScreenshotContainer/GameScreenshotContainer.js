@@ -19,7 +19,7 @@ const GameScreenshotContainer = (props) => {
           key={game.id}
           gameId={game.id}
           screenshot={
-            game.screenshots !== null
+            game.screenshots != null
               ? "https:" +
                 game.screenshots[0].url.replace("t_thumb", "t_screenshot_med")
               : "https://images.igdb.com/igdb/image/upload/t_screenshot_med/muv70yw3rds1cw8ymr5v.jpg"

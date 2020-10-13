@@ -37,7 +37,7 @@ const FrontPage = () => {
 
     if (
       game.screenshots &&
-      game.screenshots !== null &&
+      game.screenshots != null &&
       game.screenshots.length > 1
     ) {
       return (

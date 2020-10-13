@@ -27,7 +27,7 @@ const GameSearchPage = (props) => {
 
     if (
       game.screenshots &&
-      game.screenshots !== null &&
+      game.screenshots != null &&
       game.screenshots.length > 1
     ) {
       return (

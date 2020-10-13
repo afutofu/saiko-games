@@ -15,6 +15,8 @@ const TrendingGameContainer = (props) => {
       games.genres.forEach((genre) => genres.push(genre));
     }
 
+    console.log(game.screenshots == null);
+
     return (
       <div className={styles.trendingGame}>
         <TrendingGame
@@ -25,7 +27,7 @@ const TrendingGameContainer = (props) => {
               : null
           }
           screenshot={
-            game.screenshots !== null
+            game.screenshots != null
               ? "https:" +
                 game.screenshots[0].url.replace("t_thumb", "t_screenshot_med")
               : "https://images.igdb.com/igdb/image/upload/t_screenshot_med/muv70yw3rds1cw8ymr5v.jpg"
