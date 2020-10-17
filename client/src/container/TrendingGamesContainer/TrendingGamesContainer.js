@@ -15,8 +15,6 @@ const TrendingGameContainer = (props) => {
       games.genres.forEach((genre) => genres.push(genre));
     }
 
-    console.log(game.screenshots == null);
-
     return (
       <div className={styles.trendingGame}>
         <TrendingGame

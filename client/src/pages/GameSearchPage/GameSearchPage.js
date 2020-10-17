@@ -49,10 +49,9 @@ const GameSearchPage = (props) => {
   };
 
   const fetchData = async (body) => {
-    const proxyurl = "https://cors-anywhere.herokuapp.com/",
-      url = `https://api-v3.igdb.com/games`;
+    const url = `https://api.igdb.com/v4/games`;
 
-    const res = await axios.post(proxyurl + url, body);
+    const res = await axios.post("/api/games", { url, body });
     return res.data;
   };
 
