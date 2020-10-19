@@ -8,6 +8,7 @@ Technologies used:
 
 - [React](https://reactjs.org/)
 - [IGDB API](https://www.igdb.com/api)
+- [React Router](https://reactrouter.com/)
 - [Node.js](https://nodejs.org/en/)
 - [Express](https://expressjs.com/)
 
