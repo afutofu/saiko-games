@@ -60,16 +60,21 @@ const VideosContainer = (props) => {
     }
   } else {
     // If used in front page
-    props.games.forEach((game, id) => {
-      media.push(
-        <iframe
-          index={id}
-          title={game.videos.id}
-          key={id}
-          className={styles.video}
-          src={`https://www.youtube.com/embed/${game.videos[0].video_id}`}
-        ></iframe>
-      );
+    let id = 0;
+    props.games.forEach((game) => {
+      console.log(game.videos);
+      if (game.videos) {
+        media.push(
+          <iframe
+            index={id}
+            title={game.videos.id}
+            key={id}
+            className={styles.video}
+            src={`https://www.youtube.com/embed/${game.videos[0].video_id}`}
+          ></iframe>
+        );
+        id = id + 1;
+      }
     });
   }
 
