@@ -4,13 +4,13 @@
   "description": "Video game information website",
   "main": "server.js",
   "scripts": {
-    "client-install":"npm install --prefix client",
+    "client-install": "npm install --prefix client",
     "client-build": "npm run build --prefix client",
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm run client-install && npm run client-build"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run client-install && npm run client-build"
   },
   "repository": {
     "type": "git",
@@ -27,7 +27,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "nodemon": "^2.0.5"
+    "nodemon": "^2.0.6"
   },
   "devDependencies": {
     "concurrently": "^5.3.0"
