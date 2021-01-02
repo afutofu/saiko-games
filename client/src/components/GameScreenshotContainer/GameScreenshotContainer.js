@@ -25,7 +25,7 @@ const GameScreenshotContainer = (props) => {
               : "https://images.igdb.com/igdb/image/upload/t_screenshot_med/muv70yw3rds1cw8ymr5v.jpg"
           }
           name={game.name}
-          genre={game.genres[0] !== null ? game.genres.name : null}
+          genre={game.genres ? game.genres.name : null}
           rating={game.total_rating ? Math.round(game.total_rating) : null}
         />
       );
