@@ -62,7 +62,6 @@ const VideosContainer = (props) => {
     // If used in front page
     let id = 0;
     props.games.forEach((game) => {
-      console.log(game.videos);
       if (game.videos) {
         media.push(
           <iframe
